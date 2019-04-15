@@ -393,22 +393,22 @@ chisq.test(lider)$stdres
 chisq.test(lider)
 
 ###################################################################################
-# Aula 23 - Distribuição de Poison
+# Aula 23 - Distribuição de Poisson
 # Distribuição de Poisson é uma distribuição de probabilidade discreta. Expressa a probabilidade 
 # de uma série de eventos ocorrem em um período fixo de tempo, área, volume, quadrante, etc. 
 # Esta distribuição segue as mesmas premissas da distribuição binomial: i) as tentativas são 
 # independentes; ii) a variável aleatória é o número de eventos em cada amostra; e iii) a probabilidade
 # é constante em cada intervalo.
-help("dpois")
+help("Poisson")
 
-# Ex. A média do número de aprovados de uma turma de DM é de  23 alunos em um semestre.
+# Ex. A média do número de aprovados de uma turma de Data Mining é de  23 alunos em um semestre.
 # Qual a probabilidade de serem aprovados 17 alunos?
 
 dpois(17,lambda = 23)
 # e 25 alunos?
-dpois(25,lambda = 23)
+dpois(25,lambda=23)
 
-plot(dpois(17,23),type = "h")
+plot(dpois(1:40,23),type = "h")
 
 # A probabilidade acumulada de 19 ou menos alunos serem aprovados?
 ppois(19,lambda = 23)
@@ -420,14 +420,11 @@ plot(ppois(1:40,23),type = "s")
 
 # Qual o número de aprovados(x) se a procentagem acumulada for de 0.78?
 qpois(.78,lambda = 23)
-
-rpois(10,lambda = 23)
-#
+qpois(.434567,23)
 
 
-
-
-
+x = rpois(70,lambda = 23)
+x
 
 ###################################################################################
 # Aula 24 - Anova
@@ -443,6 +440,7 @@ summary(dados)
 View(dados)
 
 teste1 = aov(vento ~ area,dados)
+teste1
 summary(teste1)
 
 teste2 = TukeyHSD(teste1)
@@ -457,8 +455,56 @@ teste4
 
 # Fonte1: http://lite.acad.univali.br/rcurso/anova/index.html
 # Fonte2: http://www.sthda.com/english/wiki/one-way-anova-test-in-r
-###################################################################################
+
+
+###########################################################################################
 # Aula 25 - Outliers
+#install.packages("outliers")
+#library(outliers)
 
+cars
+cars1 = cars[1:30,]
+cars1
+cars_outliers = data.frame(speed=c(19,19,20,20,20,1), dist=c(190, 186, 210, 220, 218,195))
+cars2 = rbind(cars1, cars_outliers) 
+cars2
 
+boxplot(cars2)
+boxplot(cars2$speed)
+boxplot(cars2$dist)
+boxplot.stats(cars2$speed)$out
+boxplot.stats(cars2$dist)$out
 
+outlier(cars2$speed)
+outlier(cars2$dist)
+help("outlier")
+
+par(mfrow=c(1, 2))
+plot(cars2$speed, cars2$dist, xlim=c(0, 28), ylim=c(0, 230), main="Com Outliers",
+     xlab="speed", ylab="dist", pch=20, col="red", cex=2)
+abline(lm(dist ~ speed, data=cars2), col="blue", lwd=3, lty=2)
+
+plot(cars1$speed, cars1$dist, xlim=c(0, 28), ylim=c(0, 230), main="Sem Outliers",
+     xlab="speed", ylab="dist", pch=20, col="red", cex=2)
+abline(lm(dist ~ speed, data=cars1), col="blue", lwd=3, lty=2)
+
+# Média, mediana, moda
+par(mfrow=c(1, 1))
+
+x = cars2$dist
+qnt = quantile(x, probs=c(.25, .75), na.rm = T)
+caps = quantile(x, probs=c(.05, .95), na.rm = T)
+H = 1.5 * IQR(x, na.rm = T)
+x[x < (qnt[1] - H)] = caps[1]
+x[x > (qnt[2] + H)] = caps[2]
+x
+boxplot(x)
+
+y = cars2$speed
+qnt = quantile(y, probs=c(.25, .75), na.rm = T)
+caps = quantile(y, probs=c(.05, .95), na.rm = T)
+H = 1.5 * IQR(y, na.rm = T)
+y[y < (qnt[1] - H)] = caps[1]
+y[y > (qnt[2] + H)] = caps[2]
+y
+boxplot(y)
