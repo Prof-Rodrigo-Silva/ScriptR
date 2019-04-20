@@ -5,7 +5,7 @@ c = a * b
 c
 
 #Aula 02 - Comentário
-#class(c)
+#class(c)                                                            
 #c = "Selva, Brasil!"
 # Este é um exemplo de comentário no R
 f = 0

@@ -1,36 +1,63 @@
 #####################################################################################
-# Aula 01 - Introdu??o
-# Conte?do:
+# Aula 01 - Introdução
+# Conteúdo:
+# 1. Regras de Associação:
+# 1.1. Apriori
+# 1.2. ECLAT
 
-# 1. Regress?o:
-# 1.1. Regress?o linear (simples e m?ltipla)
-# 1.2. Regress?o polinomial
-# 1.3. Regress?o com ?rvores de decis?o e random forest
-# 1.4. Regress?o com vetores de suporte
-# 1.5. Regress?o com redes neurais artificiais
+# 2. Agrupamentos
+# 2.1. K-means
+# 2.2. Fuzzy c-means
+# 2.3. K-medoids
+# 2.4. DBSCAN
+# 2.5. Hierárquico
 
-# 2. Regras de Associa??o:
-# 2.1. Apriori
-# 2.2. ECLAT
-
-# 3. Classifica??o:
+# 3. Classificação:
 # 3.1. Neive Bays
-# 3.2. ?rvores de Decis?o - Rpart
+# 3.2. Árvores de Decisão - Rpart
 # 3.3. Regras - (PRISM, OneR, CN2)
-# 3.4. Aprendizagem Baseado em Inst?ncias - KNN
-# 3.5. M?quina de Vetores de Suporte - SVM
-# 3.6. Regress?o Logist?ca
+# 3.4. Aprendizagem Baseado em Instâncias - KNN
+# 3.5. Máquina de Vetores de Suporte - SVM
+# 3.6. Regressão Logistíca
 # 3.7. RNA
 
-# 4. Agrupamentos
-# 4.1. K-means
-# 4.2. Fuzzy c-means
-# 4.3. K-medoids
-# 4.4. DBSCAN
-# 4.5. Hierárquico
+# 4. Regressão:
+# 4.1. Regressão linear (simples e múltipla)
+# 4.2. Regressão polinomial
+# 4.3. Regressão com árvores de decisão e random forest
+# 4.4. Regressão com vetores de suporte
+# 4.5. Regressão com redes neurais artificiais
 
 # 5. Séries Temporais
-
 # 6. Mineração de Textos
-
 # 7. Redes Sociais e Grafos
+
+####################################################################################################
+# 1. Regras de Associação:
+# 1.1. Apriori
+
+#install.packages("arules")
+library(arules)
+
+base = read.transactions(file.choose(),header = F,sep = ",",rm.duplicates = T)
+summary(base)
+
+itemFrequencyPlot(base)
+
+itemFrequencyPlot(base,top=5)
+
+regras = apriori(base, parameter = list(sup=0.6, conf=0.8))
+
+inspect(regras)
+
+base1 = read.transactions(file.choose(),header = F,sep = ",",rm.duplicates = T)
+summary(base1)
+
+itemFrequencyPlot(base1)
+itemFrequencyPlot(base1,top=5)
+
+regras1 = apriori(base1, parameter = list(sup=0.001, conf=0.8))
+inspect(regras1)
+4 * 3 
+12 / 7501
+inspect(sort(regras1, by="confidence")[1:30])
