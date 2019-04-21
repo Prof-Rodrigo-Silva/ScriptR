@@ -46,7 +46,7 @@ itemFrequencyPlot(base)
 
 itemFrequencyPlot(base,top=5)
 
-regras = apriori(base, parameter = list(sup=0.6, conf=0.8))
+regras = apriori(base, parameter = list(sup=0.1, conf=0.8))
 
 inspect(regras)
 
@@ -54,10 +54,29 @@ base1 = read.transactions(file.choose(),header = F,sep = ",",rm.duplicates = T)
 summary(base1)
 
 itemFrequencyPlot(base1)
-itemFrequencyPlot(base1,top=5)
+itemFrequencyPlot(base1,top=10)
 
-regras1 = apriori(base1, parameter = list(sup=0.001, conf=0.8))
+regras1 = apriori(base1, parameter = list(sup=0.001, conf=0.5))
 inspect(regras1)
 4 * 3 
 12 / 7501
-inspect(sort(regras1, by="confidence")[1:30])
+inspect(sort(regras1, by="confidence")[30:60])
+
+#################################################################################################
+# 1. Regras de Associação:
+# 1.2. ECLAT
+
+base = read.transactions("GroceryStoreDataSet.csv", header = F, sep = ",", rm.duplicates = T)
+
+image(base)
+
+itemSet = eclat(base, parameter = list(support=0.3))
+inspect(itemSet)
+
+itemSet= eclat(base, parameter = list(support=0.2 ,maxlen=2))
+inspect(itemSet)
+
+itemSet= eclat(base, parameter = list(support=0.15 ,minlen=2))
+inspect(itemSet)
+
+inspect(sort(itemSet))
