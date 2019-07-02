@@ -622,7 +622,9 @@ confusionMatrix(matriz_confusao)
 # 3. Classificass?o
 # 3.7. RNA
 
-f = function(x,y){
-  x+y
-  
-}
+x = 1
+y = 2
+
+c = x + y
+
+c
