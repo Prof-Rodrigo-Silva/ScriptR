@@ -622,16 +622,3 @@ confusionMatrix(matriz_confusao)
 # 3. Classificass?o
 # 3.7. RNA
 
-x = 1
-y = 2
-
-c = x + y
-
-c
-
-z = c + 10
-
-a = z + 13
-
-a
-
