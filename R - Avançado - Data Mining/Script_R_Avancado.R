@@ -1,7 +1,7 @@
 #####################################################################################
-# Aula 01 - Introdu??o
-# Conte?do:
-# 1. Regras de Associa??o:
+# Aula 01 - Introdução
+# Conteúdo:
+# 1. Regras de Associação:
 # 1.1. Apriori
 # 1.2. ECLAT
 
@@ -12,28 +12,28 @@
 # 2.4. DBSCAN
 # 2.5. Hier?rquico
 
-# 3. Classificass?o:
+# 3. Classificação:
 # 3.1. Neive Bays
-# 3.2. ?rvores de Decis?o - Rpart
+# 3.2. Árvores de Decisão - Rpart
 # 3.3. Regras - (PRISM, OneR, CN2)
-# 3.4. Aprendizagem Baseado em Inst?ncias - KNN
+# 3.4. Aprendizagem Baseado em Instâncias - KNN
 # 3.5. M?quina de Vetores de Suporte - SVM
-# 3.6. Regress?o Logist?ca
+# 3.6. Regressão Logistica
 # 3.7. RNA
 
-# 4. Regress?o:
-# 4.1. Regress?o linear (simples e m?ltipla)
-# 4.2. Regress?o polinomial
-# 4.3. Regress?o com ?rvores de deciss?o e random forest
-# 4.4. Regress?o com vetores de suporte
-# 4.5. Regress?o com redes neurais artificiais
+# 4. Regressão:
+# 4.1. Regressão linear (simples e múltipla)
+# 4.2. Regressão polinomial
+# 4.3. Regressão com árvores de decissão e random forest
+# 4.4. Regressão com vetores de suporte
+# 4.5. Regressão com redes neurais artificiais
 
-# 5. S?ries Temporais
-# 6. Minera??o de Textos
+# 5. Séries Temporais
+# 6. Mineração de Textos
 # 7. Redes Sociais e Grafos
 
 ####################################################################################################
-# 1. Regras de Associa??o:
+# 1. Regras de Associação:
 # 1.1. Apriori
 
 #install.packages("arules")
@@ -428,7 +428,7 @@ acerto = 1 - erro
 acerto
 
 ##########################################################################################
-# 3. Classificass?o
+# 3. Classificação
 # 3.1. Neive Bays
 library(readr)
 vinho = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data")
@@ -448,6 +448,7 @@ base_treinamento = subset(vinho,divisao==TRUE)
 base_teste = subset(vinho,divisao==FALSE)
 
 library(e1071)
+
 classificador = naiveBayes(x = base_treinamento[-1], y = base_treinamento$Tipo)
 print(classificador)
 
@@ -458,8 +459,8 @@ previsao
 
 matriz = table(base_teste$Tipo,previsao)
 matriz
-13+17+12+2
-erro =  2 / 44
+12+17+12+3
+erro =  3 / 44
 erro
 acerto = 1 - erro
 acerto
@@ -468,10 +469,10 @@ library(caret)
 confusionMatrix(matriz)
 
 
-df = data.frame(Alcohol=c(15.00),Malic_acid=c(3.25),Ash=c(1.79),Alcalinity_of_ash=c(17.00),
+df = data.frame(Alcohol=c(11.00),Malic_acid=c(1.25),Ash=c(1.79),Alcalinity_of_ash=c(17.00),
                 Magnesium=c(150),Total_phenols=c(1.99),Flavanoids=c(1.27),
                 Nonflavanoid_phenols=c(0.5),Proantocianinas=c(1.3),Proanthocyanins=c(6.66),
-                Hue=c(0.57),OD280OD315=c(2.85),Proline=c(457))
+                Hue=c(0.57),OD280OD315=c(4.85),Proline=c(457))
 
 previsao = predict(classificador,newdata = df)
 previsao
@@ -486,8 +487,8 @@ previsao
 
 
 ##########################################################################################
-# 3. Classificass?o
-# 3.2. ?rvores de Decis?o - Rpart
+# 3. Classificação
+# 3.2. Árvores de Decisão - Rpart
 
 #DadosRS  = https://dados.fee.tche.br/
 
