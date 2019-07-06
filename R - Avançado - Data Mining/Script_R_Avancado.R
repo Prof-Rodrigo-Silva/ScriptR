@@ -13,7 +13,7 @@
 # 2.5. Hier?rquico
 
 # 3. Classificação:
-# 3.1. Neive Bayes
+# 3.1. Naive Bayes
 # 3.2. Árvores de Decisão - Rpart
 # 3.3. Regras - (PRISM, OneR, CN2)
 # 3.4. Aprendizagem Baseado em Instâncias - KNN
@@ -429,7 +429,7 @@ acerto
 
 ##########################################################################################
 # 3. Classificação
-# 3.1. Neive Bayes
+# 3.1. Naive Bayes
 library(readr)
 vinho = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data")
 
@@ -476,15 +476,6 @@ df = data.frame(Alcohol=c(11.00),Malic_acid=c(1.25),Ash=c(1.79),Alcalinity_of_as
 
 previsao = predict(classificador,newdata = df)
 previsao
-#
-
-
-
-
-
-
-
-
 
 ##########################################################################################
 # 3. Classificação
@@ -515,14 +506,15 @@ divisao = sample.split(dados1$valor_da_producao, SplitRatio = 0.75)
 base_treinamento = subset(dados1, divisao == TRUE)
 base_teste = subset(dados1, divisao == FALSE)
 
-#analisando alguns gr?ficos
+#analisando alguns gráficos
 par(mfrow=c(1,4))
 for (i in 2:5) {
   hist(base_treinamento[,i], main=names(base_treinamento)[i])
 }
 
 for (i in 2:5) {
-  plot(base_treinamento[,i], col=base_treinamento$valor_da_producao , main=names(base_treinamento)[i])
+  plot(base_treinamento[,i], col=base_treinamento$valor_da_producao ,
+       main=names(base_treinamento)[i])
 }
 
 plot(base_treinamento[,-1],col = base_treinamento$valor_da_producao)
@@ -560,8 +552,8 @@ confusionMatrix(matriz_confusao)
 
 
 ############################################################################################
-# 3. Classificass?o
-# 3.2. ?rvores de Decis?o - RandomForest 
+# 3. Classificação
+# 3.2. Árvores de Decisão - RandomForest 
 
 #DadosRS  = https://dados.fee.tche.br/
 
