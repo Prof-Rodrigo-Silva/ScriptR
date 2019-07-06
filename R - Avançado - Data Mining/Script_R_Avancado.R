@@ -13,7 +13,7 @@
 # 2.5. Hier?rquico
 
 # 3. Classificação:
-# 3.1. Neive Bays
+# 3.1. Neive Bayes
 # 3.2. Árvores de Decisão - Rpart
 # 3.3. Regras - (PRISM, OneR, CN2)
 # 3.4. Aprendizagem Baseado em Instâncias - KNN
@@ -429,7 +429,7 @@ acerto
 
 ##########################################################################################
 # 3. Classificação
-# 3.1. Neive Bays
+# 3.1. Neive Bayes
 library(readr)
 vinho = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data")
 
