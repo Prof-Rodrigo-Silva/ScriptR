@@ -14,7 +14,7 @@
 
 # 3. Classificação:
 # 3.1. Naive Bayes
-# 3.2. Árvores de Decisão - Rpart
+# 3.2. ?rvores de Decisão - Rpart
 # 3.3. Regras - (PRISM, OneR, CN2)
 # 3.4. Aprendizagem Baseado em Instâncias - KNN
 # 3.5. M?quina de Vetores de Suporte - SVM
@@ -104,9 +104,6 @@ structure(vinho)
 #Hue
 #OD280/OD315 of diluted wines
 #Proline            
-
-
-
 colnames(vinho)=c('Tipo','Alcohol','Malic_acid','Ash','Alcalinity_of_ash','Magnesium','Total_phenols', 
                   'Flavanoids','Nonflavanoid_phenols','Proantocianinas','Proanthocyanins',
                   'Hue','OD280/OD315','Proline') 
@@ -391,8 +388,6 @@ unique(flor$cluster)
 
 plot(iris[1:4],col=flor$cluster)
 
-
-
 ###########################################################################################################
 # 2. Agrupamentos
 # 2.5. Hier?rquico
@@ -479,7 +474,7 @@ previsao
 
 ##########################################################################################
 # 3. Classificação
-# 3.2. Árvores de Decisão - Rpart
+# 3.2. ?rvores de Decisão - Rpart
 
 #DadosRS  = https://dados.fee.tche.br/
 
@@ -496,7 +491,7 @@ dados1
 library(arules)
 #discretizando coluna valor_da_producao
 dados1$valor_da_producao = discretize(dados1$valor_da_producao,method = "frequency",
-                                      breaks = 5, labels = c("Muito Baixo","Baixo","M?dio","Alta","Muito Alto"))
+                                      breaks = 5, labels = c("Muito Baixo","Baixo","Médio","Alta","Muito Alto"))
 dados1
 tail(dados1)
 library(caTools)
