@@ -565,7 +565,7 @@ dados1
 library(arules)
 #discretizando coluna valor_da_producao
 dados1$valor_da_producao = discretize(dados1$valor_da_producao,method = "frequency",
-                                      breaks = 5, labels = c("Muito Baixo","Baixo","M?dio","Alta","Muito Alto"))
+                                      breaks = 5, labels = c("Muito Baixo","Baixo","Médio","Alta","Muito Alto"))
 dados1
 tail(dados1)
 library(caTools)
