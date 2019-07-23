@@ -14,7 +14,7 @@
 
 # 3. Classificação:
 # 3.1. Naive Bayes
-# 3.2. ?rvores de Decisão - Rpart
+# 3.2. ?rvores de Decisão - Rpart - RandomForest - Party
 # 3.3. Regras - (PRISM, OneR, CN2)
 # 3.4. Aprendizagem Baseado em Instâncias - KNN
 # 3.5. M?quina de Vetores de Suporte - SVM
@@ -539,11 +539,6 @@ print(matriz_confusao)
 #install.packages("e1071")
 library(e1071)
 confusionMatrix(matriz_confusao)
-#
-
-
-
-
 
 
 ############################################################################################
@@ -576,11 +571,13 @@ base_treinamento = subset(dados1, divisao == TRUE)
 base_teste = subset(dados1, divisao == FALSE)
 
 library(randomForest)
+help(randomForest)
 
-set.seed(11)
+set.seed(1)
 classificador = randomForest(x = base_treinamento[-5], 
-                             y = base_treinamento$valor_da_producao, ntree = 10)
+                             y = base_treinamento$valor_da_producao, ntree = 40, mtry = 3)
 
+classificador
 previsoes = predict(classificador,base_teste[-5])
 
 previsoes
@@ -589,6 +586,45 @@ matriz_confusao = table(base_teste[,5],previsoes)
 matriz_confusao
 library(caret)
 confusionMatrix(matriz_confusao)
+
+
+############################################################################################
+# 3. Classificação
+# 3.3. Árvores de Decisão - Party
+dados = read.csv2(file.choose(), header = T, sep = ",")
+#dados = read.csv2("DM.csv", header = T, sep = ",")
+dados
+colnames(dados) = c("cidade","a_colhida","rend_medio","a_dest_a_colheita","quant_produzida","valor_da_producao")
+dados1 = dados
+
+dados1$cidade=NULL
+cor(dados[2:6])
+dados1
+#install.packages("arules")
+library(arules)
+#discretizando coluna valor_da_producao
+dados1$valor_da_producao = discretize(dados1$valor_da_producao,method = "frequency",
+                                      breaks = 5, labels = c("Muito Baixo","Baixo","Médio","Alta","Muito Alto"))
+dados1
+tail(dados1)
+library(caTools)
+#dividindo conjunto em treino e teste
+set.seed(1)
+divisao = sample.split(dados1$valor_da_producao, SplitRatio = 0.75)
+base_treinamento = subset(dados1, divisao == TRUE)
+base_teste = subset(dados1, divisao == FALSE)
+
+library(party)
+set.seed(1)
+classificador = ctree(formula = valor_da_producao ~ ., data = base_treinamento)
+previsoes = predict(classificador,base_teste)
+previsoes
+matriz_confusao = table(base_teste[,5],previsoes)
+library(caret)
+confusionMatrix(matriz_confusao)
+plot(classificador)
+plot(classificador,type="simple")
+
 
 ##########################################################################################
 # 3. Classificassão
