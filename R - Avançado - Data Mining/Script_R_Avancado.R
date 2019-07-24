@@ -617,14 +617,21 @@ base_teste = subset(dados1, divisao == FALSE)
 library(party)
 set.seed(1)
 classificador = ctree(formula = valor_da_producao ~ ., data = base_treinamento)
-previsoes = predict(classificador,base_teste)
-previsoes
-matriz_confusao = table(base_teste[,5],previsoes)
-library(caret)
-confusionMatrix(matriz_confusao)
-plot(classificador)
-plot(classificador,type="simple")
 
+previsoes = predict(classificador,base_teste)
+
+previsoes
+
+matriz_confusao = table(base_teste[,5],previsoes)
+
+library(caret)
+
+confusionMatrix(matriz_confusao)
+
+plot(classificador)
+
+plot(classificador,type="simple")
+#
 
 ##########################################################################################
 # 3. Classificassão
