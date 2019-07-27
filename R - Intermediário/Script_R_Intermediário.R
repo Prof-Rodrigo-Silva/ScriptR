@@ -33,6 +33,7 @@
 # 10. Distribuição de Poison
 # 11. Anova
 # 12. Outliers
+# 13. Índice de Gini
 
 #################################################################################3
 # Aula 02 - Amostras: strata()
@@ -508,3 +509,60 @@ y[y < (qnt[1] - H)] = caps[1]
 y[y > (qnt[2] + H)] = caps[2]
 y
 boxplot(y)
+
+########################################################################################################
+# 13. Índice de Gini
+# O Coeficiente de Gini é uma medida de desigualdade desenvolvida pelo estatístico italiano Corrado Gini,
+# e publicada no documento "Variabilità e mutabilità" ("Variabilidade e mutabilidade" em italiano),
+# em 1912. Pode ser usado para qualquer distribuição embora seja comumente utilizado para medir a
+# desigualdade de distribuição de renda.
+
+# O Coeficiente de Gini consiste em um número entre 0 e 1, onde 0 corresponde à completa igualdade (no
+# caso do rendimento, por exemplo, toda a população recebe o mesmo salário) e 1 corresponde à completa
+# desigualdade (onde uma pessoa recebe todo o rendimento e as demais nada recebem).
+
+# O índice de Gini é o coeficiente expresso em pontos percentuais (é igual ao coeficiente multiplicado 
+# por 100).
+
+# O Coeficiente de Gini é amplamente utilizado em diversos campos de estudo, como a sociologia, economia,
+# ciências da saúde, ecologia, engenharia e agricultura. Por exemplo, em ciências sociais e economia,
+# além do coeficiente de Gini relacionado à renda, estudiosos publicaram coeficientes relacionados à
+# educação e oportunidades.
+
+#install.packages("ineq")
+library(ineq)
+
+AirPassengers
+
+indice = ineq(AirPassengers,type="Gini")
+indice
+
+plot(Lc(AirPassengers))
+
+plot(Lc(AirPassengers),col="darkred",lwd=2)
+
+Gini(AirPassengers)
+
+plot(Gini(AirPassengers))
+
+#install.packages("reldist")
+library(reldist)
+
+gini(AirPassengers)
+
+cidade = c ("Bagé", "Caxias do Sul", "Pelotas", "Caçapava do Sul", "Candiota", "Dom Pedrito",
+             "Rosário do Sul", "São Gadriel", "Hulha Negra", "Candiota") 
+renda = sample ( 1: 100000, 100, replace = TRUE) 
+cidades = data.frame (cidade, renda)
+
+library(ggplot2)
+ggplot (cidades, aes (renda)) + stat_density (geom = "path", position = "identity") + 
+  facet_wrap (~ cidade, ncol = 2)
+
+Gini(cidades[which(cidades$cidade == "Bagé"), ]$renda)
+
+indices_gini = aggregate(renda ~ cidade, data = cidades, FUN = "gini")
+
+names(indices_gini) = c("cidade", "índice_gini")
+
+indices_gini
