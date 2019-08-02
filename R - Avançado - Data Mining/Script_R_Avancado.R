@@ -631,38 +631,87 @@ confusionMatrix(matriz_confusao)
 plot(classificador)
 
 plot(classificador,type="simple")
-#
 
 ##########################################################################################
 # 3. Classificassão - Regras
 # 3.3.1. OneR
 
 library(readr)
-cogumelos = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data")
+diagnosticos = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data")
 
-colnames(cogumelos)=c('Class','cap-shape','cap-surface','cap-color','bruises','odor','gill-attachment', 
-                  'gill-spacing','gill-size','gill-color','stalk-shape','stalk-root','stalk-surface-above-ring',
-                  'stalk-surface-below-ring','stalk-color-above-ring','stalk-color-below-ring','veil-type',
-                  'veil-color','ring-number','ring-type','spore-print-color','population','habitat')
 
-cogumelos1 = cogumelos
+colnames(diagnosticos)=c('ID','Clump Thickness','Uniformity of Cell Size','Uniformity of Cell Shape','Marginal Adhesion',
+                         'Single Epithelial Cell Size', 'Bare Nuclei','Bland Chromatin','Normal Nucleoli','Mitoses',
+                         'Class')
+
+diag = data.frame(diagnosticos)
+
+diag[,1] = NULL
+diag$Class[diag$Class==2]='benign'
+diag$Class[diag$Class==4]='malignant'
+
+library(caTools)
+#dividindo conjunto em treino e teste
+set.seed(1)
+divisao = sample.split(diag$Class, SplitRatio = 0.75)
+base_treinamento = subset(diag, divisao == TRUE)
+base_teste = subset(diag, divisao == FALSE)
+
+#install.packages("OneR")
+library(OneR)
+help("OneR")
+set.seed(1)
+classificador = OneR(base_treinamento, verbose = T)
+
+print(classificador)
+
+summary(classificador)
+
+plot(classificador)
+
+previsao = predict(classificador,base_teste)
+
+plot(previsao)
+
+eval_model(previsao,base_teste)
+
+#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ##########################################################################################
 # 3. Classificassão - Regras
 # 3.3.2. PRISM
 
 library(readr)
-cogumelos = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data")
+diagnosticos = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data")
 
-colnames(cogumelos)=c('Class','cap-shape','cap-surface','cap-color','bruises','odor','gill-attachment', 
-                      'gill-spacing','gill-size','gill-color','stalk-shape','stalk-root','stalk-surface-above-ring',
-                      'stalk-surface-below-ring','stalk-color-above-ring','stalk-color-below-ring','veil-type',
-                      'veil-color','ring-number','ring-type','spore-print-color','population','habitat')
 
-cogumelos1 = cogumelos
+colnames(diagnosticos)=c('ID','Clump Thickness','Uniformity of Cell Size','Uniformity of Cell Shape','Marginal Adhesion',
+                         'Single Epithelial Cell Size', 'Bare Nuclei','Bland Chromatin','Normal Nucleoli','Mitoses',
+                         'Class')
 
-library(readr)
-vinho = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/wine/wine.data")
+diag = diagnosticos
+
+diag[,1] = NULL
+diag$Class[diag$Class==2]='benign'
+diag$Class[diag$Class==4]='malignant'
+
 
 
 
@@ -671,14 +720,20 @@ vinho = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/wine
 # 3.3.3. CN2
 
 library(readr)
-cogumelos = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data")
+diagnosticos = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data")
 
-colnames(cogumelos)=c('Class','cap-shape','cap-surface','cap-color','bruises','odor','gill-attachment', 
-                      'gill-spacing','gill-size','gill-color','stalk-shape','stalk-root','stalk-surface-above-ring',
-                      'stalk-surface-below-ring','stalk-color-above-ring','stalk-color-below-ring','veil-type',
-                      'veil-color','ring-number','ring-type','spore-print-color','population','habitat')
 
-cogumelos1 = cogumelos
+colnames(diagnosticos)=c('ID','Clump Thickness','Uniformity of Cell Size','Uniformity of Cell Shape','Marginal Adhesion',
+                         'Single Epithelial Cell Size', 'Bare Nuclei','Bland Chromatin','Normal Nucleoli','Mitoses',
+                         'Class')
+
+diag = diagnosticos
+
+diag[,1] = NULL
+diag$Class[diag$Class==2]='benign'
+diag$Class[diag$Class==4]='malignant'
+
+
 
 ##########################################################################################
 # 3. Classificass?o
