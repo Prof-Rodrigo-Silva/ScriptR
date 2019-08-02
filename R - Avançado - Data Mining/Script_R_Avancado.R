@@ -724,15 +724,6 @@ acerto = 114 / 174
 acerto
 percentual = acerto * 100
 percentual
-#
-
-
-
-
-
-
-
-
 
 ##########################################################################################
 # 3. Classificassão - Regras 
@@ -768,6 +759,7 @@ dt_teste = SF.asDecisionTable(base_teste, decision.attr = 10)
 classificador = RI.CN2Rules.RST(dt_treinamento, K = 5)
 
 discretizacao = D.discretization.RST(dt_treinamento, nOfIntervals = 5)
+
 dt_treinamento = SF.applyDecTable(dt_treinamento, discretizacao)
 dt_teste = SF.applyDecTable(dt_teste, discretizacao)
 
