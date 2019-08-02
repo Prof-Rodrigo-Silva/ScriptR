@@ -675,29 +675,29 @@ plot(previsao)
 
 eval_model(previsao,base_teste)
 
-#
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ##########################################################################################
 # 3. Classificassão - Regras
-# 3.3.2. PRISM
+# 3.3.2. PRISM e ZeroR
 
+#Sugestão: Estudar a teoria de funcionamento
+
+# Por onde começar: https://christophm.github.io/interpretable-ml-book/rules.html#bayesian-rule-lists
+
+#Holte, Robert C. “Very simple classification rules perform well on most commonly used datasets.” Machine learning 11.1 (1993): 63-90.↩
+
+#Cohen, William W. “Fast effective rule induction.” Machine Learning Proceedings (1995). 115-123.↩
+
+#Letham, Benjamin, et al. “Interpretable classifiers using rules and Bayesian analysis: Building a better stroke prediction model.” The Annals of Applied Statistics 9.3 (2015): 1350-1371.↩
+
+#Borgelt, C. “An implementation of the FP-growth algorithm.” Proceedings of the 1st International Workshop on Open Source Data Mining Frequent Pattern Mining Implementations - OSDM ’05, 1–5. http://doi.org/10.1145/1133905.1133907 (2005).↩
+
+#Yang, Hongyu, Cynthia Rudin, and Margo Seltzer. “Scalable Bayesian rule lists.” Proceedings of the 34th International Conference on Machine Learning-Volume 70. JMLR. org, 2017.↩
+
+#Fürnkranz, Johannes, Dragan Gamberger, and Nada Lavrač. “Foundations of rule learning.” Springer Science & Business Media, (2012)
+
+#ZeroR (Linha Base)
+
+#Qual o percentual mínimo de acerto que um algoritmo de aprendizagem de máquina deve ter!
 library(readr)
 diagnosticos = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/breast-cancer-wisconsin.data")
 
@@ -705,12 +705,31 @@ diagnosticos = read_csv("https://archive.ics.uci.edu/ml/machine-learning-databas
 colnames(diagnosticos)=c('ID','Clump Thickness','Uniformity of Cell Size','Uniformity of Cell Shape','Marginal Adhesion',
                          'Single Epithelial Cell Size', 'Bare Nuclei','Bland Chromatin','Normal Nucleoli','Mitoses',
                          'Class')
-
 diag = diagnosticos
 
 diag[,1] = NULL
 diag$Class[diag$Class==2]='benign'
 diag$Class[diag$Class==4]='malignant'
+
+library(caTools)
+#dividindo conjunto em treino e teste
+set.seed(1)
+divisao = sample.split(diag$Class, SplitRatio = 0.75)
+base_treinamento = subset(diag, divisao == TRUE)
+base_teste = subset(diag, divisao == FALSE)
+
+table(base_teste$Class)
+
+acerto = 114 / 174
+acerto
+percentual = acerto * 100
+percentual
+#
+
+
+
+
+
 
 
 
@@ -733,21 +752,61 @@ diag[,1] = NULL
 diag$Class[diag$Class==2]='benign'
 diag$Class[diag$Class==4]='malignant'
 
+library(caTools)
+#dividindo conjunto em treino e teste
+set.seed(1)
+divisao = sample.split(diag$Class, SplitRatio = 0.75)
+base_treinamento = subset(diag, divisao == TRUE)
+base_teste = subset(diag, divisao == FALSE)
+
+#install.packages('RoughSets')
+library(RoughSets)
+
+dt_treinamento = SF.asDecisionTable(base_treinamento, decision.attr = 10)
+dt_teste = SF.asDecisionTable(base_teste, decision.attr = 10)
+
+classificador = RI.CN2Rules.RST(dt_treinamento, K = 5)
+
+discretizacao = D.discretization.RST(dt_treinamento, nOfIntervals = 5)
+dt_treinamento = SF.applyDecTable(dt_treinamento, discretizacao)
+dt_teste = SF.applyDecTable(dt_teste, discretizacao)
+
+classificador = RI.CN2Rules.RST(dt_treinamento, K = 5)
+print(classificador)
+
+previsao = predict(classificador, newdata = dt_teste[-10])
+
+matriz_confusao = table(dt_teste[, 10], unlist(previsao))
+print(matriz_confusao)
+
+library(caret)
+confusionMatrix(matriz_confusao)
+#
+
+
+
+
+
+
+
+
+
+
 
 
 ##########################################################################################
-# 3. Classificass?o
-# 3.4. Aprendizagem Baseado em Inst?ncias - KNN
+# 3. Classificassão
+# 3.4. Aprendizagem Baseado em Instâncias - KNN
 
 ##########################################################################################
-# 3. Classificass?o
+# 3. Classificassão
 # 3.5. M?quina de Vetores de Suporte - SVM
 
 ##########################################################################################
-# 3. Classificass?o
+# 3. Classificassão
 # 3.6. Regress?o Logist?ca
 
 ##########################################################################################
-# 3. Classificass?o
+# 3. Classificassão
 # 3.7. RNA
 
