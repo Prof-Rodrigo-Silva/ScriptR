@@ -82,7 +82,6 @@ inspect(itemSet)
 inspect(sort(itemSet))
 
 
-
 #########################################################################################################
 # 2. Agrupamentos
 # 2.1. K-means
@@ -258,8 +257,6 @@ previsao = vinho_k3$cluster
 previsao
 # M?dia dos valores para cada cluster
 aggregate(vinho1, by=list(previsao), mean)
-
-
 
 #agrupamento 
 ggpairs(cbind(vinho1, Cluster=as.factor(previsao)),
@@ -773,6 +770,50 @@ print(matriz_confusao)
 
 library(caret)
 confusionMatrix(matriz_confusao)
+
+##########################################################################################
+# 3. Classificassão
+# 3.4. Aprendizagem Baseado em Instâncias - KNN
+
+# Outros métodos geram modelos e os dados podem ser descartados, métodos 
+# baseados em instâncias apenas armazenam os treinamentos, sendo que a
+# previsão só é realizanda quando um novo registro precisa ser classificado
+
+dados = read.csv2(file.choose(), header = T, sep = ",")
+
+dados
+colnames(dados) = c("cidade","a_colhida","rend_medio","a_dest_a_colheita","quant_produzida","valor_da_producao")
+dados1 = dados
+
+dados1$cidade=NULL
+library(arules)
+#discretizando coluna valor_da_producao
+dados1$valor_da_producao = discretize(dados1$valor_da_producao,method = "frequency",
+                                      breaks = 5, labels = c("Muito Baixo","Baixo",
+                                                             "Médio","Alta","Muito Alto"))
+
+dados1[,1:4] = scale(dados1[,1:4])
+
+
+library(caTools)
+#dividindo conjunto em treino e teste
+set.seed(1)
+divisao = sample.split(dados1$valor_da_producao, SplitRatio = 0.75)
+base_treinamento = subset(dados1, divisao == TRUE)
+base_teste = subset(dados1, divisao == FALSE)
+
+#install.packages("class")
+library(class)
+
+previsao = knn(base_treinamento[,-5], base_teste[,-5], cl = base_treinamento[,5], k = 5)
+help(knn)
+
+print(previsao)
+
+matriz_confusao = table(base_teste[,5],previsao)
+matriz_confusao
+library(caret)
+confusionMatrix(matriz_confusao)
 #
 
 
@@ -786,9 +827,10 @@ confusionMatrix(matriz_confusao)
 
 
 
-##########################################################################################
-# 3. Classificassão
-# 3.4. Aprendizagem Baseado em Instâncias - KNN
+
+
+
+
 
 ##########################################################################################
 # 3. Classificassão
