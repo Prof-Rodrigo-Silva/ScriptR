@@ -630,7 +630,7 @@ plot(classificador)
 plot(classificador,type="simple")
 
 ##########################################################################################
-# 3. Classificassão - Regras
+# 3. Classificação - Regras
 # 3.3.1. OneR
 
 library(readr)
@@ -673,7 +673,7 @@ plot(previsao)
 eval_model(previsao,base_teste)
 
 ##########################################################################################
-# 3. Classificassão - Regras
+# 3. Classificação - Regras
 # 3.3.2. PRISM e ZeroR
 
 #Sugestão: Estudar a teoria de funcionamento
@@ -723,7 +723,7 @@ percentual = acerto * 100
 percentual
 
 ##########################################################################################
-# 3. Classificassão - Regras 
+# 3. Classificação - Regras 
 # 3.3.3. CN2
 
 library(readr)
@@ -772,7 +772,7 @@ library(caret)
 confusionMatrix(matriz_confusao)
 
 ##########################################################################################
-# 3. Classificassão
+# 3. Classificação
 # 3.4. Aprendizagem Baseado em Instâncias - KNN
 
 # Outros métodos geram modelos e os dados podem ser descartados, métodos 
@@ -814,33 +814,16 @@ matriz_confusao = table(base_teste[,5],previsao)
 matriz_confusao
 library(caret)
 confusionMatrix(matriz_confusao)
-#
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ##########################################################################################
-# 3. Classificassão
+# 3. Classificação
 # 3.5. M?quina de Vetores de Suporte - SVM
 
 ##########################################################################################
-# 3. Classificassão
+# 3. Classificação
 # 3.6. Regress?o Logist?ca
 
 ##########################################################################################
-# 3. Classificassão
+# 3. Classificação
 # 3.7. RNA
 
