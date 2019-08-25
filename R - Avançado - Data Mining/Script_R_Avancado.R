@@ -886,12 +886,78 @@ points(btr, pch = 21, bg = ifelse(btr[, 3] == 1, 'green4', 'red3'))
 
 #https://www.datacamp.com/community/tutorials/support-vector-machines-r
 
-
-
-
 ##########################################################################################
 # 3. Classificação
 # 3.6. Regressão Logistíca
+
+Social
+colnames(Social) = c("id","sexo","idade","rendimentoEstimado","comprou")
+Social
+
+dados = Social
+#dados$id = NULL
+#dados$sexo = NULL
+
+dados = dados[3:5]
+
+#Encoding da classe meta para factor
+#dados$comprou = factor(dados$comprou, levels = c(0,1))
+
+#Scaling
+dados[-3] = scale(dados[-3])
+
+library(caTools)
+#dividindo conjunto em treino e teste
+set.seed(1)
+divisao = sample.split(dados$comprou, SplitRatio = 0.75)
+base_treinamento = subset(dados, divisao == TRUE)
+base_teste = subset(dados, divisao == FALSE)
+
+classificador = glm (formula = comprou ~ ., data = base_treinamento, family = binomial)
+summary(classificador)
+
+step(classificador)
+
+summary(classificador)$coefficients
+
+odd.ratio = exp(coef(classificador))
+odd.ratio
+previsao = predict(classificador,newdata = base_teste[-3], type = "response")
+previsao
+
+previsoes = ifelse(previsao > 0.5, 1, 0)
+previsoes
+
+matriz_confusao = table(base_teste$comprou,previsoes)
+matriz_confusao
+library(caret)
+confusionMatrix(matriz_confusao)
+
+previsao2 = cbind(base_teste,previsao)
+previsao2
+
+library(ROCR)
+previsao_valores = prediction(previsao ,previsao2$comprou)
+
+# calculo da auc (area under the curve)
+auc = performance(previsao_valores,"auc")
+
+# Plota curva ROC
+performance = performance(previsao_valores, "tpr", "fpr")
+plot(performance, col = "blue", lwd = 5)
+
+#Calculo Estatística KS
+ks = max(attr(performance, "y.values")[[1]] - (attr(performance, "x.values")[[1]]))
+ks
+#
+
+
+
+
+
+
+
+
 
 ##########################################################################################
 # 3. Classificação
