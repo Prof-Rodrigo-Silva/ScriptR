@@ -817,11 +817,81 @@ confusionMatrix(matriz_confusao)
 
 ##########################################################################################
 # 3. Classificação
-# 3.5. M?quina de Vetores de Suporte - SVM
+# 3.5. Máquina de Vetores de Suporte - SVM
+
+dados = read.csv2(file.choose(), header = T, sep = ",")
+
+dados
+colnames(dados) = c("id","sexo","idade","rendimentoEstimado","comprou")
+dados
+
+dados1 = dados
+#dados1$id = NULL
+#dados1$sexo = NULL
+
+dados1 = dados1[3:5]
+
+#Encoding da classe meta para factor
+dados1$comprou = factor(dados1$comprou, levels = c(0,1))
+
+#Scaling
+dados1[-3] = scale(dados1[-3])
+
+library(caTools)
+#dividindo conjunto em treino e teste
+set.seed(1)
+divisao = sample.split(dados1$comprou, SplitRatio = 0.75)
+base_treinamento = subset(dados1, divisao == TRUE)
+base_teste = subset(dados1, divisao == FALSE)
+
+library(e1071)
+
+classificador = svm(formula = comprou ~ .,
+                    data = base_treinamento,
+                    type = "C-classification",
+                    kernel = "radial",
+                    cost = 500)
+
+classificador
+previsao = predict(classificador, newdata = base_teste[-3])
+previsao
+
+matriz_confusao = table(base_teste[,3],previsao)
+matriz_confusao
+library(caret)
+confusionMatrix(matriz_confusao)
+plot(previsao)
+
+
+library(ElemStatLearn) 
+#Plotando os resultados do conjunto de treinamento 
+btr = base_treinamento 
+X1 = seq(min(btr[, 1]) - 1, max(btr[, 1]) + 1, by = 0.01) 
+X2 = seq(min(btr[, 2]) - 1, max(btr[, 2]) + 1, by = 0.01) 
+
+grafico = expand.grid(X1, X2) 
+colnames(grafico) = c('idade', 'rendimentoEstimado') 
+grafico_a = predict(classificador, newdata = grafico) 
+
+plot(btr[, -3], 
+     main = 'SVM (Conjunto de Treinamento)', 
+     xlab = 'Idade', ylab = 'Rendimento Estimado', 
+     xlim = range(X1), ylim = range(X2)) 
+
+contour(X1, X2, matrix(as.numeric(grafico_a), length(X1), length(X2)), add = TRUE) 
+
+points(grafico, pch = '.', col = ifelse(grafico_a == 1, 'coral1', 'aquamarine')) 
+
+points(btr, pch = 21, bg = ifelse(btr[, 3] == 1, 'green4', 'red3')) 
+
+#https://www.datacamp.com/community/tutorials/support-vector-machines-r
+
+
+
 
 ##########################################################################################
 # 3. Classificação
-# 3.6. Regress?o Logist?ca
+# 3.6. Regressão Logistíca
 
 ##########################################################################################
 # 3. Classificação
