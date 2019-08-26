@@ -949,11 +949,86 @@ plot(performance, col = "blue", lwd = 5)
 #Calculo Estatística KS
 ks = max(attr(performance, "y.values")[[1]] - (attr(performance, "x.values")[[1]]))
 ks
+
+##########################################################################################
+# 3. Classificação
+# 3.7. RNA
+# 3.7.1. Neural Net
+
+# 1º Exemplo
+treinoEntrada =  as.data.frame(runif(50, min=0, max=100))
+treinoSaida = sqrt(treinoEntrada)
+
+base_treinamento = cbind(treinoEntrada,treinoSaida)
+colnames(base_treinamento) = c("Entrada","Saida")
+
+#install.packages("neuralnet")
+library(neuralnet)
+classificador = neuralnet(Saida ~ Entrada, base_treinamento, hidden = 10,
+                          threshold=0.01)
+print(classificador)
+
+plot(classificador)
+
+base_teste = as.data.frame((1:10)^2)
+previsao = compute(classificador, base_teste)
+
+ls(previsao)
+
+print(previsao$net.result)
+
+tabela = cbind(base_teste,sqrt(base_teste),
+                     as.data.frame(previsao$net.result))
+
+colnames(tabela) = c("Entrada","Saida Esperada","Saida RNA")
+print(tabela)
+
+
+
+#################################################################################
+#2º Exemplo
+
+treinamento = iris[sample(1:nrow(iris), 50),]
+base_treinamento = treinamento
+
+# Binarize the categorical output
+base_treinamento = cbind(base_treinamento, treinamento$Species == 'setosa')
+base_treinamento = cbind(base_treinamento, treinamento$Species == 'versicolor')
+base_treinamento = cbind(base_treinamento, treinamento$Species == 'virginica')
+
+names(base_treinamento)[6] = 'setosa'
+names(base_treinamento)[7] = 'versicolor'
+names(base_treinamento)[8] = 'virginica'
+
+head(base_treinamento)
+
+classificador = neuralnet(setosa+versicolor+virginica ~ Sepal.Length + Sepal.Width
+                          + Petal.Length + Petal.Width, data = base_treinamento, 
+                          hidden = 10)
+
+print(classificador)
+plot(classificador)
+
+#install.packages("NeuralNetTools")
+library(NeuralNetTools)
+plotnet(classificador)
+
+previsao = compute(classificador, iris[-5])$net.result
+previsao
+
+# Colocar várias saídas binárias na saída categórica
+func = function(x) {
+  return(which(x == max(x)))
+}
+x = apply(previsao, c(1), func)
+
+predicao = c('setosa', 'versicolor', 'virginica')[x]
+
+matriz_confusao = table(iris$Species,predicao)
+matriz_confusao
+library(caret)
+confusionMatrix(matriz_confusao)
 #
-
-
-
-
 
 
 
@@ -962,4 +1037,4 @@ ks
 ##########################################################################################
 # 3. Classificação
 # 3.7. RNA
-
+# 3.7.2. H2O
