@@ -960,17 +960,19 @@ treinoEntrada =  as.data.frame(runif(50, min=0, max=100))
 treinoSaida = sqrt(treinoEntrada)
 
 base_treinamento = cbind(treinoEntrada,treinoSaida)
+
 colnames(base_treinamento) = c("Entrada","Saida")
 
 #install.packages("neuralnet")
 library(neuralnet)
-classificador = neuralnet(Saida ~ Entrada, base_treinamento, hidden = 10,
-                          threshold=0.01)
+classificador = neuralnet(Saida ~ Entrada, base_treinamento, hidden = c(50,50),
+                          threshold = 0.001)
 print(classificador)
 
 plot(classificador)
 
 base_teste = as.data.frame((1:10)^2)
+
 previsao = compute(classificador, base_teste)
 
 ls(previsao)
@@ -983,8 +985,6 @@ tabela = cbind(base_teste,sqrt(base_teste),
 colnames(tabela) = c("Entrada","Saida Esperada","Saida RNA")
 print(tabela)
 
-
-
 #################################################################################
 #2º Exemplo
 
@@ -996,15 +996,17 @@ base_treinamento = cbind(base_treinamento, treinamento$Species == 'setosa')
 base_treinamento = cbind(base_treinamento, treinamento$Species == 'versicolor')
 base_treinamento = cbind(base_treinamento, treinamento$Species == 'virginica')
 
+head(base_treinamento)
+
 names(base_treinamento)[6] = 'setosa'
 names(base_treinamento)[7] = 'versicolor'
 names(base_treinamento)[8] = 'virginica'
 
 head(base_treinamento)
-
+library(neuralnet)
 classificador = neuralnet(setosa+versicolor+virginica ~ Sepal.Length + Sepal.Width
                           + Petal.Length + Petal.Width, data = base_treinamento, 
-                          hidden = 10)
+                          hidden = c(10,10))
 
 print(classificador)
 plot(classificador)
@@ -1023,6 +1025,7 @@ func = function(x) {
 x = apply(previsao, c(1), func)
 
 predicao = c('setosa', 'versicolor', 'virginica')[x]
+predicao
 
 matriz_confusao = table(iris$Species,predicao)
 matriz_confusao
