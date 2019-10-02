@@ -1031,13 +1031,26 @@ matriz_confusao = table(iris$Species,predicao)
 matriz_confusao
 library(caret)
 confusionMatrix(matriz_confusao)
-#
-
-
-
-
 
 ##########################################################################################
 # 3. Classificação
 # 3.7. RNA
-# 3.7.2. H2O
+# 3.7.2. h2o
+
+# Deep Learning                            Naıve Bayes
+# Principal Components Analysis (PCA)      K-means
+# Stacked Ensembles                        Generalized Linear Models (GLM)
+# Gradient Boosting Machine (GBM)          Generalized Low Rank Model (GLRM)
+# Distributed Random Forest (DRF)          Word2vec
+
+# www.h2o.ai
+
+#install.packages("h2o",dependencies = T)
+library(h2o)
+help("h2o.init")
+h2o.init(nthreads = -1)
+
+
+
+h2o.shutdown()
+
