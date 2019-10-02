@@ -1047,10 +1047,58 @@ confusionMatrix(matriz_confusao)
 
 #install.packages("h2o",dependencies = T)
 library(h2o)
-help("h2o.init")
+#help("h2o.init")
+
+dados = read.csv2(file.choose(), header = T, sep = ",")
+
+
+colnames(dados) = c("id","cred_fornecido","sexo","educacao","estado_civil","idade",
+                    "pag_passado1","pag_passado2","pag_passado3","pag_passado4","pag_passado5",
+                    "pag_passado6","valor_em_conta1","valor_em_conta2","valor_em_conta3",
+                    "valor_em_conta4","valor_em_conta5","valor_em_conta6","valor_pag_anterior1",
+                    "valor_pag_anterior2","valor_pag_anterior3","valor_pag_anterior4",
+                    "valor_pag_anterior5","valor_pag_anterior6","pagou")
+
+dados
+dados$id = NULL
+
+library(caTools)
+#dividindo conjunto em treino e teste
+set.seed(1)
+divisao = sample.split(dados$pagou, SplitRatio = 0.75)
+base_treinamento = subset(dados, divisao == TRUE)
+base_teste = subset(dados, divisao == FALSE)
+
 h2o.init(nthreads = -1)
 
+base_treinamento = as.h2o(base_treinamento)
+base_teste = as.h2o(base_teste)
 
+help("h2o.deeplearning")
 
+classificador = h2o.deeplearning(y = "pagou",
+                                 training_frame = base_treinamento,
+                                 activation = "Rectifier",
+                                 hidden = c(150,150,150),
+                                 epochs = 1000)
+
+classificador
+plot(classificador)
+
+previsoes = h2o.predict(classificador,base_teste[-24])
+
+previsoes
+
+previsoes  = (previsoes > 0.5)
+previsoes = as.vector(previsoes)
+
+base_teste = as.data.frame(base_teste)
+
+matriz_confusao = table(base_teste[,24],previsoes)
+
+matriz_confusao
+
+library(caret)
+confusionMatrix(matriz_confusao)
 h2o.shutdown()
-
+y
