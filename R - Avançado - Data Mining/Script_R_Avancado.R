@@ -1102,3 +1102,197 @@ library(caret)
 confusionMatrix(matriz_confusao)
 h2o.shutdown()
 y
+
+########################################################################
+# 4. Regress„o:
+# 4.1. Regress„o linear (simples e m˙ltipla)
+install.packages("datarium")
+data("marketing", package = "datarium")
+head(marketing, 4)
+
+dados = marketing
+colnames(dados) = c("youtube","facebook","jornal","vendas")
+summary(dados)
+
+library(ggplot2)
+ggplot(dados, aes(x = youtube, y = vendas)) +
+  geom_point() +
+  stat_smooth()
+
+scatter.smooth(x=dados$vendas, y=dados$youtube, main="Vendas ~ Youtube")
+
+par(mfrow=c(1, 2))
+boxplot(dados$youtube, main="Youtube",
+        sub=paste("Outlier: ", boxplot.stats(dados$youtube)$out))
+
+boxplot(dados$vendas, main="Vendas",
+        sub=paste("Outlier: ", boxplot.stats(dados$vendas)$out))
+
+library(e1071)
+plot(density(dados$youtube), main="Gr·fico de Densidade: Youtube"
+     , ylab="Frequency", sub=paste("Skewness:",
+                                   round(e1071::skewness(dados$youtube), 2)))
+
+polygon(density(dados$youtube), col="red")
+
+plot(density(dados$vendas), main="Gr·fico de Densidade: Vendas"
+     , ylab="Frequency", sub=paste("Skewness:",
+                                   round(e1071::skewness(dados$vendas), 2)))
+
+polygon(density(dados$vendas), col="red")
+par(mfrow=c(1, 1))
+
+cor(dados$vendas, dados$youtube)
+
+modelo = lm(vendas ~ youtube, data = dados)
+print(modelo)
+
+summary(modelo)
+
+modelo$coefficients
+
+modelo$residuals
+
+modelo$fitted.values
+
+confint(modelo)
+
+ggplot(dados, aes(youtube, vendas)) +
+  geom_point() +
+  stat_smooth(method = lm)
+
+plot(modelo)
+
+predict(modelo, data.frame(youtube=150))
+
+modelo = lm(vendas ~ youtube + facebook + jornal, data = dados)
+
+residualPlots(modelo)
+
+print(modelo)
+summary(modelo)
+summary(modelo)$r.squared
+summary(modelo)$adj.r.squared
+
+predict(modelo,data.frame(youtube = 150, facebook = 202, jornal = 78))
+
+
+########################################################################
+# 4. Regress„o:
+# 4.2. Regress√£o polinomial
+dim(cars)
+
+head(cars)
+
+# preparaÁ„o dos dados
+x = with(cars, speed)
+y = with(cars, dist)
+tamanho = dim(carros)[1]
+speed.novo = seq(min(x), max(x), length.out = tamanho)
+
+# scatter plot com regress„o
+plot(dist ~ speed, data = cars, xlab = "Velocidade (mpg)", 
+     ylab = "Dist‚ncia atÈ parar (feet)")
+
+# ajuste reta de regress„o
+modelo = lm(dist ~ speed, data = cars)
+abline(modelo, lty = 2, lwd = 2, col = "blue")
+modelo
+
+# ajuste regress„o c˙bica
+modelo.1 = lm(y ~ poly(x, 3))
+modelo.1
+
+# dist = 42.98 + 145.55Speed + 23.00Speed≤ + 13.80Speed≥
+
+# scatter plot com ajuste polinomial
+plot(y ~ x, data = cars, xlab = "Velocidade (mpg)",
+     ylab = "Dist‚ncia atÈ parar (feet)")
+
+abline(modelo, lty = 2, lwd = 2, col = "red")
+
+lines(speed.novo, predict(modelo.1, data.frame(x = speed.novo)),
+      col = "blue", lty = 2, lwd = 2)
+
+########################################################################
+# 4. Regress„o:
+# 4.3. Regress√£o com √°rvores de deciss√£o e random forest
+
+
+dados = boston
+
+#LON e LAT s„o a longitude e latitude do centro do setor censit·rio. 
+#MEDV È o valor mÈdio das casas ocupadas pelos propriet·rios, medido em milhares de dÛlares. 
+#CRIM È a taxa de criminalidade per capita. 
+#O ZN est· relacionado a quanto da terra È zoneada para grandes propriedades residenciais. 
+#INDUS È a proporÁ„o da ·rea utilizada para a ind˙stria. 
+#CHAS È 1 se um setor censit·rio estiver prÛximo ao rio Charles.
+#0 NOX È a concentraÁ„o de Ûxidos nitrosos no ar, uma medida da poluiÁ„o do ar. 
+#RM È o n˙mero mÈdio de quartos por habitaÁ„o.
+#AGE È a proporÁ„o de unidades ocupadas pelos propriet·rios construÌdas antes de 1940.
+#DIS È uma medida de qu„o longe o trato est· dos centros de emprego em Boston. 
+#RAD È uma medida de proximidade com estradas importantes. 
+#IMPOSTO È o imposto predial por US $ 10.000 em valor. 
+#PTRATIO È a proporÁ„o de alunos por professor por cidade.
+
+dados$TOWN = NULL
+dados$TRACT = NULL
+plot(dados$LON, dados$LAT)
+
+points(dados$LON[dados$CHAS == 1],
+     dados$LAT[dados$CHAS == 1], col = "blue", pch = 19)
+
+summary(dados$NOX)
+
+points(dados$LON[dados$NOX>=0.55],
+       dados$LAT[dados$NOX>=0.55], col="green", pch=20)
+
+summary(dados$MEDV)
+
+points(dados$LON[dados$MEDV>=21.2],
+       dados$LAT[dados$MEDV>=21.2], col="red", pch=20)
+
+library(rpart)
+library(rpart.plot)
+library(caTools)
+set.seed(123)
+split = sample.split(dados$MEDV, SplitRatio = 0.7)
+base_treinamento = subset(dados, split==TRUE)
+base_teste = subset(dados, split==FALSE)
+
+classificador = rpart(MEDV ~ LAT + LON + CRIM + ZN + INDUS + CHAS + NOX + RM + AGE +
+                        DIS + RAD + TAX + PTRATIO, data=base_treinamento)
+
+summary(classificador)
+prp(classificador)
+
+previsao = predict(classificador, newdata = base_teste[-3])
+
+plot(dados$LON, dados$LAT)
+
+points(dados$LON[dados$MEDV>=21.2],
+       dados$LAT[dados$MEDV>=21.2], col="red", pch=20)
+
+points(dados$LON[previsao>21.2],dados$LAT[previsao>=21.2],
+       col="blue", pch="$")
+
+install.packages("miscTools")
+library(miscTools)
+cc_treinamento = rSquared(base_treinamento[['MEDV']], 
+                          resid = base_treinamento[['MEDV']] - previsao)
+
+previsoes = predict(classificador, newdata = base_teste[-3])
+
+mean(abs(base_teste[['MEDV']] - previsoes))
+
+cc_teste = rSquared(base_teste[['MEDV']],
+                    resid = base_teste[['MEDV']] - previsoes)
+
+cc_teste
+########################################################################
+# 4. Regress„o:
+# 4.4. Regress√£o com vetores de suporte
+
+########################################################################
+# 4. Regress„o:
+# 4.5. Regress√£o com redes neurais artificiais
