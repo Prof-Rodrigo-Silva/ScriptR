@@ -1216,7 +1216,7 @@ lines(speed.novo, predict(modelo.1, data.frame(x = speed.novo)),
 
 ########################################################################
 # 4. Regress„o:
-# 4.3. Regress√£o com √°rvores de deciss√£o e random forest
+# 4.3.1 Regress√£o com √°rvores de deciss√£o e 4.3.2 random forest
 
 
 dados = boston
@@ -1266,8 +1266,8 @@ classificador = rpart(MEDV ~ LAT + LON + CRIM + ZN + INDUS + CHAS + NOX + RM + A
 summary(classificador)
 prp(classificador)
 
-previsao = predict(classificador, newdata = base_teste[-3])
-
+previsao = predict(classificador, newdata = base_treinamento[-3])
+previsao
 plot(dados$LON, dados$LAT)
 
 points(dados$LON[dados$MEDV>=21.2],
@@ -1276,22 +1276,111 @@ points(dados$LON[dados$MEDV>=21.2],
 points(dados$LON[previsao>21.2],dados$LAT[previsao>=21.2],
        col="blue", pch="$")
 
-install.packages("miscTools")
+#install.packages("miscTools")
 library(miscTools)
-cc_treinamento = rSquared(base_treinamento[['MEDV']], 
+rsq_treinamento = rSquared(base_treinamento[['MEDV']], 
                           resid = base_treinamento[['MEDV']] - previsao)
+rsq_treinamento
 
 previsoes = predict(classificador, newdata = base_teste[-3])
 
 mean(abs(base_teste[['MEDV']] - previsoes))
 
-cc_teste = rSquared(base_teste[['MEDV']],
+rsq_teste = rSquared(base_teste[['MEDV']],
                     resid = base_teste[['MEDV']] - previsoes)
+rsq_teste
 
-cc_teste
+########################################################################
+# 4. Regress„o:
+# 4.3.1 Regress√£o com √°rvores de deciss√£o e 4.3.2 random forest
+
+dados = boston
+
+#LON e LAT s„o a longitude e latitude do centro do setor censit·rio. 
+#MEDV È o valor mÈdio das casas ocupadas pelos propriet·rios, medido em milhares de dÛlares. 
+#CRIM È a taxa de criminalidade per capita. 
+#O ZN est· relacionado a quanto da terra È zoneada para grandes propriedades residenciais. 
+#INDUS È a proporÁ„o da ·rea utilizada para a ind˙stria. 
+#CHAS È 1 se um setor censit·rio estiver prÛximo ao rio Charles.
+#0 NOX È a concentraÁ„o de Ûxidos nitrosos no ar, uma medida da poluiÁ„o do ar. 
+#RM È o n˙mero mÈdio de quartos por habitaÁ„o.
+#AGE È a proporÁ„o de unidades ocupadas pelos propriet·rios construÌdas antes de 1940.
+#DIS È uma medida de qu„o longe o trato est· dos centros de emprego em Boston. 
+#RAD È uma medida de proximidade com estradas importantes. 
+#IMPOSTO È o imposto predial por US $ 10.000 em valor. 
+#PTRATIO È a proporÁ„o de alunos por professor por cidade.
+
+dados$TOWN = NULL
+dados$TRACT = NULL
+dados$Medv = dados$MEDV
+dados$MEDV = NULL
+#plot(dados$LON, dados$LAT)
+
+#points(dados$LON[dados$CHAS == 1],dados$LAT[dados$CHAS == 1], col = "blue", pch = 19)
+
+#summary(dados$NOX)
+
+#points(dados$LON[dados$NOX>=0.55],dados$LAT[dados$NOX>=0.55], col="green", pch=20)
+
+#summary(dados$MEDV)
+
+#points(dados$LON[dados$MEDV>=21.2],dados$LAT[dados$MEDV>=21.2], col="red", pch=20)
+
+library(caTools)
+set.seed(123)
+split = sample.split(dados$Medv, SplitRatio = 0.7)
+base_treinamento = subset(dados, split==TRUE)
+base_teste = subset(dados, split==FALSE)
+
+library(randomForest)
+
+classificador = randomForest(x = base_treinamento[1:13],y = base_treinamento$Medv,
+                             ntree = 10)
+
+previsoes = predict(classificador, newdata = base_treinamento[-14])
+previsoes
+
+#library(miscTools)
+rsq_treinamento = rSquared(base_treinamento[['Medv']],
+                          resid = base_treinamento[['Medv']] - previsoes)
+rsq_treinamento
+previsoes = predict(classificador, newdata = base_teste[-14])
+
+mean(abs(base_teste[['Medv']] - previsoes))
+
+rsq_teste = rSquared(base_teste[['Medv']], resid = base_teste[['Medv']] - previsoes)
+
+rsq_teste
+
 ########################################################################
 # 4. Regress„o:
 # 4.4. Regress√£o com vetores de suporte
+dados = regression
+
+library(e1071)
+library(ggplot2)
+ggplot() + geom_point(aes(x = dados$X, y = dados$Y), colour = 'blue')
+modelo = lm(Y ~ X , dados)
+previsoes = predict(modelo, newdata = dados[-2])
+ggplot() + geom_point(aes(x = dados$X, y = dados$Y), colour = 'blue') +
+  geom_line(aes(x = dados$X, y = previsoes), colour = 'red')
+
+rsq = rSquared(dados[['Y']], resid = dados[['Y']] - previsoes)
+
+
+classificador = svm(formula = Y ~ X, data = dados, type = 'eps-regression', kernel = 'radial')
+summary(classificador)
+
+previsoes = predict(classificador, newdata = dados[-2])
+#library(miscTools)
+rsq1 = rSquared(dados[['Y']], resid = dados[['Y']] - previsoes)
+
+ggplot() + geom_point(aes(x = dados$X, y = dados$Y), colour = 'blue') +
+  geom_line(aes(x = dados$X, y = previsoes), colour = 'red')
+
+df = data.frame(X = c(40))
+previsao = predict(classificador, newdata = df)
+
 
 ########################################################################
 # 4. Regress„o:
