@@ -1103,10 +1103,12 @@ confusionMatrix(matriz_confusao)
 h2o.shutdown()
 y
 
+
 ########################################################################
 # 4. Regressão:
 # 4.1. Regressão linear (simples e múltipla)
-install.packages("datarium")
+
+#install.packages("datarium")
 data("marketing", package = "datarium")
 head(marketing, 4)
 
@@ -1122,6 +1124,7 @@ ggplot(dados, aes(x = youtube, y = vendas)) +
 scatter.smooth(x=dados$vendas, y=dados$youtube, main="Vendas ~ Youtube")
 
 par(mfrow=c(1, 2))
+
 boxplot(dados$youtube, main="Youtube",
         sub=paste("Outlier: ", boxplot.stats(dados$youtube)$out))
 
@@ -1129,6 +1132,7 @@ boxplot(dados$vendas, main="Vendas",
         sub=paste("Outlier: ", boxplot.stats(dados$vendas)$out))
 
 library(e1071)
+
 plot(density(dados$youtube), main="Gráfico de Densidade: Youtube"
      , ylab="Frequency", sub=paste("Skewness:",
                                    round(e1071::skewness(dados$youtube), 2)))
@@ -1140,6 +1144,7 @@ plot(density(dados$vendas), main="Gráfico de Densidade: Vendas"
                                    round(e1071::skewness(dados$vendas), 2)))
 
 polygon(density(dados$vendas), col="red")
+
 par(mfrow=c(1, 1))
 
 cor(dados$vendas, dados$youtube)
@@ -1167,14 +1172,19 @@ predict(modelo, data.frame(youtube=150))
 
 modelo = lm(vendas ~ youtube + facebook + jornal, data = dados)
 
-residualPlots(modelo)
-
 print(modelo)
 summary(modelo)
 summary(modelo)$r.squared
 summary(modelo)$adj.r.squared
 
-predict(modelo,data.frame(youtube = 150, facebook = 202, jornal = 78))
+predict(modelo ,data.frame(youtube = 150, facebook = 202, jornal = 78))
+
+#
+
+
+
+
+
 
 
 ########################################################################
