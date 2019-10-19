@@ -1179,17 +1179,9 @@ summary(modelo)$adj.r.squared
 
 predict(modelo ,data.frame(youtube = 150, facebook = 202, jornal = 78))
 
-#
-
-
-
-
-
-
-
 ########################################################################
 # 4. Regressão:
-# 4.2. RegressÃ£o polinomial
+# 4.2. Regressão polinomial
 dim(cars)
 
 head(cars)
@@ -1197,15 +1189,15 @@ head(cars)
 # preparação dos dados
 x = with(cars, speed)
 y = with(cars, dist)
-tamanho = dim(carros)[1]
+tamanho = dim(cars)[1]
 speed.novo = seq(min(x), max(x), length.out = tamanho)
 
 # scatter plot com regressão
-plot(dist ~ speed, data = cars, xlab = "Velocidade (mpg)", 
-     ylab = "Distância até parar (feet)")
+plot(y ~ x, data = cars, xlab = "Velocidade", 
+     ylab = "Distância até parar")
 
 # ajuste reta de regressão
-modelo = lm(dist ~ speed, data = cars)
+modelo = lm(y ~ x, data = cars)
 abline(modelo, lty = 2, lwd = 2, col = "blue")
 modelo
 
@@ -1216,18 +1208,18 @@ modelo.1
 # dist = 42.98 + 145.55Speed + 23.00Speed² + 13.80Speed³
 
 # scatter plot com ajuste polinomial
-plot(y ~ x, data = cars, xlab = "Velocidade (mpg)",
-     ylab = "Distância até parar (feet)")
+plot(y ~ x, data = cars, xlab = "Velocidade",
+     ylab = "Distância até parar")
 
 abline(modelo, lty = 2, lwd = 2, col = "red")
 
 lines(speed.novo, predict(modelo.1, data.frame(x = speed.novo)),
-      col = "blue", lty = 2, lwd = 2)
+      col = "green", lty = 2, lwd = 2)
+#
 
 ########################################################################
 # 4. Regressão:
-# 4.3.1 RegressÃ£o com Ã¡rvores de decissÃ£o e 4.3.2 random forest
-
+# 4.3.1 RegressÃ£o com Ã¡rvores de decisão e 4.3.2 random forest
 
 dados = boston
 
@@ -1259,8 +1251,8 @@ points(dados$LON[dados$NOX>=0.55],
 
 summary(dados$MEDV)
 
-points(dados$LON[dados$MEDV>=21.2],
-       dados$LAT[dados$MEDV>=21.2], col="red", pch=20)
+points(dados$LON[dados$MEDV>=22.5],
+       dados$LAT[dados$MEDV>=22.5], col="red", pch=20)
 
 library(rpart)
 library(rpart.plot)
@@ -1344,16 +1336,17 @@ base_teste = subset(dados, split==FALSE)
 
 library(randomForest)
 
-classificador = randomForest(x = base_treinamento[1:13],y = base_treinamento$Medv,
-                             ntree = 10)
+classificador = randomForest(x = base_treinamento[1:13], y = base_treinamento$Medv,
+                             ntree = 50)
 
 previsoes = predict(classificador, newdata = base_treinamento[-14])
 previsoes
 
-#library(miscTools)
+library(miscTools)
 rsq_treinamento = rSquared(base_treinamento[['Medv']],
                           resid = base_treinamento[['Medv']] - previsoes)
 rsq_treinamento
+
 previsoes = predict(classificador, newdata = base_teste[-14])
 
 mean(abs(base_teste[['Medv']] - previsoes))
@@ -1361,6 +1354,7 @@ mean(abs(base_teste[['Medv']] - previsoes))
 rsq_teste = rSquared(base_teste[['Medv']], resid = base_teste[['Medv']] - previsoes)
 
 rsq_teste
+#
 
 ########################################################################
 # 4. Regressão:
@@ -1370,28 +1364,278 @@ dados = regression
 library(e1071)
 library(ggplot2)
 ggplot() + geom_point(aes(x = dados$X, y = dados$Y), colour = 'blue')
+
 modelo = lm(Y ~ X , dados)
+
 previsoes = predict(modelo, newdata = dados[-2])
+
 ggplot() + geom_point(aes(x = dados$X, y = dados$Y), colour = 'blue') +
   geom_line(aes(x = dados$X, y = previsoes), colour = 'red')
 
 rsq = rSquared(dados[['Y']], resid = dados[['Y']] - previsoes)
+rsq
 
-
-classificador = svm(formula = Y ~ X, data = dados, type = 'eps-regression', kernel = 'radial')
+classificador = svm(formula = Y ~ X, data = dados,
+                    type = 'eps-regression', kernel = 'radial')
 summary(classificador)
 
 previsoes = predict(classificador, newdata = dados[-2])
+
 #library(miscTools)
 rsq1 = rSquared(dados[['Y']], resid = dados[['Y']] - previsoes)
+rsq1
 
 ggplot() + geom_point(aes(x = dados$X, y = dados$Y), colour = 'blue') +
   geom_line(aes(x = dados$X, y = previsoes), colour = 'red')
 
 df = data.frame(X = c(40))
 previsao = predict(classificador, newdata = df)
-
+previsao
 
 ########################################################################
 # 4. Regressão:
 # 4.5. RegressÃ£o com redes neurais artificiais
+dados = boston
+#LON e LAT são a longitude e latitude do centro do setor censitário. 
+#MEDV é o valor médio das casas ocupadas pelos proprietários, medido em milhares de dólares. 
+#CRIM é a taxa de criminalidade per capita. 
+#O ZN está relacionado a quanto da terra é zoneada para grandes propriedades residenciais. 
+#INDUS é a proporção da área utilizada para a indústria. 
+#CHAS é 1 se um setor censitário estiver próximo ao rio Charles.
+#0 NOX é a concentração de óxidos nitrosos no ar, uma medida da poluição do ar. 
+#RM é o número médio de quartos por habitação.
+#AGE é a proporção de unidades ocupadas pelos proprietários construídas antes de 1940.
+#DIS é uma medida de quão longe o trato está dos centros de emprego em Boston. 
+#RAD é uma medida de proximidade com estradas importantes. 
+#IMPOSTO é o imposto predial por US $ 10.000 em valor. 
+#PTRATIO é a proporção de alunos por professor por cidade.
+
+dados$TOWN = NULL
+dados$TRACT = NULL
+#dados$Medv = dados$MEDV
+#dados$MEDV = NULL
+
+library(caTools)
+set.seed(123)
+split = sample.split(dados$MEDV, SplitRatio = 0.7)
+base_treinamento = subset(dados, split==TRUE)
+base_teste = subset(dados, split==FALSE)
+
+library(h2o)
+
+h2o.init(nthreads = -1)
+
+base_treinamento = as.h2o(base_treinamento)
+base_teste = as.h2o(base_teste)
+
+#help("h2o.deeplearning")
+
+classificador = h2o.deeplearning(y = "MEDV",
+                                 training_frame = base_treinamento,
+                                 activation = "Rectifier",
+                                 hidden = c(30,30),
+                                 epochs = 100)
+
+classificador
+plot(classificador)
+
+previsoes = h2o.predict(classificador,base_teste[-3])
+
+previsoes
+previsoes = as.vector(previsoes)
+
+library(miscTools)
+mean(abs(base_teste[['MEDV']] - previsoes))
+rsqd = rSquared(base_teste[['MEDV']],
+                          resid = base_teste[['MEDV']] - previsoes)
+
+h2o.shutdown()
+
+########################################################################
+# 5. Séries Temporais
+data()
+AirPassengers
+lynx
+Nile
+USAccDeaths
+
+start(USAccDeaths)
+end(USAccDeaths)
+
+
+plot(AirPassengers)
+plot(lynx)
+plot(Nile)
+plot(USAccDeaths)
+
+
+plot(USAccDeaths,xlab='Anos',ylab='Numero de Mortes')
+
+plot(USAccDeaths,type='o')
+
+plot.ts(cbind(USAccDeaths,AirPassengers),main='Mortes X Transporte Aéreo',xlab='Anos')
+plot.ts(cbind(USAccDeaths,AirPassengers),main='Mortes X Transporte Aéreo',xlab='Anos', nc=2) #lado a lado
+ts.plot(USAccDeaths,AirPassengers,gpars=list(xlab='', ylab='',lty=1:1))
+
+aggregate(USAccDeaths, nfrequency = 4, FUN = sum) # somas trimestrais
+
+aggregate(USAccDeaths, nfreq = 1,FUN=mean) # medias anuais
+
+plot(aggregate(USAccDeaths))
+
+plot(aggregate(USAccDeaths, nfrequency = 4, FUN = sum))
+
+#Por meses
+monthplot(USAccDeaths, col.base = 2, labels = month.abb)
+
+#Extraindo uma Janela
+janela = window(USAccDeaths, start=c(1973,5), end=c(1975,7))
+janela
+
+diff(USAccDeaths)
+log(USAccDeaths)
+
+# Análise da Função de Autocorrelação (FAC) e Autocorrelação Parcial
+#(FACp) com defasagem 25:
+acf(USAccDeaths, lag.max=25)
+
+pacf(USAccDeaths, lag.max=25)
+
+acf(diff(USAccDeaths), lag.max=25)
+
+pacf(diff(USAccDeaths), lag.max=25)
+
+#Obtendo a sazionalidade
+plot(stl(log(USAccDeaths), "periodic"))
+
+#Fim 1º Parte - Inicio 2º Parte
+
+#Decompondo
+decompose(USAccDeaths)
+
+d = decompose(USAccDeaths)
+
+d$seasonal
+d$trend
+d$random
+
+plot(d$seasonal)
+plot(d$trend)
+plot(d$random)
+plot(d)
+
+#Médias Móveis, ARIMA
+mean(USAccDeaths)
+janela = window(USAccDeaths, start=c(1976,1), end=c(1976,12))
+mean(janela)
+
+#install.packages("forecast")
+library(forecast)
+mm = ma(USAccDeaths,order = 6)
+mm
+
+# Comando geral: arima(data,order=c(p,d,q)
+x = arima(USAccDeaths,order=c(0,1,1)) 
+
+# Estimando o modelo ARIMA sazonal
+y = arima(USAccDeaths,order=c(0,1,1),seasonal=list(order=c(0,1,1),period=6)) 
+
+forecast = predict(y,n.ahead=4)
+
+previsao = predict(y,n.ahead=4)
+
+#########################################################
+previsao = forecast(mm, h = 6)
+previsao
+plot(previsao)
+
+
+ar = auto.arima(USAccDeaths)
+ar
+
+previsao = forecast(ar, h = 6)
+previsao
+plot(previsao)
+#
+
+
+
+
+
+
+########################################################################
+# 6. Mineração de Textos
+install.packages("tm",dependencies = T)
+library(NLP)
+library(tm)
+
+#Carregando e analisando dados
+getSources()
+
+getReaders()
+
+#VCorpus()
+#PCorpus()
+textos = VCorpus(DirSource("C:/Users/fermat/Documents/ScriptR/R - Avançado - Data Mining/textos",
+                 encoding="UTF-8"),readerControl= list(reader=readPlain,language="por"))
+
+inspect(textos)
+
+inspect(textos[1:2])
+
+inspect(textos[2])
+
+inspect(textos[[1]])
+
+meta(textos[[1]])
+
+as.character(textos[[2]])
+
+as.character(textos[[2]])[20]
+
+
+#Mineração de termos frequentes
+
+stopwords('portuguese')
+
+textos = tm_map(textos, removeWords,stopwords('portuguese'))
+
+textos = tm_map(textos, stripWhitespace)
+
+textos = tm_map(textos, removePunctuation)
+
+textos = tm_map(textos, removeNumbers)
+
+textos = tm_map(textos, content_transformer(tolower))
+
+tdm = TermDocumentMatrix(textos)
+tdm
+m = as.matrix(tdm)
+m
+v = sort(rowSums(m),decreasing=TRUE)
+v
+d = data.frame(word = names(v),freq=v)
+head(d, 50)
+
+
+# install.packages("wordcloud",dependencies = T)
+# install.packages("wordcloud2",dependencies = T)
+library(RColorBrewer)
+library(wordcloud)
+library(woldcloud2)
+set.seed(1234)
+wordcloud(words = d$word, freq = d$freq, min.freq = 10,
+          max.words=200, random.order=FALSE, rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
+
+wordcloud2(d)
+
+wordcloud2(d, color = "random-light", backgroundColor = "grey")
+
+wordcloud2(d, minRotation = -pi/6, maxRotation = -pi/6, minSize = 15,
+           rotateRatio = 1)
+
+
+########################################################################
+# 7. Redes Sociais e Grafos
+
