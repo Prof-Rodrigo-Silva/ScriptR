@@ -1453,7 +1453,6 @@ h2o.shutdown()
 
 ########################################################################
 # 5. Séries Temporais
-data()
 AirPassengers
 lynx
 Nile
@@ -1497,14 +1496,14 @@ log(USAccDeaths)
 
 # Análise da Função de Autocorrelação (FAC) e Autocorrelação Parcial
 #(FACp) com defasagem 25:
-acf(USAccDeaths, lag.max=25)
-
-pacf(USAccDeaths, lag.max=25)
-
-acf(diff(USAccDeaths), lag.max=25)
-
-pacf(diff(USAccDeaths), lag.max=25)
-
+a = acf(USAccDeaths, lag.max=25)
+a
+p = pacf(USAccDeaths, lag.max=25)
+p
+da = acf(diff(USAccDeaths), lag.max=25)
+da
+dp = pacf(diff(USAccDeaths), lag.max=25)
+dp
 #Obtendo a sazionalidade
 plot(stl(log(USAccDeaths), "periodic"))
 
@@ -1533,39 +1532,29 @@ mean(janela)
 library(forecast)
 mm = ma(USAccDeaths,order = 6)
 mm
+previsao = forecast(mm, h = 6)
+previsao
+plot(previsao)
 
 # Comando geral: arima(data,order=c(p,d,q)
 x = arima(USAccDeaths,order=c(0,1,1)) 
 
 # Estimando o modelo ARIMA sazonal
-y = arima(USAccDeaths,order=c(0,1,1),seasonal=list(order=c(0,1,1),period=6)) 
+y = arima(USAccDeaths,order=c(0,1,1),seasonal=list(order=c(0,1,1),period = 6)) 
 
-forecast = predict(y,n.ahead=4)
-
-previsao = predict(y,n.ahead=4)
-
-#########################################################
-previsao = forecast(mm, h = 6)
-previsao
-plot(previsao)
-
+previsao1 = predict(y,n.ahead=4)
+previsao1
 
 ar = auto.arima(USAccDeaths)
 ar
 
-previsao = forecast(ar, h = 6)
-previsao
-plot(previsao)
-#
-
-
-
-
-
+previsao2 = forecast(ar, h = 6)
+previsao2
+plot(previsao2)
 
 ########################################################################
 # 6. Mineração de Textos
-install.packages("tm",dependencies = T)
+#install.packages("tm",dependencies = T)
 library(NLP)
 library(tm)
 
@@ -1576,8 +1565,9 @@ getReaders()
 
 #VCorpus()
 #PCorpus()
+
 textos = VCorpus(DirSource("C:/Users/fermat/Documents/ScriptR/R - Avançado - Data Mining/textos",
-                 encoding="UTF-8"),readerControl= list(reader=readPlain,language="por"))
+                 encoding="UTF-8"),readerControl = list(reader=readPlain,language="por"))
 
 inspect(textos)
 
@@ -1622,11 +1612,12 @@ head(d, 50)
 # install.packages("wordcloud2",dependencies = T)
 library(RColorBrewer)
 library(wordcloud)
-library(woldcloud2)
+library(wordcloud2)
 set.seed(1234)
+
 wordcloud(words = d$word, freq = d$freq, min.freq = 10,
-          max.words=200, random.order=FALSE, rot.per=0.35, 
-          colors=brewer.pal(8, "Dark2"))
+          max.words=200, random.order = T, rot.per=0.5, 
+          colors = brewer.pal(8, "Dark2"))
 
 wordcloud2(d)
 
@@ -1635,6 +1626,70 @@ wordcloud2(d, color = "random-light", backgroundColor = "grey")
 wordcloud2(d, minRotation = -pi/6, maxRotation = -pi/6, minSize = 15,
            rotateRatio = 1)
 
+######################################################################################
+
+#install.packages("twitteR",dependencies = T)
+library(twitteR)
+
+# https://blog.difluir.com/2013/06/como-criar-uma-app-no-twitter/
+
+# https://medium.com/@marlessonsantana/como-criar-apps-e-obter-os-tokens-necess%C3%A1rios-para-coletar-dados-do-twitter-instagram-linkedin-e-8f36602ea92a
+
+# coloque suas chaves
+api_key             = "xxxxxxxxxxxxxxxxxx"
+api_secret          = "xxxxxxxxxxxxxxxxxx"
+access_token        = "xxxxxxxxxxxxxxxxxx"
+access_token_secret = "xxxxxxxxxxxxxxxxxx"
+
+setup_twitter_oauth(api_key, api_secret, access_token, access_token_secret)
+
+# woeid = where on earth id
+availableTrendLocations()
+
+w = availableTrendLocations()
+
+w
+
+trendsPoA = getTrends(woeid = 455823)
+# 10 primeiros apenas
+trendsPoA
+trendsPoA$name
+trendsPoA$name[1:10]
+
+trendsPoA$url
+trendsPoA$query
+trendsPoA$woeid
+
+#Buscando Twitter
+
+searchTwitteR('gremio',n = 50)
+
+imp = searchTwitter('gremio', n = 50)
+imp
+imp[c(1, 25, 50)]
+
+#twetar direto do R
+tweet("Tweet gerado com twitteR da playlist de R Avançado do meu canal no YouTube")
+
+trendsBR = getTrends(woeid = 23424768)
+
+trendsBR$name
+
+tweets = searchTwitter("@Prof_R_R_S", n = 20)
+
+usuario = getUser('Prof_R_R_S')
+
+usuario$created
+usuario$favoritesCount
+usuario$followersCount
+usuario$name
+
+TLusuario = userTimeline("Prof_R_R_S", n = 20)
+TLusuario
+
+df = twListToDF(TLusuario)
+
+head(df)
 
 ########################################################################
 # 7. Redes Sociais e Grafos
