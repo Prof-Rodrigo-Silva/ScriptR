@@ -1692,5 +1692,102 @@ df = twListToDF(TLusuario)
 head(df)
 
 ########################################################################
-# 7. Redes Sociais e Grafos
+# 7. Redes, Comunidades e Grafos - 1º Parte
 
+#install.packages("igraph",dependencies = T)
+library(igraph)
+
+g1 = graph(edges = c(1,2, 2,3, 3,1), directed = F )
+
+plot(g1)
+
+class(g1)
+
+g1
+
+g2 = graph( edges=c(1,2, 2,3, 3, 1) )
+
+plot(g2)
+
+g2
+
+g3 = graph( edges=c(1,2, 2,3, 3,1), n=5 )
+
+plot(g3)   
+
+g3
+
+g4 = graph( c("Rodrigo", "Cássio", "Cássio", "Leonardo", "Leonardo", "Rodrigo"))
+
+plot(g4)
+
+g4
+
+g5 = graph( c("Rodrigo", "Michele", "Michele", "Rodrigo","Michele","Leonardo", "Rodrigo", "Rodrigo"), 
+             isolates=c("Larissa", "Vivi", "Julina", "Cássio")) 
+
+plot(g5)
+
+plot(g5, edge.arrow.size = .3)
+
+plot(g5, edge.arrow.size = .3, vertex.color = "gold")
+
+plot(g5, edge.arrow.size = .3, vertex.color = "gold", vertex.size = 15)
+
+plot(g5, edge.arrow.size = .3, vertex.color = "gold", vertex.size = 15, 
+     vertex.frame.color = "gray")
+
+plot(g5, edge.arrow.size = .3, vertex.color = "gold", vertex.size = 15, 
+     vertex.frame.color = "gray", vertex.label.color = "black") 
+
+plot(g5, edge.arrow.size = .3, vertex.color = "gold", vertex.size = 15, 
+     vertex.frame.color = "gray", vertex.label.color = "black", 
+     vertex.label.cex = 1.5)
+
+plot(g5, edge.arrow.size = .3, vertex.color = "gold", vertex.size = 15, 
+     vertex.frame.color = "gray", vertex.label.color = "black", 
+     vertex.label.cex = 0.8, vertex.label.dist = 3) 
+
+plot(g5, edge.arrow.size = .3, vertex.color = "gold", vertex.size = 15, 
+     vertex.frame.color = "gray", vertex.label.color = "black", 
+     vertex.label.cex = 0.8, vertex.label.dist = 3, edge.curved = 0.4) 
+
+#Gráficos pequenos também podem ser gerados com uma descrição desse tipo: - para empate não
+# direcionado, +- ou -+ para empates direcionados apontando para a esquerda e direita, ++ para um
+# empate simétrico e ":" para conjuntos de vértices.
+
+plot(graph_from_literal(a--b, b--c))
+
+plot(graph_from_literal(a-+b, b+-c))
+
+plot(graph_from_literal(a++b, b++c))
+
+plot(graph_from_literal(a:b:c--c:d:e))
+
+gl = graph_from_literal(a-b-c-d-e-f, a-g-h-b, h-e:f:i, j)
+
+plot(gl)
+
+#Acessar vértices e arestas:
+
+E(g5)
+
+V(g5)
+
+# Examinar a matriz de rede diretamente
+g5[]
+
+g5[1,]
+g5[2,]
+g5[,2]
+g5[,3]
+g5[3,2]
+
+########################################################################
+# 7. Redes, Comunidades e Grafos - 2º Parte
+
+########################################################################
+# 7. Redes, Comunidades e Grafos - 3º Parte
+
+########################################################################
+# 7. Redes, Comunidades e Grafos - 4º Parte
