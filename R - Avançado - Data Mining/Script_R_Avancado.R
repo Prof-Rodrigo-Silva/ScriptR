@@ -1723,7 +1723,8 @@ plot(g4)
 
 g4
 
-g5 = graph( c("Rodrigo", "Michele", "Michele", "Rodrigo","Michele","Leonardo", "Rodrigo", "Rodrigo"), 
+g5 = graph( c("Rodrigo", "Michele", "Michele", "Rodrigo","Michele","Leonardo","Michele","Leonardo",
+              "Rodrigo", "Rodrigo"), 
              isolates=c("Larissa", "Vivi", "Julina", "Cássio")) 
 
 plot(g5)
@@ -1750,7 +1751,7 @@ plot(g5, edge.arrow.size = .3, vertex.color = "gold", vertex.size = 15,
 
 plot(g5, edge.arrow.size = .3, vertex.color = "gold", vertex.size = 15, 
      vertex.frame.color = "gray", vertex.label.color = "black", 
-     vertex.label.cex = 0.8, vertex.label.dist = 3, edge.curved = 0.4) 
+     vertex.label.cex = 0.8, vertex.label.dist = 3, edge.curved = 0.5) 
 
 #Gráficos pequenos também podem ser gerados com uma descrição desse tipo: - para empate não
 # direcionado, +- ou -+ para empates direcionados apontando para a esquerda e direita, ++ para um
@@ -1785,9 +1786,69 @@ g5[3,2]
 
 ########################################################################
 # 7. Redes, Comunidades e Grafos - 2º Parte
+# Adicione atributos à rede, vértices ou arestas:
+V(g5)$name
+
+V(g5)$gender = c("M", "F", "M", "F", "F", "F", "M")
+
+E(g5)$type = "email" #Atribuindo "email" a todas as arestas
+
+E(g5)$weight = 10 #Configura todas as arestas existentes para 10
+
+edge_attr(g5)
+
+vertex_attr(g5)
+
+graph_attr(g5)
+
+g5 = set_graph_attr(g5, "Nome", "Email de Serviço")
+
+g5 = set_graph_attr(g5, "Teste", "Testando")
+
+graph_attr_names(g5)
+
+graph_attr(g5, "Nome")
+
+graph_attr(g5)
+
+g5 = delete_graph_attr(g5, "Teste")
+
+graph_attr(g5)
+
+plot(g5, edge.arrow.size=.1, vertex.label.color="black", vertex.label.dist=3, 
+     vertex.color=c("pink", "skyblue")[1+(V(g5)$gender=="M")] ) 
+
+#O gráfico g5 tem duas arestas, indo de Michele para Leonardo, e um loop de Rodrigo para si mesmo. 
+#Podemos simplificar nosso gráfico para remover loops e várias arestas entre os mesmos nós.
+#Use edge.attr.comb para indicar como atributos de borda devem ser combinados - opções possíveis
+#incluem sum, mean, prod(produto), min, max, first/ last(seleciona atributo a primeira / última 
+#de borda). A opção "ignorar" diz que o atributo deve ser desconsiderado e descartado.
+
+g5s = simplify(g5, remove.multiple = T, remove.loops = T, 
+                edge.attr.comb = c(weight="sum", type="ignore"))
+
+g5
+
+plot(g5s, edge.arrow.size = .1, vertex.label.dist=3)
+
+g5s
+
+#A descrição de um objeto igraph começa com até quatro letras:
+  
+#1.D ou U, para um gráfico direcionado ou não direcionado
+#2.N para um gráfico nomeado (onde os nós têm um nameatributo)
+#3.W para um gráfico ponderado (onde as bordas têm um weightatributo)
+#4.B para um gráfico bipartido (dois modos) (onde os nós têm um typeatributo)
+#5.Os dois números a seguir (7 5) se referem ao número de nós e arestas no gráfico.
+
+#A descrição também lista os atributos de nó e borda, por exemplo:
+  
+#1.(g/c) - atributo de caractere no nível do gráfico
+#2.(v/c) - atributo de caractere no nível do vértice
+#3.(e/n) - atributo numérico no nível da borda
 
 ########################################################################
-# 7. Redes, Comunidades e Grafos - 3º Parte
+# 7. Redes, Comunidades e Grafos - 3º Parte : Gráficos e modelos de gráficos específicos
 
 ########################################################################
 # 7. Redes, Comunidades e Grafos - 4º Parte
