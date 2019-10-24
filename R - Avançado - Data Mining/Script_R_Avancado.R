@@ -1849,6 +1849,68 @@ g5s
 
 ########################################################################
 # 7. Redes, Comunidades e Grafos - 3º Parte : Gráficos e modelos de gráficos específicos
+library(igraph)
+
+#Gráfico vazio
+gv = make_empty_graph(40)
+plot(gv, vertex.size=10, vertex.label=NA)
+
+#Gráfico completo
+gc = make_full_graph(40)
+plot(gc, vertex.size=10, vertex.label=NA)
+
+#Gráfico estrela simples
+es = make_star(40)
+plot(es, vertex.size=10, vertex.label=NA) 
+
+#Gráfico de árvore
+ga = make_tree(40, children = 3, mode = "undirected")
+plot(ga, vertex.size=10, vertex.label=NA) 
+
+#Gráfico em anel
+ganel = make_ring(40)
+plot(ganel, vertex.size=10, vertex.label=NA)
+
+#Modelo de gráfico aleatório Erdos-Renyi
+#('n' é o número de nós, 'm' é o número de arestas).
+er = sample_gnm(n=100, m=40)
+plot(er, vertex.size=6, vertex.label=NA) 
+
+#Modelo de mundo pequeno Watts-Strogatz
+#Cria uma treliça (com dim dimensões e sizenós através da dimensão) e religa as arestas
+#aleatoriamente com probabilidade p. A vizinhança na qual as arestas estão conectadas é nei.
+#Você pode permitir loops e multiplearestas.
+ws = sample_smallworld(dim=2, size=10, nei=1, p=0.1)
+plot(ws, vertex.size=6, vertex.label=NA, layout=layout_in_circle)
+
+#Modelo de anexo preferencial Barabasi-Albert para gráficos sem escala
+#( n é o número de nós, power é o poder do anexo ( 1 é linear); 
+#m é o número de arestas adicionadas em cada etapa do tempo)
+ba =  sample_pa(n=100, power=1, m=1,  directed=F)
+plot(ba, vertex.size=6, vertex.label=NA)
+
+#igraph também pode fornecer alguns gráficos históricos notáveis. Por exemplo:
+z = graph("Zachary") # the Zachary carate club
+plot(z, vertex.size=10, vertex.label=NA)
+
+data(package = .packages(all.available = TRUE))
+
+#A reconfiguração de um gráfico
+#each_edge() é um método de religação que altera os pontos finais da aresta uniformemente
+#aleatoriamente com uma probabilidade prob.
+rg = rewire(ganel, each_edge(prob=0.1))
+plot(rg, vertex.size=10, vertex.label=NA)
+
+#Rewire para conectar vértices a outros vértices a uma certa distância.
+rn = connect.neighborhood(ganel, 5)
+plot(rn, vertex.size=8, vertex.label=NA)
+
+#Combine gráficos (união separada, assumindo conjuntos de vértices separados): %du%
+plot(ganel, vertex.size=10, vertex.label=NA) 
+
+plot(ga, vertex.size=10, vertex.label=NA)
+
+plot(ganel %du% ga, vertex.size=10, vertex.label=NA)
 
 ########################################################################
 # 7. Redes, Comunidades e Grafos - 4º Parte
