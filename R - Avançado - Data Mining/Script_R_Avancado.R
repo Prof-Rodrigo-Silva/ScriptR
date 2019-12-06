@@ -1105,8 +1105,8 @@ y
 
 
 ########################################################################
-# 4. Regressão:
-# 4.1. Regressão linear (simples e múltipla)
+# 4. Regress?o:
+# 4.1. Regress?o linear (simples e m?ltipla)
 
 #install.packages("datarium")
 data("marketing", package = "datarium")
@@ -1133,13 +1133,13 @@ boxplot(dados$vendas, main="Vendas",
 
 library(e1071)
 
-plot(density(dados$youtube), main="Gráfico de Densidade: Youtube"
+plot(density(dados$youtube), main="Gr?fico de Densidade: Youtube"
      , ylab="Frequency", sub=paste("Skewness:",
                                    round(e1071::skewness(dados$youtube), 2)))
 
 polygon(density(dados$youtube), col="red")
 
-plot(density(dados$vendas), main="Gráfico de Densidade: Vendas"
+plot(density(dados$vendas), main="Gr?fico de Densidade: Vendas"
      , ylab="Frequency", sub=paste("Skewness:",
                                    round(e1071::skewness(dados$vendas), 2)))
 
@@ -1180,36 +1180,36 @@ summary(modelo)$adj.r.squared
 predict(modelo ,data.frame(youtube = 150, facebook = 202, jornal = 78))
 
 ########################################################################
-# 4. Regressão:
-# 4.2. Regressão polinomial
+# 4. Regress?o:
+# 4.2. Regress?o polinomial
 dim(cars)
 
 head(cars)
 
-# preparação dos dados
+# prepara??o dos dados
 x = with(cars, speed)
 y = with(cars, dist)
 tamanho = dim(cars)[1]
 speed.novo = seq(min(x), max(x), length.out = tamanho)
 
-# scatter plot com regressão
+# scatter plot com regress?o
 plot(y ~ x, data = cars, xlab = "Velocidade", 
-     ylab = "Distância até parar")
+     ylab = "Dist?ncia at? parar")
 
-# ajuste reta de regressão
+# ajuste reta de regress?o
 modelo = lm(y ~ x, data = cars)
 abline(modelo, lty = 2, lwd = 2, col = "blue")
 modelo
 
-# ajuste regressão cúbica
+# ajuste regress?o c?bica
 modelo.1 = lm(y ~ poly(x, 3))
 modelo.1
 
-# dist = 42.98 + 145.55Speed + 23.00Speed² + 13.80Speed³
+# dist = 42.98 + 145.55Speed + 23.00Speed? + 13.80Speed?
 
 # scatter plot com ajuste polinomial
 plot(y ~ x, data = cars, xlab = "Velocidade",
-     ylab = "Distância até parar")
+     ylab = "Dist?ncia at? parar")
 
 abline(modelo, lty = 2, lwd = 2, col = "red")
 
@@ -1218,24 +1218,24 @@ lines(speed.novo, predict(modelo.1, data.frame(x = speed.novo)),
 #
 
 ########################################################################
-# 4. Regressão:
-# 4.3.1 RegressÃ£o com Ã¡rvores de decisão e 4.3.2 random forest
+# 4. Regress?o:
+# 4.3.1 RegressÃ£o com Ã¡rvores de decis?o e 4.3.2 random forest
 
 dados = boston
 
-#LON e LAT são a longitude e latitude do centro do setor censitário. 
-#MEDV é o valor médio das casas ocupadas pelos proprietários, medido em milhares de dólares. 
-#CRIM é a taxa de criminalidade per capita. 
-#O ZN está relacionado a quanto da terra é zoneada para grandes propriedades residenciais. 
-#INDUS é a proporção da área utilizada para a indústria. 
-#CHAS é 1 se um setor censitário estiver próximo ao rio Charles.
-#0 NOX é a concentração de óxidos nitrosos no ar, uma medida da poluição do ar. 
-#RM é o número médio de quartos por habitação.
-#AGE é a proporção de unidades ocupadas pelos proprietários construídas antes de 1940.
-#DIS é uma medida de quão longe o trato está dos centros de emprego em Boston. 
-#RAD é uma medida de proximidade com estradas importantes. 
-#IMPOSTO é o imposto predial por US $ 10.000 em valor. 
-#PTRATIO é a proporção de alunos por professor por cidade.
+#LON e LAT s?o a longitude e latitude do centro do setor censit?rio. 
+#MEDV ? o valor m?dio das casas ocupadas pelos propriet?rios, medido em milhares de d?lares. 
+#CRIM ? a taxa de criminalidade per capita. 
+#O ZN est? relacionado a quanto da terra ? zoneada para grandes propriedades residenciais. 
+#INDUS ? a propor??o da ?rea utilizada para a ind?stria. 
+#CHAS ? 1 se um setor censit?rio estiver pr?ximo ao rio Charles.
+#0 NOX ? a concentra??o de ?xidos nitrosos no ar, uma medida da polui??o do ar. 
+#RM ? o n?mero m?dio de quartos por habita??o.
+#AGE ? a propor??o de unidades ocupadas pelos propriet?rios constru?das antes de 1940.
+#DIS ? uma medida de qu?o longe o trato est? dos centros de emprego em Boston. 
+#RAD ? uma medida de proximidade com estradas importantes. 
+#IMPOSTO ? o imposto predial por US $ 10.000 em valor. 
+#PTRATIO ? a propor??o de alunos por professor por cidade.
 
 dados$TOWN = NULL
 dados$TRACT = NULL
@@ -1293,24 +1293,24 @@ rsq_teste = rSquared(base_teste[['MEDV']],
 rsq_teste
 
 ########################################################################
-# 4. Regressão:
+# 4. Regress?o:
 # 4.3.1 RegressÃ£o com Ã¡rvores de decissÃ£o e 4.3.2 random forest
 
 dados = boston
 
-#LON e LAT são a longitude e latitude do centro do setor censitário. 
-#MEDV é o valor médio das casas ocupadas pelos proprietários, medido em milhares de dólares. 
-#CRIM é a taxa de criminalidade per capita. 
-#O ZN está relacionado a quanto da terra é zoneada para grandes propriedades residenciais. 
-#INDUS é a proporção da área utilizada para a indústria. 
-#CHAS é 1 se um setor censitário estiver próximo ao rio Charles.
-#0 NOX é a concentração de óxidos nitrosos no ar, uma medida da poluição do ar. 
-#RM é o número médio de quartos por habitação.
-#AGE é a proporção de unidades ocupadas pelos proprietários construídas antes de 1940.
-#DIS é uma medida de quão longe o trato está dos centros de emprego em Boston. 
-#RAD é uma medida de proximidade com estradas importantes. 
-#IMPOSTO é o imposto predial por US $ 10.000 em valor. 
-#PTRATIO é a proporção de alunos por professor por cidade.
+#LON e LAT s?o a longitude e latitude do centro do setor censit?rio. 
+#MEDV ? o valor m?dio das casas ocupadas pelos propriet?rios, medido em milhares de d?lares. 
+#CRIM ? a taxa de criminalidade per capita. 
+#O ZN est? relacionado a quanto da terra ? zoneada para grandes propriedades residenciais. 
+#INDUS ? a propor??o da ?rea utilizada para a ind?stria. 
+#CHAS ? 1 se um setor censit?rio estiver pr?ximo ao rio Charles.
+#0 NOX ? a concentra??o de ?xidos nitrosos no ar, uma medida da polui??o do ar. 
+#RM ? o n?mero m?dio de quartos por habita??o.
+#AGE ? a propor??o de unidades ocupadas pelos propriet?rios constru?das antes de 1940.
+#DIS ? uma medida de qu?o longe o trato est? dos centros de emprego em Boston. 
+#RAD ? uma medida de proximidade com estradas importantes. 
+#IMPOSTO ? o imposto predial por US $ 10.000 em valor. 
+#PTRATIO ? a propor??o de alunos por professor por cidade.
 
 dados$TOWN = NULL
 dados$TRACT = NULL
@@ -1357,7 +1357,7 @@ rsq_teste
 #
 
 ########################################################################
-# 4. Regressão:
+# 4. Regress?o:
 # 4.4. RegressÃ£o com vetores de suporte
 dados = regression
 
@@ -1393,22 +1393,22 @@ previsao = predict(classificador, newdata = df)
 previsao
 
 ########################################################################
-# 4. Regressão:
+# 4. Regress?o:
 # 4.5. RegressÃ£o com redes neurais artificiais
 dados = boston
-#LON e LAT são a longitude e latitude do centro do setor censitário. 
-#MEDV é o valor médio das casas ocupadas pelos proprietários, medido em milhares de dólares. 
-#CRIM é a taxa de criminalidade per capita. 
-#O ZN está relacionado a quanto da terra é zoneada para grandes propriedades residenciais. 
-#INDUS é a proporção da área utilizada para a indústria. 
-#CHAS é 1 se um setor censitário estiver próximo ao rio Charles.
-#0 NOX é a concentração de óxidos nitrosos no ar, uma medida da poluição do ar. 
-#RM é o número médio de quartos por habitação.
-#AGE é a proporção de unidades ocupadas pelos proprietários construídas antes de 1940.
-#DIS é uma medida de quão longe o trato está dos centros de emprego em Boston. 
-#RAD é uma medida de proximidade com estradas importantes. 
-#IMPOSTO é o imposto predial por US $ 10.000 em valor. 
-#PTRATIO é a proporção de alunos por professor por cidade.
+#LON e LAT s?o a longitude e latitude do centro do setor censit?rio. 
+#MEDV ? o valor m?dio das casas ocupadas pelos propriet?rios, medido em milhares de d?lares. 
+#CRIM ? a taxa de criminalidade per capita. 
+#O ZN est? relacionado a quanto da terra ? zoneada para grandes propriedades residenciais. 
+#INDUS ? a propor??o da ?rea utilizada para a ind?stria. 
+#CHAS ? 1 se um setor censit?rio estiver pr?ximo ao rio Charles.
+#0 NOX ? a concentra??o de ?xidos nitrosos no ar, uma medida da polui??o do ar. 
+#RM ? o n?mero m?dio de quartos por habita??o.
+#AGE ? a propor??o de unidades ocupadas pelos propriet?rios constru?das antes de 1940.
+#DIS ? uma medida de qu?o longe o trato est? dos centros de emprego em Boston. 
+#RAD ? uma medida de proximidade com estradas importantes. 
+#IMPOSTO ? o imposto predial por US $ 10.000 em valor. 
+#PTRATIO ? a propor??o de alunos por professor por cidade.
 
 dados$TOWN = NULL
 dados$TRACT = NULL
@@ -1452,7 +1452,7 @@ rsqd = rSquared(base_teste[['MEDV']],
 h2o.shutdown()
 
 ########################################################################
-# 5. Séries Temporais
+# 5. S?ries Temporais
 AirPassengers
 lynx
 Nile
@@ -1472,8 +1472,8 @@ plot(USAccDeaths,xlab='Anos',ylab='Numero de Mortes')
 
 plot(USAccDeaths,type='o')
 
-plot.ts(cbind(USAccDeaths,AirPassengers),main='Mortes X Transporte Aéreo',xlab='Anos')
-plot.ts(cbind(USAccDeaths,AirPassengers),main='Mortes X Transporte Aéreo',xlab='Anos', nc=2) #lado a lado
+plot.ts(cbind(USAccDeaths,AirPassengers),main='Mortes X Transporte A?reo',xlab='Anos')
+plot.ts(cbind(USAccDeaths,AirPassengers),main='Mortes X Transporte A?reo',xlab='Anos', nc=2) #lado a lado
 ts.plot(USAccDeaths,AirPassengers,gpars=list(xlab='', ylab='',lty=1:1))
 
 aggregate(USAccDeaths, nfrequency = 4, FUN = sum) # somas trimestrais
@@ -1494,7 +1494,7 @@ janela
 diff(USAccDeaths)
 log(USAccDeaths)
 
-# Análise da Função de Autocorrelação (FAC) e Autocorrelação Parcial
+# An?lise da Fun??o de Autocorrela??o (FAC) e Autocorrela??o Parcial
 #(FACp) com defasagem 25:
 a = acf(USAccDeaths, lag.max=25)
 a
@@ -1507,7 +1507,7 @@ dp
 #Obtendo a sazionalidade
 plot(stl(log(USAccDeaths), "periodic"))
 
-#Fim 1º Parte - Inicio 2º Parte
+#Fim 1? Parte - Inicio 2? Parte
 
 #Decompondo
 decompose(USAccDeaths)
@@ -1523,7 +1523,7 @@ plot(d$trend)
 plot(d$random)
 plot(d)
 
-#Médias Móveis, ARIMA
+#M?dias M?veis, ARIMA
 mean(USAccDeaths)
 janela = window(USAccDeaths, start=c(1976,1), end=c(1976,12))
 mean(janela)
@@ -1553,7 +1553,7 @@ previsao2
 plot(previsao2)
 
 ########################################################################
-# 6. Mineração de Textos
+# 6. Minera??o de Textos
 #install.packages("tm",dependencies = T)
 library(NLP)
 library(tm)
@@ -1566,7 +1566,7 @@ getReaders()
 #VCorpus()
 #PCorpus()
 
-textos = VCorpus(DirSource("C:/Users/fermat/Documents/ScriptR/R - Avançado - Data Mining/textos",
+textos = VCorpus(DirSource("C:/Users/fermat/Documents/ScriptR/R - Avan?ado - Data Mining/textos",
                  encoding="UTF-8"),readerControl = list(reader=readPlain,language="por"))
 
 inspect(textos)
@@ -1584,7 +1584,7 @@ as.character(textos[[2]])
 as.character(textos[[2]])[20]
 
 
-#Mineração de termos frequentes
+#Minera??o de termos frequentes
 
 stopwords('portuguese')
 
@@ -1669,7 +1669,7 @@ imp
 imp[c(1, 25, 50)]
 
 #twetar direto do R
-tweet("Tweet gerado com twitteR da playlist de R Avançado do meu canal no YouTube")
+tweet("Tweet gerado com twitteR da playlist de R Avan?ado do meu canal no YouTube")
 
 trendsBR = getTrends(woeid = 23424768)
 
@@ -1692,7 +1692,7 @@ df = twListToDF(TLusuario)
 head(df)
 
 ########################################################################
-# 7. Redes, Comunidades e Grafos - 1º Parte
+# 7. Redes, Comunidades e Grafos - 1? Parte
 
 #install.packages("igraph",dependencies = T)
 library(igraph)
@@ -1717,7 +1717,7 @@ plot(g3)
 
 g3
 
-g4 = graph( c("Rodrigo", "Cássio", "Cássio", "Leonardo", "Leonardo", "Rodrigo"))
+g4 = graph( c("Rodrigo", "C?ssio", "C?ssio", "Leonardo", "Leonardo", "Rodrigo"))
 
 plot(g4)
 
@@ -1725,7 +1725,7 @@ g4
 
 g5 = graph( c("Rodrigo", "Michele", "Michele", "Rodrigo","Michele","Leonardo","Michele","Leonardo",
               "Rodrigo", "Rodrigo"), 
-             isolates=c("Larissa", "Vivi", "Julina", "Cássio")) 
+             isolates=c("Larissa", "Vivi", "Julina", "C?ssio")) 
 
 plot(g5)
 
@@ -1753,9 +1753,9 @@ plot(g5, edge.arrow.size = .3, vertex.color = "gold", vertex.size = 15,
      vertex.frame.color = "gray", vertex.label.color = "black", 
      vertex.label.cex = 0.8, vertex.label.dist = 3, edge.curved = 0.5) 
 
-#Gráficos pequenos também podem ser gerados com uma descrição desse tipo: - para empate não
+#Gr?ficos pequenos tamb?m podem ser gerados com uma descri??o desse tipo: - para empate n?o
 # direcionado, +- ou -+ para empates direcionados apontando para a esquerda e direita, ++ para um
-# empate simétrico e ":" para conjuntos de vértices.
+# empate sim?trico e ":" para conjuntos de v?rtices.
 
 plot(graph_from_literal(a--b, b--c))
 
@@ -1769,7 +1769,7 @@ gl = graph_from_literal(a-b-c-d-e-f, a-g-h-b, h-e:f:i, j)
 
 plot(gl)
 
-#Acessar vértices e arestas:
+#Acessar v?rtices e arestas:
 
 E(g5)
 
@@ -1785,8 +1785,8 @@ g5[,3]
 g5[3,2]
 
 ########################################################################
-# 7. Redes, Comunidades e Grafos - 2º Parte
-# Adicione atributos à rede, vértices ou arestas:
+# 7. Redes, Comunidades e Grafos - 2? Parte
+# Adicione atributos ? rede, v?rtices ou arestas:
 V(g5)$name
 
 V(g5)$gender = c("M", "F", "M", "F", "F", "F", "M")
@@ -1801,7 +1801,7 @@ vertex_attr(g5)
 
 graph_attr(g5)
 
-g5 = set_graph_attr(g5, "Nome", "Email de Serviço")
+g5 = set_graph_attr(g5, "Nome", "Email de Servi?o")
 
 g5 = set_graph_attr(g5, "Teste", "Testando")
 
@@ -1818,11 +1818,11 @@ graph_attr(g5)
 plot(g5, edge.arrow.size=.1, vertex.label.color="black", vertex.label.dist=3, 
      vertex.color=c("pink", "skyblue")[1+(V(g5)$gender=="M")] ) 
 
-#O gráfico g5 tem duas arestas, indo de Michele para Leonardo, e um loop de Rodrigo para si mesmo. 
-#Podemos simplificar nosso gráfico para remover loops e várias arestas entre os mesmos nós.
-#Use edge.attr.comb para indicar como atributos de borda devem ser combinados - opções possíveis
-#incluem sum, mean, prod(produto), min, max, first/ last(seleciona atributo a primeira / última 
-#de borda). A opção "ignorar" diz que o atributo deve ser desconsiderado e descartado.
+#O gr?fico g5 tem duas arestas, indo de Michele para Leonardo, e um loop de Rodrigo para si mesmo. 
+#Podemos simplificar nosso gr?fico para remover loops e v?rias arestas entre os mesmos n?s.
+#Use edge.attr.comb para indicar como atributos de borda devem ser combinados - op??es poss?veis
+#incluem sum, mean, prod(produto), min, max, first/ last(seleciona atributo a primeira / ?ltima 
+#de borda). A op??o "ignorar" diz que o atributo deve ser desconsiderado e descartado.
 
 g5s = simplify(g5, remove.multiple = T, remove.loops = T, 
                 edge.attr.comb = c(weight="sum", type="ignore"))
@@ -1833,79 +1833,79 @@ plot(g5s, edge.arrow.size = .1, vertex.label.dist=3)
 
 g5s
 
-#A descrição de um objeto igraph começa com até quatro letras:
+#A descri??o de um objeto igraph come?a com at? quatro letras:
   
-#1.D ou U, para um gráfico direcionado ou não direcionado
-#2.N para um gráfico nomeado (onde os nós têm um nameatributo)
-#3.W para um gráfico ponderado (onde as bordas têm um weightatributo)
-#4.B para um gráfico bipartido (dois modos) (onde os nós têm um typeatributo)
-#5.Os dois números a seguir (7 5) se referem ao número de nós e arestas no gráfico.
+#1.D ou U, para um gr?fico direcionado ou n?o direcionado
+#2.N para um gr?fico nomeado (onde os n?s t?m um nameatributo)
+#3.W para um gr?fico ponderado (onde as bordas t?m um weightatributo)
+#4.B para um gr?fico bipartido (dois modos) (onde os n?s t?m um typeatributo)
+#5.Os dois n?meros a seguir (7 5) se referem ao n?mero de n?s e arestas no gr?fico.
 
-#A descrição também lista os atributos de nó e borda, por exemplo:
+#A descri??o tamb?m lista os atributos de n? e borda, por exemplo:
   
-#1.(g/c) - atributo de caractere no nível do gráfico
-#2.(v/c) - atributo de caractere no nível do vértice
-#3.(e/n) - atributo numérico no nível da borda
+#1.(g/c) - atributo de caractere no n?vel do gr?fico
+#2.(v/c) - atributo de caractere no n?vel do v?rtice
+#3.(e/n) - atributo num?rico no n?vel da borda
 
 ########################################################################
-# 7. Redes, Comunidades e Grafos - 3º Parte : Gráficos e modelos de gráficos específicos
+# 7. Redes, Comunidades e Grafos - 3? Parte : Gr?ficos e modelos de gr?ficos espec?ficos
 library(igraph)
 
-#Gráfico vazio
+#Gr?fico vazio
 gv = make_empty_graph(40)
 plot(gv, vertex.size=10, vertex.label=NA)
 
-#Gráfico completo
+#Gr?fico completo
 gc = make_full_graph(40)
 plot(gc, vertex.size=10, vertex.label=NA)
 
-#Gráfico estrela simples
+#Gr?fico estrela simples
 es = make_star(40)
 plot(es, vertex.size=10, vertex.label=NA) 
 
-#Gráfico de árvore
+#Gr?fico de ?rvore
 ga = make_tree(40, children = 3, mode = "undirected")
 plot(ga, vertex.size=10, vertex.label=NA) 
 
-#Gráfico em anel
+#Gr?fico em anel
 ganel = make_ring(40)
 plot(ganel, vertex.size=10, vertex.label=NA)
 
-#Modelo de gráfico aleatório Erdos-Renyi
-#('n' é o número de nós, 'm' é o número de arestas).
+#Modelo de gr?fico aleat?rio Erdos-Renyi
+#('n' ? o n?mero de n?s, 'm' ? o n?mero de arestas).
 er = sample_gnm(n=100, m=40)
 plot(er, vertex.size=6, vertex.label=NA) 
 
 #Modelo de mundo pequeno Watts-Strogatz
-#Cria uma treliça (com dim dimensões e sizenós através da dimensão) e religa as arestas
-#aleatoriamente com probabilidade p. A vizinhança na qual as arestas estão conectadas é nei.
-#Você pode permitir loops e multiplearestas.
+#Cria uma treli?a (com dim dimens?es e sizen?s atrav?s da dimens?o) e religa as arestas
+#aleatoriamente com probabilidade p. A vizinhan?a na qual as arestas est?o conectadas ? nei.
+#Voc? pode permitir loops e multiplearestas.
 ws = sample_smallworld(dim=2, size=10, nei=1, p=0.1)
 plot(ws, vertex.size=6, vertex.label=NA, layout=layout_in_circle)
 
-#Modelo de anexo preferencial Barabasi-Albert para gráficos sem escala
-#( n é o número de nós, power é o poder do anexo ( 1 é linear); 
-#m é o número de arestas adicionadas em cada etapa do tempo)
+#Modelo de anexo preferencial Barabasi-Albert para gr?ficos sem escala
+#( n ? o n?mero de n?s, power ? o poder do anexo ( 1 ? linear); 
+#m ? o n?mero de arestas adicionadas em cada etapa do tempo)
 ba =  sample_pa(n=100, power=1, m=1,  directed=F)
 plot(ba, vertex.size=6, vertex.label=NA)
 
-#igraph também pode fornecer alguns gráficos históricos notáveis. Por exemplo:
+#igraph tamb?m pode fornecer alguns gr?ficos hist?ricos not?veis. Por exemplo:
 z = graph("Zachary") # the Zachary carate club
 plot(z, vertex.size=10, vertex.label=NA)
 
 data(package = .packages(all.available = TRUE))
 
-#A reconfiguração de um gráfico
-#each_edge() é um método de religação que altera os pontos finais da aresta uniformemente
+#A reconfigura??o de um gr?fico
+#each_edge() ? um m?todo de religa??o que altera os pontos finais da aresta uniformemente
 #aleatoriamente com uma probabilidade prob.
 rg = rewire(ganel, each_edge(prob=0.1))
 plot(rg, vertex.size=10, vertex.label=NA)
 
-#Rewire para conectar vértices a outros vértices a uma certa distância.
+#Rewire para conectar v?rtices a outros v?rtices a uma certa dist?ncia.
 rn = connect.neighborhood(ganel, 5)
 plot(rn, vertex.size=8, vertex.label=NA)
 
-#Combine gráficos (união separada, assumindo conjuntos de vértices separados): %du%
+#Combine gr?ficos (uni?o separada, assumindo conjuntos de v?rtices separados): %du%
 plot(ganel, vertex.size=10, vertex.label=NA) 
 
 plot(ga, vertex.size=10, vertex.label=NA)
@@ -1913,4 +1913,55 @@ plot(ga, vertex.size=10, vertex.label=NA)
 plot(ganel %du% ga, vertex.size=10, vertex.label=NA)
 
 ########################################################################
-# 7. Redes, Comunidades e Grafos - 4º Parte
+# 7. Redes, Comunidades e Grafos - 4Âº Parte
+# Conhecendo o conjunto de dados
+
+
+
+
+
+
+
+
+library(igraph)
+
+nos = Dados1_MIDIA_NOS
+
+links = Dados1_MIDIA_ARESTAS
+
+head(nos)
+
+head(links)
+
+nrow(nos);
+
+length(unique(nos$id))
+
+nrow(links);
+
+nrow(unique(links[,c("origem", "destino")]))
+
+links = aggregate(links[,3], links[,-3], sum)
+
+links = links[order(links$origem, links$destino),]
+
+colnames(links)[4] = "peso"
+
+rownames(links) = NULL
+
+nos2 = Dados2_MIDIA_USUARIO_NOS
+
+links2 = Dados2_MIDIA_USUARIO_ARESTAS
+
+head(nos2)
+
+head(links2)
+
+#Podemos ver que links2 Ã© uma matriz de adjacÃªncia para uma rede de dois modos:
+  
+links2 = as.matrix(links2)
+
+dim(links2)
+
+dim(nos2)
+
