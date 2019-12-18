@@ -1916,52 +1916,294 @@ plot(ganel %du% ga, vertex.size=10, vertex.label=NA)
 # 7. Redes, Comunidades e Grafos - 4º Parte
 # Conhecendo o conjunto de dados
 
-
-
-
-
-
-
+########################################################################
+# 7. Redes, Comunidades e Grafos - 5º Parte
 
 library(igraph)
 
 nos = Dados1_MIDIA_NOS
 
-links = Dados1_MIDIA_ARESTAS
+ligacoes = Dados1_MIDIA_ARESTAS
 
 head(nos)
 
-head(links)
+head(ligacoes)
 
 nrow(nos);
 
 length(unique(nos$id))
 
-nrow(links);
+nrow(ligacoes);
 
-nrow(unique(links[,c("origem", "destino")]))
+nrow(unique(ligacoes[,c("origem", "destino")]))
 
-links = aggregate(links[,3], links[,-3], sum)
+ligacoes = aggregate(ligacoes[,3], ligacoes[,-3], sum)
 
-links = links[order(links$origem, links$destino),]
+ligacoes = ligacoes[order(ligacoes$origem, ligacoes$destino),]
 
-colnames(links)[4] = "peso"
+colnames(ligacoes)[4] = "peso"
 
-rownames(links) = NULL
+rownames(ligacoes) = NULL
 
 nos2 = Dados2_MIDIA_USUARIO_NOS
 
-links2 = Dados2_MIDIA_USUARIO_ARESTAS
+ligacoes2 = Dados2_MIDIA_USUARIO_ARESTAS
 
 head(nos2)
 
-head(links2)
+head(ligacoes2)
 
-#Podemos ver que links2 é uma matriz de adjacência para uma rede de dois modos:
+#Podemos ver que ligacoes2 é uma matriz de adjacência para uma rede de dois modos:
   
-links2 = as.matrix(links2)
+ligacoes2 = as.matrix(ligacoes2)
 
-dim(links2)
+dim(ligacoes2)
 
 dim(nos2)
 
+########################################################################
+# 7. Redes, Comunidades e Grafos - 6º Parte Transformando Redes em Objetos Igraph
+
+library(igraph)
+
+graf = graph_from_data_frame(d = ligacoes, vertices = nos, directed = T)
+
+class(graf)
+
+graf
+
+E(graf) # Arestas
+V(graf) # Vertices
+E(graf)$tipo # Arestas do atributo "tipo"
+V(graf)$midia # Vertices do atributo "midia"
+
+plot(graf, edge.arrow.size=.1,vertex.label=NA)
+
+graf = simplify(graf, remove.multiple = F, remove.loops = T)
+
+plot(graf, edge.arrow.size=.1,vertex.label=NA)
+
+as_edgelist(graf, names=T)
+
+as_adjacency_matrix(graf, attr="peso")
+
+as_data_frame(graf, what="edges")
+
+as_data_frame(graf, what="vertices")
+
+head(nos2)
+
+head(ligacoes2)
+
+graf2 = graph_from_incidence_matrix(ligacoes2)
+
+table(V(graf2)$type)
+
+graf2.bp = bipartite.projection(graf2)
+
+as_incidence_matrix(graf2) %*% t(as_incidence_matrix(graf2))
+t(as_incidence_matrix(graf2)) %*% as_incidence_matrix(graf2)
+
+plot(graf2.bp$proj1, vertex.label.color="black", vertex.label.dist=1,
+     vertex.size=7, vertex.label = nos2$midia[!is.na(nos2$tipo.midia)])
+
+plot(graf2.bp$proj2, vertex.label.color="black", vertex.label.dist=1,
+     vertex.size=7, vertex.label=nos2$midia[is.na(nos2$tipo.midia)])
+
+########################################################################
+# 7. Redes, Comunidades e Grafos - 7º Parte Plotagens Igraph
+library(igraph)
+
+plot(graf, edge.arrow.size=.1, edge.curved=.1)
+
+plot(graf, edge.arrow.size=.1, edge.curved=0,
+     vertex.color="orange", vertex.frame.color="#555555",
+     vertex.label=V(graf)$midia, vertex.label.color="black",
+     vertex.label.cex=.7) 
+
+
+# Gerar cores baseadas no tipo de mídia:
+colrs = c("gray50", "tomato", "gold")
+
+V(graf)$color = colrs[V(graf)$tipo.midia]
+
+# Set o nó com base no tamanho da audiencia:
+V(graf)$size = V(graf)$tamanho.audiencia*0.7
+
+V(graf)$label.color = "black"
+
+V(graf)$label = NA
+
+# Set a largura da araesta baseado no peso:
+E(graf)$width = E(graf)$peso/6
+
+#Alterar o tamanho da seta e a cor da aresta:
+E(graf)$arrow.size = .1
+E(graf)$edge.color = "gray80"
+E(graf)$width = 1+E(graf)$peso/12
+plot(graf)
+
+#Substituir os atributos explicitamente no gráfico
+plot(graf, edge.color="orange", vertex.color="gray50")
+
+#Legenda
+plot(graf)
+legend(x=1.2, y=1, c("Jornal","Televisão", "Notícias On Line"),
+       pch=21, col="#777777", pt.bg=colrs, pt.cex=2, cex=.8,
+       bty="n", ncol=1)
+
+#Em redes semânticas, podemos plotar apenas os rótulos dos nós:
+plot(graf, vertex.shape="none", vertex.label=V(graf)$midia,
+     vertex.label.font=2, vertex.label.color="gray40",
+     vertex.label.cex=.7, edge.color="gray70")
+
+#Colorir as arestas do gráfico com base na cor do nó de origem
+edge.start = ends(graf, es=E(graf), names=F)[,1]
+
+edge.col = V(graf)$color[edge.start]
+
+plot(graf, edge.color=edge.col, edge.curved=.2)
+
+########################################################################
+# 7. Redes, Comunidades e Grafos - 8º Layouts de rede
+graf.bg = sample_pa(80) 
+
+V(graf.bg)$size = 8
+
+V(graf.bg)$frame.color = "white"
+
+V(graf.bg)$color = "orange"
+
+V(graf.bg)$label = "" 
+
+E(graf.bg)$arrow.mode = 0
+
+plot(graf.bg)
+
+plot(graf.bg, layout=layout_randomly)
+
+l = layout_in_circle(graf.bg)
+
+plot(graf.bg, layout=l)
+
+l = cbind(1:vcount(graf.bg), c(1, vcount(graf.bg):2))
+
+plot(graf.bg, layout=l)
+
+l = layout_randomly(graf.bg)
+
+plot(graf.bg, layout=l)
+
+# Fruchterman-Reingold
+l = layout_with_fr(graf.bg)
+
+plot(graf.bg, layout=l)
+
+par(mfrow=c(2,2), mar=c(0,0,0,0))
+
+plot(graf.bg, layout=layout_with_fr)
+
+plot(graf.bg, layout=layout_with_fr)
+
+plot(graf.bg, layout=l)
+
+plot(graf.bg, layout=l)
+
+dev.off()
+
+l = layout_with_fr(graf.bg)
+
+l = norm_coords(l, ymin=-1, ymax=1, xmin=-1, xmax=1)
+
+par(mfrow=c(2,2), mar=c(0,0,0,0))
+
+plot(graf.bg, rescale=F, layout=l*0.4)
+
+plot(graf.bg, rescale=F, layout=l*0.6)
+
+plot(graf.bg, rescale=F, layout=l*0.8)
+
+plot(graf.bg, rescale=F, layout=l*1.0)
+
+dev.off()
+
+l = layout_with_kk(graf.bg)
+
+plot(graf.bg, layout=l)
+
+layouts = grep("^layout_", ls("package:igraph"), value=TRUE)[-1]
+
+layouts = layouts[!grepl("bipartite|merge|norm|sugiyama|tree", layouts)]
+
+par(mfrow=c(3,3), mar=c(1,1,1,1))
+
+for (layout in layouts) {
+  
+  print(layout)
+  
+  l = do.call(layout, list(graf)) 
+  
+  plot(graf, edge.arrow.mode=0, layout=l, main=layout)
+}
+dev.off()
+########################################################################
+# 7.Redes, Comunidades e Grafos - 9º Parte Melhorando os gráficos de Rede
+library(igraph)
+plot(graf)
+
+hist(ligacoes$peso)
+
+mean(ligacoes$peso)
+
+sd(ligacoes$peso)
+help(sd)
+
+cut.off = mean(ligacoes$peso) 
+
+graf.sp = delete_edges(graf, E(graf)[peso<cut.off])
+
+plot(graf.sp) 
+
+E(graf)$peso = 1.5
+
+plot(graf, edge.color=c("dark red", "slategrey")[(E(graf)$tipo=="hyperlink")+1],
+     vertex.color="gray40", layout=layout.circle)
+
+graf.m = graf - E(graf)[E(graf)$tipo=="hyperlink"]
+graf.h = graf - E(graf)[E(graf)$tipo=="mencao"]
+
+par(mfrow=c(1,2))
+
+plot(graf.h, vertex.color="orange", main="Hyperlink")
+
+plot(graf.m, vertex.color="lightsteelblue2", main="Mencao")
+
+l = layout_with_fr(graf)
+
+plot(graf.h, vertex.color="orange", layout=l, main="Hyperlink")
+
+plot(graf.m, vertex.color="lightsteelblue2", layout=l, main="Mencao")
+dev.off()
+########################################################################
+# 7.Redes, Comunidades e Grafos - 10º Parte Plotagem interativa com tkplot
+tkid = tkplot(graf) #tkid is the id of the tkplot that will open
+
+l = tkplot.getcoords(tkid) # grab the coordinates from tkplot
+
+tk_close(tkid, window.close = T)
+
+plot(graf, layout=l)
+
+########################################################################
+# 7.Redes, Comunidades e Grafos - 11º Parte Outras maneiras de representar uma rede
+grafm = get.adjacency(graf, attr="peso", sparse=F)
+
+colnames(grafm) = V(graf)$midia
+
+rownames(grafm) = V(graf)$midia
+
+cor = colorRampPalette(c("gold", "dark orange")) 
+
+heatmap(grafm[,17:1], Rowv = NA, Colv = NA, col = cor(100), 
+        
+        scale="none", margins=c(10,10) )

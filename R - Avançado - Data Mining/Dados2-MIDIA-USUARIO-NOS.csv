@@ -1,4 +1,4 @@
-id,media,tipo.midia,Nome.midia,tamanho.audiencia
+id,midia,tipo.midia,nome.midia,tamanho.audiencia
 s01,Correio do Povo,1,Jornal,20
 s02,O Globo,1,Jornal,25
 s03,Extra,1,Jornal,30
@@ -13,19 +13,19 @@ U01,Rodrigo,NA,NA,NA
 U02,Aline,NA,NA,NA
 U03,Paulo,NA,NA,NA
 U04,Pedro,NA,NA,NA
-U05,Jo?o,NA,NA,NA
+U05,Joao,NA,NA,NA
 U06,Sophya,NA,NA,NA
 U07,Edmundo,NA,NA,NA
 U08,Ana,NA,NA,NA
 U09,Carlos,NA,NA,NA
-U10,Let’cia,NA,NA,NA
+U10,Leticia,NA,NA,NA
 U11,Sandra,NA,NA,NA
 U12,Juliana,NA,NA,NA
 U13,Sheila,NA,NA,NA
 U14,Rafael,NA,NA,NA
 U15,Michele,NA,NA,NA
 U16,Diego,NA,NA,NA
-U17,F‡bio,NA,NA,NA
+U17,Fabio,NA,NA,NA
 U18,Felipe,NA,NA,NA
 U19,Fatima,NA,NA,NA
 U20,Inaiara,NA,NA,NA
