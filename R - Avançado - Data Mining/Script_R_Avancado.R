@@ -2186,16 +2186,18 @@ plot(graf.m, vertex.color="lightsteelblue2", layout=l, main="Mencao")
 dev.off()
 ########################################################################
 # 7.Redes, Comunidades e Grafos - 10º Parte Plotagem interativa com tkplot
-tkid = tkplot(graf) #tkid is the id of the tkplot that will open
+graf.tk = tkplot(graf) #tkid is the id of the tkplot that will open
 
-l = tkplot.getcoords(tkid) # grab the coordinates from tkplot
+l = tkplot.getcoords(graf.tk) # grab the coordinates from tkplot
 
-tk_close(tkid, window.close = T)
+tk_close(graf.tk, window.close = T)
 
 plot(graf, layout=l)
 
 ########################################################################
 # 7.Redes, Comunidades e Grafos - 11º Parte Outras maneiras de representar uma rede
+library(igraph)
+
 grafm = get.adjacency(graf, attr="peso", sparse=F)
 
 colnames(grafm) = V(graf)$midia
@@ -2205,5 +2207,216 @@ rownames(grafm) = V(graf)$midia
 cor = colorRampPalette(c("gold", "dark orange")) 
 
 heatmap(grafm[,17:1], Rowv = NA, Colv = NA, col = cor(100), 
-        
-        scale="none", margins=c(10,10) )
+        scale="none", margins=c(10,10))
+
+
+V(graf2)$color = c("steel blue", "orange")[V(graf2)$type+1]
+
+V(graf2)$shape = c("square", "circle")[V(graf2)$type+1]
+
+V(graf2)$label = ""
+
+V(graf2)$label[V(graf2)$type==F] = nos2$midia[V(graf2)$type==F] 
+
+V(graf2)$label.cex=.5
+
+V(graf2)$label.font=2
+
+plot(graf2, vertex.label.color="white", vertex.size=(2-V(graf2)$type)*10) 
+
+#O Igraph também possui um layout especial para redes bipartidas
+
+plot(graf2, vertex.label=NA, vertex.size=7, layout=layout_as_bipartite) 
+
+#Usar texto como nós pode ser útil às vezes
+plot(graf2, vertex.shape="none", vertex.label=nos2$midia,
+    vertex.label.color=V(graf2)$color, vertex.label.font=2.5, 
+    vertex.label.cex=.6, edge.color="gray70",  edge.width=2)
+
+########################################################################
+# 7.Redes, Comunidades e Grafos - 12º Parte Descritores de Rede e Nós
+library(igraph)
+#Densidade
+edge_density(graf, loops=F)
+ecount(graf)/(vcount(graf)*(vcount(graf)-1))
+
+#Reciprocidade
+reciprocity(graf)
+dyad_census(graf)
+2*dyad_census(graf)$mut/ecount(graf)
+
+#Transitividade
+transitivity(graf, type="global")
+transitivity(as.undirected(graf, mode="collapse"))
+transitivity(graf, type="local")
+triad_census(graf)
+
+#Diâmetro
+diameter(graf, directed=F, weights=NA)
+diameter(graf, directed=F)
+diam = get_diameter(graf, directed=T)
+diam
+
+class(diam)
+as.vector(diam)
+
+vcol = rep("gray40", vcount(graf))
+
+vcol[diam] = "gold"
+
+ecol = rep("gray80", ecount(graf))
+
+ecol[E(graf, path=diam)] = "orange" 
+
+# E(net, path=diam) fencontra arestas ao longo de um caminho
+
+plot(graf, vertex.color=vcol, edge.color=ecol, edge.arrow.mode=0)
+
+#Graus de nós
+grau = degree(graf, mode="all") #mode = in, out, all
+plot(graf, vertex.size=grau*3)
+
+hist(grau, breaks=1:vcount(graf)-1, main="Histograma de graus do nó")
+
+#Distribuição de Graus
+grau.dist = degree_distribution(graf, cumulative=T, mode="all")
+
+plot( x=0:max(grau), y=1-grau.dist, pch=19, cex=1.2, col="orange", 
+      xlab="Grau", ylab="Frequencia Acumulada")
+
+#Centralidade e centralização
+degree(graf, mode="in")
+centr_degree(graf, mode="in", normalized=T)
+
+closeness(graf, mode="all", weights=NA) 
+centr_clo(graf, mode="all", normalized=T) 
+
+eigen_centrality(graf, directed=T, weights=NA)
+centr_eigen(graf, directed=T, normalized=T)
+
+
+betweenness(graf, directed=T, weights=NA)
+edge_betweenness(graf, directed=T, weights=NA)
+centr_betw(graf, directed=T, normalized=T)
+
+#Hubs e authorities
+
+hs = hub_score(graf, weights=NA)$vector
+as = authority_score(graf, weights=NA)$vector
+
+par(mfrow=c(1,2))
+
+plot(graf, vertex.size=hs*50, main="Hubs")
+
+plot(graf, vertex.size=as*30, main="Authorities")
+dev.off()
+
+#####################################################################################
+# 7.Redes, Comunidades e Grafos - 13º Distâncias e caminhos
+library(igraph)
+mean_distance(graf, directed=F)
+mean_distance(graf, directed=T)
+
+distances(graf)
+distances(graf, weights=NA)
+
+dist.from.GN = distances(graf, v=V(graf)[midia=="GloboNews"], to=V(graf),weights=NA)
+
+oranges = colorRampPalette(c("dark red", "gold"))
+col = oranges(max(dist.from.GN)+1)
+col = col[dist.from.GN+1]
+
+plot(graf, vertex.color=col, vertex.label=dist.from.GN, edge.arrow.size=.1,
+     vertex.label.color="white")
+
+
+novo.caminho = shortest_paths(graf, 
+                            from = V(graf)[midia=="Folha de S.Paulo"], 
+                            to  = V(graf)[midia=="GloboNews"],
+                            output = "both") # nós do caminho e arestas
+
+#Gerando variável de cor da borda para traçar o caminho
+ecol = rep("gray80", ecount(graf))
+ecol[unlist(novo.caminho$epath)] = "orange"
+
+#Gerando variável de largura da aresta para plotar o caminho
+ew = rep(2, ecount(graf))
+ew[unlist(novo.caminho$epath)] = 4
+
+#Gerar variável de cor do nó para traçar o caminho
+vcol = rep("gray40", vcount(graf))
+vcol[unlist(novo.caminho$vpath)] = "gold"
+
+plot(graf, vertex.color=vcol, edge.color=ecol, edge.width=ew,
+     edge.arrow.mode=0)
+
+#1 único no use incident()
+#Vários nós use incident_edges()
+
+inc.arestas = incident(graf,  V(graf)[midia=="Veja.com"], mode="all")
+
+ecol = rep("gray80", ecount(graf))
+ecol[inc.arestas] = "orange"
+
+vcol = rep("grey40", vcount(graf))
+vcol[V(graf)$midia=="Veja.com"] = "gold"
+
+plot(graf, vertex.color=vcol, edge.color=ecol)
+
+#adjacent_vertices()
+
+nos.vizinho = neighbors(graf, V(graf)[midia=="Veja.com"], mode="in")
+
+vcol[nos.vizinho] = "#ff9d00"
+plot(graf, vertex.color=vcol)
+
+
+#Operadores especiais para indexação de seqüências de arestas:,% -> %,% <- %
+#E(rede) [X% -> %Y] seleciona arestas dos conjuntos de vértices X para conjunto de vértices Y
+#E(rede) [X% <- %Y] seleciona arestas dos conjuntos de vértices Y para conjunto de vértices X
+E(graf)[V(graf)[tipo.descricao=="Jornal"] %->% V(graf)[tipo.descricao=="Site"]]
+
+cocitation(graf)
+
+####################################################################################
+# 7.Redes, Comunidades e Grafos - 14º Parte Subgrupos e comunidades
+library(igraph)
+
+graf.sym = as.undirected(graf, mode= "collapse", 
+                         edge.attr.comb=list(weight="sum", "ignore"))
+
+#Cliques
+cliques(graf.sym) # lista de cliques       
+sapply(cliques(graf.sym), length) # tamanho dos cliques
+largest_cliques(graf.sym) # cliques com número máximo de nós
+
+vcol = rep("grey80", vcount(graf.sym))
+vcol[unlist(largest_cliques(graf.sym))] = "gold"
+
+plot(as.undirected(graf.sym), vertex.label=V(graf.sym)$name, vertex.color=vcol)
+
+#Detecção da comunidade
+ceb = cluster_edge_betweenness(graf) 
+dendPlot(ceb, mode="hclust")
+
+plot(ceb, graf,edge.arrow.size =.1)
+
+class(ceb)
+length(ceb)     
+membership(ceb) 
+modularity(ceb)
+crossing(ceb, graf)
+
+clp = cluster_label_prop(graf)
+plot(clp, graf,edge.arrow.size =.1)
+
+cfg = cluster_fast_greedy(as.undirected(graf))
+plot(cfg, as.undirected(graf))
+
+V(graf)$community = cfg$membership
+colrs = adjustcolor( c("gray50", "tomato", "gold", "yellowgreen"), alpha=.6)
+plot(graf, vertex.color=colrs[V(graf)$community],edge.arrow.size =.1)
+
+#Decomposição do núcleo K
+kc = coreness(graf, mode="all")
+plot(graf, vertex.size=kc*6, vertex.label=kc, vertex.color=colrs[kc],edge.arrow.size =.1)
