@@ -1,23 +1,23 @@
-Município,Nascim_p/resid.mãe
-430003 Aceguá,55
-430005 Água Santa,36
+Municipio,Nascimentos
+430003 Acegua,55
+430005 Agua Santa,36
 430010 Agudo,161
 430020 Ajuricaba,68
 430030 Alecrim,48
 430040 Alegrete,954
 430045 Alegria,31
-430047 Almirante Tamandaré do Sul,24
+430047 Almirante Tamandare do Sul,24
 430050 Alpestre,71
 430055 Alto Alegre,18
 430057 Alto Feliz,32
 430060 Alvorada,3505
 430063 Amaral Ferrador,57
 430064 Ametista do Sul,94
-430066 André da Rocha,14
+430066 Andre da Rocha,14
 430070 Anta Gorda,60
-430080 Antônio Prado,149
-430085 Arambaré,45
-430087 Araricá,93
+430080 Antonio Prado,149
+430085 Arambare,45
+430087 Ararica,93
 430090 Aratiba,60
 430100 Arroio do Meio,228
 430107 Arroio do Padre,28
@@ -27,75 +27,75 @@ Município,Nascim_p/resid.mãe
 430130 Arroio Grande,232
 430140 Arvorezinha,112
 430150 Augusto Pestana,76
-430155 Áurea,28
-430160 Bagé,1615
-430163 Balneário Pinhal,146
-430165 Barão,63
-430170 Barão de Cotegipe,73
-430175 Barão do Triunfo,50
+430155 Aurea,28
+430160 Bage,1615
+430163 Balneario Pinhal,146
+430165 Barao,63
+430170 Barao de Cotegipe,73
+430175 Barao do Triunfo,50
 430185 Barra do Guarita,48
-430187 Barra do Quaraí,34
+430187 Barra do Quarai,34
 430190 Barra do Ribeiro,162
 430192 Barra do Rio Azul,11
 430195 Barra Funda,30
-430180 Barracão,65
+430180 Barracao,65
 430200 Barros Cassal,130
 430205 Benjamin Constant do Sul,35
-430210 Bento Gonçalves,1700
-430215 Boa Vista das Missões,34
-430220 Boa Vista do Buricá,73
+430210 Bento Goncalves,1700
+430215 Boa Vista das Missoes,34
+430220 Boa Vista do Burica,73
 430222 Boa Vista do Cadeado,13
 430223 Boa Vista do Incra,30
 430225 Boa Vista do Sul,20
 430230 Bom Jesus,154
-430235 Bom Princípio,184
+430235 Bom Principio,184
 430237 Bom Progresso,25
 430240 Bom Retiro do Sul,165
-430245 Boqueirão do Leão,100
+430245 Boqueirao do Leao,100
 430250 Bossoroca,57
 430258 Bozano,17
 430260 Braga,42
 430265 Brochier,32
-430270 Butiá,274
-430280 Caçapava do Sul,390
+430270 Butia,274
+430280 Cacapava do Sul,390
 430290 Cacequi,136
 430300 Cachoeira do Sul,1076
 430310 Cachoeirinha,2010
 430320 Cacique Doble,61
-430330 Caibaté,46
-430340 Caiçara,43
-430350 Camaquã,928
+430330 Caibate,46
+430340 Caicara,43
+430350 Camaqua,928
 430355 Camargo,27
-430360 Cambará do Sul,76
+430360 Cambara do Sul,76
 430367 Campestre da Serra,27
-430370 Campina das Missões,59
+430370 Campina das Missoes,59
 430380 Campinas do Sul,64
 430390 Campo Bom,913
 430400 Campo Novo,67
 430410 Campos Borges,50
-430420 Candelária,348
-430430 Cândido Godói,79
+430420 Candelaria,348
+430430 Candido Godoi,79
 430435 Candiota,131
 430440 Canela,664
-430450 Canguçu,553
+430450 Cangucu,553
 430460 Canoas,5475
 430461 Canudos do Vale,16
-430462 Capão Bonito do Sul,16
-430463 Capão da Canoa,927
-430465 Capão do Cipó,37
-430466 Capão do Leão,357
+430462 Capao Bonito do Sul,16
+430463 Capao da Canoa,927
+430465 Capao do Cipo,37
+430466 Capao do Leao,357
 430468 Capela de Santana,148
-430469 Capitão,35
+430469 Capitao,35
 430467 Capivari do Sul,55
-430471 Caraá,47
+430471 Caraa,47
 430470 Carazinho,921
 430480 Carlos Barbosa,356
 430485 Carlos Gomes,10
 430490 Casca,77
 430495 Caseiros,26
-430500 Catuípe,83
+430500 Catuipe,83
 430510 Caxias do Sul,6498
-430511 Centenário,20
+430511 Centenario,20
 430512 Cerrito,53
 430513 Cerro Branco,38
 430515 Cerro Grande,28
@@ -105,10 +105,10 @@ Município,Nascim_p/resid.mãe
 430535 Charqueadas,392
 430537 Charrua,29
 430540 Chiapetta,56
-430543 Chuí,44
+430543 Chui,44
 430544 Chuvisca,54
 430545 Cidreira,185
-430550 Ciríaco,34
+430550 Ciriaco,34
 430558 Colinas,23
 430560 Colorado,25
 430570 Condor,23
@@ -118,7 +118,7 @@ Município,Nascim_p/resid.mãe
 430587 Coronel Barros,27
 430590 Coronel Bicaco,89
 430593 Coronel Pilar,8
-430595 Cotiporã,35
+430595 Cotipora,35
 430597 Coxilha,55
 430600 Crissiumal,125
 430605 Cristal,113
@@ -130,35 +130,35 @@ Município,Nascim_p/resid.mãe
 430632 Derrubadas,39
 430635 Dezesseis de Novembro,20
 430637 Dilermando de Aguiar,28
-430640 Dois Irmãos,403
-430642 Dois Irmãos das Missões,22
+430640 Dois Irmaos,403
+430642 Dois Irmaos das Missoes,22
 430645 Dois Lajeados,25
 430650 Dom Feliciano,172
 430660 Dom Pedrito,436
-430655 Dom Pedro de Alcântara,25
+430655 Dom Pedro de Alcantara,25
 430670 Dona Francisca,32
-430673 Doutor Maurício Cardoso,42
+430673 Doutor Mauricio Cardoso,42
 430675 Doutor Ricardo,23
 430676 Eldorado do Sul,558
 430680 Encantado,267
 430690 Encruzilhada do Sul,271
 430692 Engenho Velho,17
 430695 Entre Rios do Sul,35
-430693 Entre-Ijuís,120
+430693 Entre-Ijuis,120
 430697 Erebango,44
 430700 Erechim,1452
 430705 Ernestina,45
 430720 Erval Grande,45
 430730 Erval Seco,87
 430740 Esmeralda,27
-430745 Esperança do Sul,41
+430745 Esperanca do Sul,41
 430750 Espumoso,192
-430755 Estação,75
-430760 Estância Velha,625
+430755 Estacao,75
+430760 Estancia Velha,625
 430770 Esteio,1233
 430780 Estrela,474
 430781 Estrela Velha,54
-430783 Eugênio de Castro,26
+430783 Eugenio de Castro,26
 430786 Fagundes Varela,14
 430790 Farroupilha,916
 430800 Faxinal do Soturno,68
@@ -175,73 +175,73 @@ Município,Nascim_p/resid.mãe
 430860 Garibaldi,414
 430865 Garruchos,24
 430870 Gaurama,56
-430880 General Câmara,97
+430880 General Camara,97
 430885 Gentil,22
-430890 Getúlio Vargas,190
-430900 Giruá,221
+430890 Getulio Vargas,190
+430900 Girua,221
 430905 Glorinha,88
 430910 Gramado,591
 430912 Gramado dos Loureiros,26
 430915 Gramado Xavier,45
-430920 Gravataí,3734
+430920 Gravatai,3734
 430925 Guabiju,17
-430930 Guaíba,1411
-430940 Guaporé,294
-430950 Guarani das Missões,74
+430930 Guaiba,1411
+430940 Guapore,294
+430950 Guarani das Missoes,74
 430955 Harmonia,43
 430710 Herval,57
 430957 Herveiras,31
 430960 Horizontina,255
 430965 Hulha Negra,83
-430970 Humaitá,49
+430970 Humaita,49
 430975 Ibarama,40
-430980 Ibiaçá,49
+430980 Ibiaca,49
 430990 Ibiraiaras,75
-430995 Ibirapuitã,41
-431000 Ibirubá,258
+430995 Ibirapuita,41
+431000 Ibiruba,258
 431010 Igrejinha,472
-431020 Ijuí,1183
-431030 Ilópolis,50
-431033 Imbé,301
+431020 Ijui,1183
+431030 Ilopolis,50
+431033 Imbe,301
 431036 Imigrante,25
-431040 Independência,68
-431041 Inhacorá,26
-431043 Ipê,69
+431040 Independencia,68
+431041 Inhacora,26
+431043 Ipe,69
 431046 Ipiranga do Sul,16
-431050 Iraí,104
+431050 Irai,104
 431053 Itaara,64
 431055 Itacurubi,31
 431057 Itapuca,19
 431060 Itaqui,574
 431065 Itati,21
 431070 Itatiba do Sul,29
-431075 Ivorá,14
+431075 Ivora,14
 431080 Ivoti,292
 431085 Jaboticaba,49
 431087 Jacuizinho,24
 431090 Jacutinga,24
-431100 Jaguarão,342
+431100 Jaguarao,342
 431110 Jaguari,105
 431112 Jaquirana,58
 431113 Jari,39
-431115 Jóia,89
-431120 Júlio de Castilhos,248
+431115 Joia,89
+431120 Julio de Castilhos,248
 431123 Lagoa Bonita do Sul,34
-431127 Lagoa dos Três Cantos,21
+431127 Lagoa dos Tres Cantos,21
 431130 Lagoa Vermelha,426
-431125 Lagoão,47
+431125 Lagoao,47
 431140 Lajeado,1213
 431142 Lajeado do Bugre,29
 431150 Lavras do Sul,84
 431160 Liberato Salzano,49
 431162 Lindolfo Collor,83
 431164 Linha Nova,11
-431171 Maçambará,35
+431171 Macambara,35
 431170 Machadinho,74
 431173 Mampituba,39
 431175 Manoel Viana,75
-431177 Maquiné,72
-431179 Maratá,25
+431177 Maquine,72
+431179 Marata,25
 431180 Marau,534
 431190 Marcelino Ramos,34
 431198 Mariana Pimentel,39
@@ -249,37 +249,37 @@ Município,Nascim_p/resid.mãe
 431205 Marques de Souza,46
 431210 Mata,41
 431213 Mato Castelhano,28
-431215 Mato Leitão,54
+431215 Mato Leitao,54
 431217 Mato Queimado,23
 431220 Maximiliano de Almeida,49
-431225 Minas do Leão,112
-431230 Miraguaí,61
+431225 Minas do Leao,112
+431230 Miraguai,61
 431235 Montauri,16
 431237 Monte Alegre dos Campos,39
 431238 Monte Belo do Sul,21
 431240 Montenegro,975
-431242 Mormaço,35
+431242 Mormaco,35
 431244 Morrinhos do Sul,20
 431245 Morro Redondo,62
 431247 Morro Reuter,59
 431250 Mostardas,135
-431260 Muçum,47
-431261 Muitos Capões,34
+431260 Mucum,47
+431261 Muitos Capoes,34
 431262 Muliterno,23
-431265 Não-Me-Toque,256
+431265 Nao-Me-Toque,256
 431267 Nicolau Vergueiro,25
 431270 Nonoai,190
 431275 Nova Alvorada,41
-431280 Nova Araçá,77
+431280 Nova Araca,77
 431290 Nova Bassano,88
 431295 Nova Boa Vista,16
-431300 Nova Bréscia,32
-431301 Nova Candelária,27
-431303 Nova Esperança do Sul,58
+431300 Nova Brescia,32
+431301 Nova Candelaria,27
+431303 Nova Esperanca do Sul,58
 431306 Nova Hartz,257
-431308 Nova Pádua,17
+431308 Nova Padua,17
 431310 Nova Palma,61
-431320 Nova Petrópolis,280
+431320 Nova Petropolis,280
 431330 Nova Prata,328
 431333 Nova Ramada,25
 431335 Nova Roma do Sul,28
@@ -290,58 +290,58 @@ Município,Nascim_p/resid.mãe
 431342 Novo Machado,20
 431344 Novo Tiradentes,22
 431346 Novo Xingu,23
-431350 Osório,639
+431350 Osorio,639
 431360 Paim Filho,27
 431365 Palmares do Sul,122
-431370 Palmeira das Missões,525
+431370 Palmeira das Missoes,525
 431380 Palmitinho,103
 431390 Panambi,601
 431395 Pantano Grande,110
-431400 Paraí,72
-431402 Paraíso do Sul,71
+431400 Parai,72
+431402 Paraiso do Sul,71
 431403 Pareci Novo,48
-431405 Parobé,778
+431405 Parobe,778
 431406 Passa Sete,37
 431407 Passo do Sobrado,54
 431410 Passo Fundo,2925
 431413 Paulo Bento,16
 431415 Paverama,93
 431417 Pedras Altas,25
-431420 Pedro Osório,91
-431430 Pejuçara,36
+431420 Pedro Osorio,91
+431430 Pejucara,36
 431440 Pelotas,4428
-431442 Picada Café,48
+431442 Picada Cafe,48
 431445 Pinhal,35
 431446 Pinhal da Serra,23
 431447 Pinhal Grande,42
 431449 Pinheirinho do Vale,43
 431450 Pinheiro Machado,107
 431454 Pinto Bandeira,19
-431455 Pirapó,17
+431455 Pirapo,17
 431460 Piratini,178
 431470 Planalto,127
-431475 Poço das Antas,20
-431477 Pontão,49
+431475 Poco das Antas,20
+431477 Pontao,49
 431478 Ponte Preta,16
-431480 Portão,441
+431480 Portao,441
 431490 Porto Alegre,19724
 431500 Porto Lucena,36
-431505 Porto Mauá,20
+431505 Porto Maua,20
 431507 Porto Vera Cruz,14
 431510 Porto Xavier,142
 431513 Pouso Novo,21
 431514 Presidente Lucena,24
 431515 Progresso,52
-431517 Protásio Alves,26
+431517 Protasio Alves,26
 431520 Putinga,28
-431530 Quaraí,266
-431531 Quatro Irmãos,20
+431530 Quarai,266
+431531 Quatro Irmaos,20
 431532 Quevedos,26
 431535 Quinze de Novembro,42
 431540 Redentora,204
 431545 Relvado,13
 431550 Restinga Seca,144
-431555 Rio dos Índios,23
+431555 Rio dos Indios,23
 431560 Rio Grande,3060
 431570 Rio Pardo,425
 431575 Riozinho,46
@@ -352,16 +352,16 @@ Município,Nascim_p/resid.mãe
 431610 Ronda Alta,113
 431620 Rondinha,55
 431630 Roque Gonzales,59
-431640 Rosário do Sul,451
-431642 Sagrada Família,36
+431640 Rosario do Sul,451
+431642 Sagrada Familia,36
 431643 Saldanha Marinho,27
-431645 Salto do Jacuí,120
-431647 Salvador das Missões,27
+431645 Salto do Jacui,120
+431647 Salvador das Missoes,27
 431650 Salvador do Sul,87
 431660 Sananduva,165
 431710 Sant'Ana do Livramento,1193
-431670 Santa Bárbara do Sul,121
-431673 Santa Cecília do Sul,19
+431670 Santa Barbara do Sul,121
+431673 Santa Cecilia do Sul,19
 431675 Santa Clara do Sul,85
 431680 Santa Cruz do Sul,1715
 431697 Santa Margarida do Sul,30
@@ -369,54 +369,54 @@ Município,Nascim_p/resid.mãe
 431695 Santa Maria do Herval,52
 431720 Santa Rosa,1013
 431725 Santa Tereza,8
-431730 Santa Vitória do Palmar,442
+431730 Santa Vitoria do Palmar,442
 431700 Santana da Boa Vista,57
 431740 Santiago,560
-431750 Santo Ângelo,973
-431760 Santo Antônio da Patrulha,500
-431770 Santo Antônio das Missões,97
-431755 Santo Antônio do Palma,16
-431775 Santo Antônio do Planalto,34
+431750 Santo Angelo,973
+431760 Santo Antonio da Patrulha,500
+431770 Santo Antonio das Missoes,97
+431755 Santo Antonio do Palma,16
+431775 Santo Antonio do Planalto,34
 431780 Santo Augusto,220
 431790 Santo Cristo,145
 431795 Santo Expedito do Sul,21
-431800 São Borja,806
-431805 São Domingos do Sul,22
-431810 São Francisco de Assis,196
-431820 São Francisco de Paula,274
-431830 São Gabriel,812
-431840 São Jerônimo,302
-431842 São João da Urtiga,33
-431843 São João do Polêsine,20
-431844 São Jorge,26
-431845 São José das Missões,26
-431846 São José do Herval,22
-431848 São José do Hortêncio,43
-431849 São José do Inhacorá,22
-431850 São José do Norte,303
-431860 São José do Ouro,85
-431861 São José do Sul,22
-431862 São José dos Ausentes,58
-431870 São Leopoldo,3109
-431880 São Lourenço do Sul,430
-431890 São Luiz Gonzaga,493
-431900 São Marcos,260
-431910 São Martinho,62
-431912 São Martinho da Serra,29
-431915 São Miguel das Missões,106
-431920 São Nicolau,56
-431930 São Paulo das Missões,41
-431935 São Pedro da Serra,35
-431936 São Pedro das Missões,22
-431937 São Pedro do Butiá,24
-431940 São Pedro do Sul,162
-431950 São Sebastião do Caí,354
-431960 São Sepé,261
-431970 São Valentim,42
-431971 São Valentim do Sul,22
-431973 São Valério do Sul,32
-431975 São Vendelino,25
-431980 São Vicente do Sul,101
+431800 Sao Borja,806
+431805 Sao Domingos do Sul,22
+431810 Sao Francisco de Assis,196
+431820 Sao Francisco de Paula,274
+431830 Sao Gabriel,812
+431840 Sao Jeronimo,302
+431842 Sao Joao da Urtiga,33
+431843 Sao Joao do Polesine,20
+431844 Sao Jorge,26
+431845 Sao Jose das Missoes,26
+431846 Sao Jose do Herval,22
+431848 Sao Jose do Hortencio,43
+431849 Sao Jose do Inhacora,22
+431850 Sao Jose do Norte,303
+431860 Sao Jose do Ouro,85
+431861 Sao Jose do Sul,22
+431862 Sao Jose dos Ausentes,58
+431870 Sao Leopoldo,3109
+431880 Sao Lourenco do Sul,430
+431890 Sao Luiz Gonzaga,493
+431900 Sao Marcos,260
+431910 Sao Martinho,62
+431912 Sao Martinho da Serra,29
+431915 Sao Miguel das Missoes,106
+431920 Sao Nicolau,56
+431930 Sao Paulo das Missoes,41
+431935 Sao Pedro da Serra,35
+431936 Sao Pedro das Missoes,22
+431937 Sao Pedro do Butia,24
+431940 Sao Pedro do Sul,162
+431950 Sao Sebastiao do Cai,354
+431960 Sao Sepe,261
+431970 Sao Valentim,42
+431971 Sao Valentim do Sul,22
+431973 Sao Valerio do Sul,32
+431975 Sao Vendelino,25
+431980 Sao Vicente do Sul,101
 431990 Sapiranga,1213
 432000 Sapucaia do Sul,2057
 432010 Sarandi,312
@@ -426,51 +426,51 @@ Município,Nascim_p/resid.mãe
 432030 Selbach,51
 432032 Senador Salgado Filho,28
 432035 Sentinela do Sul,52
-432040 Serafina Corrêa,208
-432045 Sério,16
-432050 Sertão,50
-432055 Sertão Santana,56
+432040 Serafina Correa,208
+432045 Serio,16
+432050 Sertao,50
+432055 Sertao Santana,56
 432057 Sete de Setembro,21
 432060 Severiano de Almeida,35
 432065 Silveira Martins,21
 432067 Sinimbu,81
 432070 Sobradinho,206
 432080 Soledade,368
-432085 Tabaí,56
+432085 Tabai,56
 432090 Tapejara,359
 432100 Tapera,125
 432110 Tapes,182
 432120 Taquara,752
 432130 Taquari,332
-432132 Taquaruçu do Sul,23
+432132 Taquarucu do Sul,23
 432135 Tavares,49
 432140 Tenente Portela,251
 432143 Terra de Areia,125
-432145 Teutônia,420
+432145 Teutonia,420
 432146 Tio Hugo,27
 432147 Tiradentes do Sul,58
 432149 Toropi,18
 432150 Torres,572
-432160 Tramandaí,831
+432160 Tramandai,831
 432162 Travesseiro,16
-432163 Três Arroios,10
-432166 Três Cachoeiras,134
-432170 Três Coroas,328
-432180 Três de Maio,268
-432183 Três Forquilhas,35
-432185 Três Palmeiras,59
-432190 Três Passos,312
+432163 Tres Arroios,10
+432166 Tres Cachoeiras,134
+432170 Tres Coroas,328
+432180 Tres de Maio,268
+432183 Tres Forquilhas,35
+432185 Tres Palmeiras,59
+432190 Tres Passos,312
 432195 Trindade do Sul,84
 432200 Triunfo,361
 432210 Tucunduva,51
 432215 Tunas,51
 432218 Tupanci do Sul,7
-432220 Tupanciretã,299
+432220 Tupancireta,299
 432225 Tupandi,51
 432230 Tuparendi,66
-432232 Turuçu,48
+432232 Turucu,48
 432234 Ubiretama,20
-432235 União da Serra,4
+432235 Uniao da Serra,4
 432237 Unistalda,25
 432240 Uruguaiana,1954
 432250 Vacaria,1075
@@ -478,21 +478,21 @@ Município,Nascim_p/resid.mãe
 432254 Vale Real,68
 432252 Vale Verde,35
 432255 Vanini,18
-432260 Venâncio Aires,815
+432260 Venancio Aires,815
 432270 Vera Cruz,284
-432280 Veranópolis,258
+432280 Veranopolis,258
 432285 Vespasiano Correa,11
 432290 Viadutos,36
-432300 Viamão,3489
+432300 Viamao,3489
 432310 Vicente Dutra,64
 432320 Victor Graeff,26
 432330 Vila Flores,36
-432335 Vila Lângaro,22
+432335 Vila Langaro,22
 432340 Vila Maria,41
 432345 Vila Nova do Sul,27
 432350 Vista Alegre,26
 432360 Vista Alegre do Prata,10
-432370 Vista Gaúcha,31
-432375 Vitória das Missões,39
+432370 Vista Gaucha,31
+432375 Vitoria das Missoes,39
 432377 Westfalia,33
-432380 Xangri-lá,215
+432380 Xangri-la,215

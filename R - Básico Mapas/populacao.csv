@@ -1,23 +1,23 @@
-Município,População_estimada
-430003 Aceguá,4702
-430005 Água Santa,3840
+Municipio,Populacao_estimada
+430003 Acegua,4702
+430005 Agua Santa,3840
 430010 Agudo,17120
 430020 Ajuricaba,7387
 430030 Alecrim,6865
 430040 Alegrete,78499
 430045 Alegria,4135
-430047 Almirante Tamandaré do Sul,2091
+430047 Almirante Tamandare do Sul,2091
 430050 Alpestre,7640
 430055 Alto Alegre,1828
 430057 Alto Feliz,3025
 430060 Alvorada,206561
 430063 Amaral Ferrador,6778
 430064 Ametista do Sul,7569
-430066 André da Rocha,1293
+430066 Andre da Rocha,1293
 430070 Anta Gorda,6222
-430080 Antônio Prado,13285
-430085 Arambaré,3762
-430087 Araricá,5301
+430080 Antonio Prado,13285
+430085 Arambare,3762
+430087 Ararica,5301
 430090 Aratiba,6641
 430100 Arroio do Meio,20045
 430107 Arroio do Padre,2883
@@ -27,75 +27,75 @@ Município,População_estimada
 430130 Arroio Grande,18949
 430140 Arvorezinha,10595
 430150 Augusto Pestana,7145
-430155 Áurea,3732
-430160 Bagé,121749
-430163 Balneário Pinhal,12305
-430165 Barão,6061
-430170 Barão de Cotegipe,6754
-430175 Barão do Triunfo,7388
+430155 Aurea,3732
+430160 Bage,121749
+430163 Balneario Pinhal,12305
+430165 Barao,6061
+430170 Barao de Cotegipe,6754
+430175 Barao do Triunfo,7388
 430185 Barra do Guarita,3236
-430187 Barra do Quaraí,4201
+430187 Barra do Quarai,4201
 430190 Barra do Ribeiro,13263
 430192 Barra do Rio Azul,1952
 430195 Barra Funda,2497
-430180 Barracão,5485
+430180 Barracao,5485
 430200 Barros Cassal,11482
 430205 Benjamin Constant do Sul,2264
-430210 Bento Gonçalves,113287
-430215 Boa Vista das Missões,2170
-430220 Boa Vista do Buricá,6815
+430210 Bento Goncalves,113287
+430215 Boa Vista das Missoes,2170
+430220 Boa Vista do Burica,6815
 430222 Boa Vista do Cadeado,2523
 430223 Boa Vista do Incra,2559
 430225 Boa Vista do Sul,2859
 430230 Bom Jesus,11797
-430235 Bom Princípio,12932
+430235 Bom Principio,12932
 430237 Bom Progresso,2261
 430240 Bom Retiro do Sul,12110
-430245 Boqueirão do Leão,7912
+430245 Boqueirao do Leao,7912
 430250 Bossoroca,6873
 430258 Bozano,2238
 430260 Braga,3688
 430265 Brochier,4952
-430270 Butiá,21192
-430280 Caçapava do Sul,34654
+430270 Butia,21192
+430280 Cacapava do Sul,34654
 430290 Cacequi,13685
 430300 Cachoeira do Sul,85712
 430310 Cachoeirinha,125975
 430320 Cacique Doble,5080
-430330 Caibaté,5058
-430340 Caiçara,5104
-430350 Camaquã,65835
+430330 Caibate,5058
+430340 Caicara,5104
+430350 Camaqua,65835
 430355 Camargo,2718
-430360 Cambará do Sul,6695
+430360 Cambara do Sul,6695
 430367 Campestre da Serra,3392
-430370 Campina das Missões,6070
+430370 Campina das Missoes,6070
 430380 Campinas do Sul,5649
 430390 Campo Bom,64171
 430400 Campo Novo,5276
 430410 Campos Borges,3535
-430420 Candelária,31476
-430430 Cândido Godói,6608
+430420 Candelaria,31476
+430430 Candido Godoi,6608
 430435 Candiota,9315
 430440 Canela,42411
-430450 Canguçu,55801
+430450 Cangucu,55801
 430460 Canoas,341343
 430461 Canudos do Vale,1828
-430462 Capão Bonito do Sul,1770
-430463 Capão da Canoa,47148
-430465 Capão do Cipó,3387
-430466 Capão do Leão,25382
+430462 Capao Bonito do Sul,1770
+430463 Capao da Canoa,47148
+430465 Capao do Cipo,3387
+430466 Capao do Leao,25382
 430468 Capela de Santana,11289
-430469 Capitão,2756
+430469 Capitao,2756
 430467 Capivari do Sul,4275
-430471 Caraá,7863
+430471 Caraa,7863
 430470 Carazinho,62039
 430480 Carlos Barbosa,27565
 430485 Carlos Gomes,1574
 430490 Casca,9038
 430495 Caseiros,3163
-430500 Catuípe,9402
+430500 Catuipe,9402
 430510 Caxias do Sul,474853
-430511 Centenário,3026
+430511 Centenario,3026
 430512 Cerrito,6481
 430513 Cerro Branco,4668
 430515 Cerro Grande,2450
@@ -105,10 +105,10 @@ Município,População_estimada
 430535 Charqueadas,38281
 430537 Charrua,3505
 430540 Chiapetta,4061
-430543 Chuí,6368
+430543 Chui,6368
 430544 Chuvisca,5264
 430545 Cidreira,14301
-430550 Ciríaco,5005
+430550 Ciriaco,5005
 430558 Colinas,2498
 430560 Colorado,3522
 430570 Condor,6815
@@ -118,7 +118,7 @@ Município,População_estimada
 430587 Coronel Barros,2553
 430590 Coronel Bicaco,7827
 430593 Coronel Pilar,1740
-430595 Cotiporã,4009
+430595 Cotipora,4009
 430597 Coxilha,2885
 430600 Crissiumal,14273
 430605 Cristal,7750
@@ -130,35 +130,35 @@ Município,População_estimada
 430632 Derrubadas,3148
 430635 Dezesseis de Novembro,2795
 430637 Dilermando de Aguiar,3136
-430640 Dois Irmãos,30175
-430642 Dois Irmãos das Missões,2174
+430640 Dois Irmaos,30175
+430642 Dois Irmaos das Missoes,2174
 430645 Dois Lajeados,3417
 430650 Dom Feliciano,15165
 430660 Dom Pedrito,39886
-430655 Dom Pedro de Alcântara,2619
+430655 Dom Pedro de Alcantara,2619
 430670 Dona Francisca,3374
-430673 Doutor Maurício Cardoso,5200
+430673 Doutor Mauricio Cardoso,5200
 430675 Doutor Ricardo,2076
 430676 Eldorado do Sul,37794
 430680 Encantado,21883
 430690 Encruzilhada do Sul,25726
 430692 Engenho Velho,1397
 430695 Entre Rios do Sul,3069
-430693 Entre-Ijuís,9037
+430693 Entre-Ijuis,9037
 430697 Erebango,3064
 430700 Erechim,102345
 430705 Ernestina,3207
 430720 Erval Grande,5207
 430730 Erval Seco,7773
 430740 Esmeralda,3301
-430745 Esperança do Sul,3245
+430745 Esperanca do Sul,3245
 430750 Espumoso,15809
-430755 Estação,6169
-430760 Estância Velha,46444
+430755 Estacao,6169
+430760 Estancia Velha,46444
 430770 Esteio,83984
 430780 Estrela,32748
 430781 Estrela Velha,3743
-430783 Eugênio de Castro,2744
+430783 Eugenio de Castro,2744
 430786 Fagundes Varela,2708
 430790 Farroupilha,68562
 430800 Faxinal do Soturno,6869
@@ -175,73 +175,73 @@ Município,População_estimada
 430860 Garibaldi,33131
 430865 Garruchos,3219
 430870 Gaurama,5918
-430880 General Câmara,8673
+430880 General Camara,8673
 430885 Gentil,1711
-430890 Getúlio Vargas,16647
-430900 Giruá,17198
+430890 Getulio Vargas,16647
+430900 Girua,17198
 430905 Glorinha,7518
 430910 Gramado,34605
 430912 Gramado dos Loureiros,2270
 430915 Gramado Xavier,4212
-430920 Gravataí,272257
+430920 Gravatai,272257
 430925 Guabiju,1612
-430930 Guaíba,99029
-430940 Guaporé,24509
-430950 Guarani das Missões,8150
+430930 Guaiba,99029
+430940 Guapore,24509
+430950 Guarani das Missoes,8150
 430955 Harmonia,4595
 430710 Herval,6975
 430957 Herveiras,3063
 430960 Horizontina,19232
 430965 Hulha Negra,6478
-430970 Humaitá,5008
+430970 Humaita,5008
 430975 Ibarama,4518
-430980 Ibiaçá,4848
+430980 Ibiaca,4848
 430990 Ibiraiaras,7441
-430995 Ibirapuitã,4162
-431000 Ibirubá,20242
+430995 Ibirapuita,4162
+431000 Ibiruba,20242
 431010 Igrejinha,34341
-431020 Ijuí,82833
-431030 Ilópolis,4208
-431033 Imbé,19993
+431020 Ijui,82833
+431030 Ilopolis,4208
+431033 Imbe,19993
 431036 Imigrante,3146
-431040 Independência,6653
-431041 Inhacorá,2318
-431043 Ipê,6412
+431040 Independencia,6653
+431041 Inhacora,2318
+431043 Ipe,6412
 431046 Ipiranga do Sul,1982
-431050 Iraí,8020
+431050 Irai,8020
 431053 Itaara,5329
 431055 Itacurubi,3551
 431057 Itapuca,2325
 431060 Itaqui,39088
 431065 Itati,2602
 431070 Itatiba do Sul,3995
-431075 Ivorá,2133
+431075 Ivora,2133
 431080 Ivoti,22012
 431085 Jaboticaba,4117
 431087 Jacuizinho,2645
 431090 Jacutinga,3713
-431100 Jaguarão,28310
+431100 Jaguarao,28310
 431110 Jaguari,11590
 431112 Jaquirana,4138
 431113 Jari,3655
-431115 Jóia,8656
-431120 Júlio de Castilhos,20052
+431115 Joia,8656
+431120 Julio de Castilhos,20052
 431123 Lagoa Bonita do Sul,2825
-431127 Lagoa dos Três Cantos,1649
+431127 Lagoa dos Tres Cantos,1649
 431130 Lagoa Vermelha,28431
-431125 Lagoão,6492
+431125 Lagoao,6492
 431140 Lajeado,78486
 431142 Lajeado do Bugre,2588
 431150 Lavras do Sul,7833
 431160 Liberato Salzano,5752
 431162 Lindolfo Collor,5671
 431164 Linha Nova,1703
-431171 Maçambará,4824
+431171 Macambara,4824
 431170 Machadinho,5649
 431173 Mampituba,3083
 431175 Manoel Viana,7359
-431177 Maquiné,7040
-431179 Maratá,2659
+431177 Maquine,7040
+431179 Marata,2659
 431180 Marau,40174
 431190 Marcelino Ramos,5027
 431198 Mariana Pimentel,3920
@@ -249,37 +249,37 @@ Município,População_estimada
 431205 Marques de Souza,4167
 431210 Mata,5159
 431213 Mato Castelhano,2567
-431215 Mato Leitão,4201
+431215 Mato Leitao,4201
 431217 Mato Queimado,1798
 431220 Maximiliano de Almeida,4867
-431225 Minas do Leão,8011
-431230 Miraguaí,4982
+431225 Minas do Leao,8011
+431230 Miraguai,4982
 431235 Montauri,1556
 431237 Monte Alegre dos Campos,3236
 431238 Monte Belo do Sul,2704
 431240 Montenegro,63216
-431242 Mormaço,2948
+431242 Mormaco,2948
 431244 Morrinhos do Sul,3193
 431245 Morro Redondo,6529
 431247 Morro Reuter,6100
 431250 Mostardas,12720
-431260 Muçum,4989
-431261 Muitos Capões,3137
+431260 Mucum,4989
+431261 Muitos Capoes,3137
 431262 Muliterno,1894
-431265 Não-Me-Toque,16997
+431265 Nao-Me-Toque,16997
 431267 Nicolau Vergueiro,1757
 431270 Nonoai,12295
 431275 Nova Alvorada,3431
-431280 Nova Araçá,4385
+431280 Nova Araca,4385
 431290 Nova Bassano,9478
 431295 Nova Boa Vista,1953
-431300 Nova Bréscia,3329
-431301 Nova Candelária,2814
-431303 Nova Esperança do Sul,5048
+431300 Nova Brescia,3329
+431301 Nova Candelaria,2814
+431303 Nova Esperanca do Sul,5048
 431306 Nova Hartz,20035
-431308 Nova Pádua,2557
+431308 Nova Padua,2557
 431310 Nova Palma,6588
-431320 Nova Petrópolis,20416
+431320 Nova Petropolis,20416
 431330 Nova Prata,25057
 431333 Nova Ramada,2440
 431335 Nova Roma do Sul,3564
@@ -290,58 +290,58 @@ Município,População_estimada
 431342 Novo Machado,3828
 431344 Novo Tiradentes,2320
 431346 Novo Xingu,1795
-431350 Osório,43897
+431350 Osorio,43897
 431360 Paim Filho,4221
 431365 Palmares do Sul,11413
-431370 Palmeira das Missões,34974
+431370 Palmeira das Missoes,34974
 431380 Palmitinho,7170
 431390 Panambi,41148
 431395 Pantano Grande,9932
-431400 Paraí,7309
-431402 Paraíso do Sul,7648
+431400 Parai,7309
+431402 Paraiso do Sul,7648
 431403 Pareci Novo,3725
-431405 Parobé,55486
+431405 Parobe,55486
 431406 Passa Sete,5491
 431407 Passo do Sobrado,6372
 431410 Passo Fundo,196739
 431413 Paulo Bento,2297
 431415 Paverama,8437
 431417 Pedras Altas,2195
-431420 Pedro Osório,8011
-431430 Pejuçara,4055
+431420 Pedro Osorio,8011
+431430 Pejucara,4055
 431440 Pelotas,342873
-431442 Picada Café,5532
+431442 Picada Cafe,5532
 431445 Pinhal,2609
 431446 Pinhal da Serra,2126
 431447 Pinhal Grande,4560
 431449 Pinheirinho do Vale,4761
 431450 Pinheiro Machado,12976
 431454 Pinto Bandeira,2824
-431455 Pirapó,2678
+431455 Pirapo,2678
 431460 Piratini,20712
 431470 Planalto,10678
-431475 Poço das Antas,2104
-431477 Pontão,3986
+431475 Poco das Antas,2104
+431477 Pontao,3986
 431478 Ponte Preta,1730
-431480 Portão,33994
+431480 Portao,33994
 431490 Porto Alegre,1476867
 431500 Porto Lucena,5313
-431505 Porto Mauá,2557
+431505 Porto Maua,2557
 431507 Porto Vera Cruz,1733
 431510 Porto Xavier,10758
 431513 Pouso Novo,1847
 431514 Presidente Lucena,2705
 431515 Progresso,6372
-431517 Protásio Alves,2041
+431517 Protasio Alves,2041
 431520 Putinga,4185
-431530 Quaraí,23579
-431531 Quatro Irmãos,1849
+431530 Quarai,23579
+431531 Quatro Irmaos,1849
 431532 Quevedos,2816
 431535 Quinze de Novembro,3811
 431540 Redentora,11025
 431545 Relvado,2195
 431550 Restinga Seca,16334
-431555 Rio dos Índios,3418
+431555 Rio dos Indios,3418
 431560 Rio Grande,207860
 431570 Rio Pardo,38934
 431575 Riozinho,4571
@@ -352,16 +352,16 @@ Município,População_estimada
 431610 Ronda Alta,10655
 431620 Rondinha,5544
 431630 Roque Gonzales,7289
-431640 Rosário do Sul,40773
-431642 Sagrada Família,2676
+431640 Rosario do Sul,40773
+431642 Sagrada Familia,2676
 431643 Saldanha Marinho,2876
-431645 Salto do Jacuí,12429
-431647 Salvador das Missões,2769
+431645 Salto do Jacui,12429
+431647 Salvador das Missoes,2769
 431650 Salvador do Sul,7315
 431660 Sananduva,16139
 431710 Sant'Ana do Livramento,82968
-431670 Santa Bárbara do Sul,8793
-431673 Santa Cecília do Sul,1698
+431670 Santa Barbara do Sul,8793
+431673 Santa Cecilia do Sul,1698
 431675 Santa Clara do Sul,6183
 431680 Santa Cruz do Sul,126084
 431697 Santa Margarida do Sul,2495
@@ -369,54 +369,54 @@ Município,População_estimada
 431695 Santa Maria do Herval,6328
 431720 Santa Rosa,72240
 431725 Santa Tereza,1781
-431730 Santa Vitória do Palmar,31436
+431730 Santa Vitoria do Palmar,31436
 431700 Santana da Boa Vista,8434
 431740 Santiago,50635
-431750 Santo Ângelo,78976
-431760 Santo Antônio da Patrulha,41977
-431770 Santo Antônio das Missões,11174
-431755 Santo Antônio do Palma,2198
-431775 Santo Antônio do Planalto,2056
+431750 Santo Angelo,78976
+431760 Santo Antonio da Patrulha,41977
+431770 Santo Antonio das Missoes,11174
+431755 Santo Antonio do Palma,2198
+431775 Santo Antonio do Planalto,2056
 431780 Santo Augusto,14349
 431790 Santo Cristo,14757
 431795 Santo Expedito do Sul,2485
-431800 São Borja,62990
-431805 São Domingos do Sul,3064
-431810 São Francisco de Assis,19495
-431820 São Francisco de Paula,21551
-431830 São Gabriel,62785
-431840 São Jerônimo,23527
-431842 São João da Urtiga,4840
-431843 São João do Polêsine,2651
-431844 São Jorge,2846
-431845 São José das Missões,2736
-431846 São José do Herval,2186
-431848 São José do Hortêncio,4463
-431849 São José do Inhacorá,2220
-431850 São José do Norte,26977
-431860 São José do Ouro,7116
-431861 São José do Sul,2260
-431862 São José dos Ausentes,3470
-431870 São Leopoldo,228370
-431880 São Lourenço do Sul,44541
-431890 São Luiz Gonzaga,35193
-431900 São Marcos,21204
-431910 São Martinho,5821
-431912 São Martinho da Serra,3306
-431915 São Miguel das Missões,7728
-431920 São Nicolau,5732
-431930 São Paulo das Missões,6348
-431935 São Pedro da Serra,3584
-431936 São Pedro das Missões,1984
-431937 São Pedro do Butiá,2983
-431940 São Pedro do Sul,16788
-431950 São Sebastião do Caí,24676
-431960 São Sepé,24432
-431970 São Valentim,3621
-431971 São Valentim do Sul,2257
-431973 São Valério do Sul,2752
-431975 São Vendelino,2124
-431980 São Vicente do Sul,8787
+431800 Sao Borja,62990
+431805 Sao Domingos do Sul,3064
+431810 Sao Francisco de Assis,19495
+431820 Sao Francisco de Paula,21551
+431830 Sao Gabriel,62785
+431840 Sao Jeronimo,23527
+431842 Sao Joao da Urtiga,4840
+431843 Sao Joao do Polesine,2651
+431844 Sao Jorge,2846
+431845 Sao Jose das Missoes,2736
+431846 Sao Jose do Herval,2186
+431848 Sao Jose do Hortencio,4463
+431849 Sao Jose do Inhacora,2220
+431850 Sao Jose do Norte,26977
+431860 Sao Jose do Ouro,7116
+431861 Sao Jose do Sul,2260
+431862 Sao Jose dos Ausentes,3470
+431870 Sao Leopoldo,228370
+431880 Sao Lourenco do Sul,44541
+431890 Sao Luiz Gonzaga,35193
+431900 Sao Marcos,21204
+431910 Sao Martinho,5821
+431912 Sao Martinho da Serra,3306
+431915 Sao Miguel das Missoes,7728
+431920 Sao Nicolau,5732
+431930 Sao Paulo das Missoes,6348
+431935 Sao Pedro da Serra,3584
+431936 Sao Pedro das Missoes,1984
+431937 Sao Pedro do Butia,2983
+431940 Sao Pedro do Sul,16788
+431950 Sao Sebastiao do Cai,24676
+431960 Sao Sepe,24432
+431970 Sao Valentim,3621
+431971 Sao Valentim do Sul,2257
+431973 Sao Valerio do Sul,2752
+431975 Sao Vendelino,2124
+431980 Sao Vicente do Sul,8787
 431990 Sapiranga,79560
 432000 Sapucaia do Sul,138357
 432010 Sarandi,23036
@@ -426,51 +426,51 @@ Município,População_estimada
 432030 Selbach,5134
 432032 Senador Salgado Filho,2885
 432035 Sentinela do Sul,5486
-432040 Serafina Corrêa,15814
-432045 Sério,2235
-432050 Sertão,6169
-432055 Sertão Santana,6246
+432040 Serafina Correa,15814
+432045 Serio,2235
+432050 Sertao,6169
+432055 Sertao Santana,6246
 432057 Sete de Setembro,2132
 432060 Severiano de Almeida,3890
 432065 Silveira Martins,2487
 432067 Sinimbu,10400
 432070 Sobradinho,14944
 432080 Soledade,31261
-432085 Tabaí,4460
+432085 Tabai,4460
 432090 Tapejara,21525
 432100 Tapera,10803
 432110 Tapes,17354
 432120 Taquara,57238
 432130 Taquari,27128
-432132 Taquaruçu do Sul,3090
+432132 Taquarucu do Sul,3090
 432135 Tavares,5554
 432140 Tenente Portela,14039
 432143 Terra de Areia,10634
-432145 Teutônia,30170
+432145 Teutonia,30170
 432146 Tio Hugo,2912
 432147 Tiradentes do Sul,6384
 432149 Toropi,2988
 432150 Torres,37107
-432160 Tramandaí,46369
+432160 Tramandai,46369
 432162 Travesseiro,2389
-432163 Três Arroios,2873
-432166 Três Cachoeiras,10811
-432170 Três Coroas,26092
-432180 Três de Maio,24485
-432183 Três Forquilhas,2924
-432185 Três Palmeiras,4471
-432190 Três Passos,24647
+432163 Tres Arroios,2873
+432166 Tres Cachoeiras,10811
+432170 Tres Coroas,26092
+432180 Tres de Maio,24485
+432183 Tres Forquilhas,2924
+432185 Tres Palmeiras,4471
+432190 Tres Passos,24647
 432195 Trindade do Sul,5961
 432200 Triunfo,27867
 432210 Tucunduva,5993
 432215 Tunas,4586
 432218 Tupanci do Sul,1584
-432220 Tupanciretã,23521
+432220 Tupancireta,23521
 432225 Tupandi,4366
 432230 Tuparendi,8574
-432232 Turuçu,3596
+432232 Turucu,3596
 432234 Ubiretama,2265
-432235 União da Serra,1413
+432235 Uniao da Serra,1413
 432237 Unistalda,2481
 432240 Uruguaiana,129652
 432250 Vacaria,64857
@@ -478,21 +478,21 @@ Município,População_estimada
 432254 Vale Real,5548
 432252 Vale Verde,3434
 432255 Vanini,2087
-432260 Venâncio Aires,69859
+432260 Venancio Aires,69859
 432270 Vera Cruz,25700
-432280 Veranópolis,24686
+432280 Veranopolis,24686
 432285 Vespasiano Correa,1976
 432290 Viadutos,5271
-432300 Viamão,251978
+432300 Viamao,251978
 432310 Vicente Dutra,5224
 432320 Victor Graeff,3070
 432330 Vila Flores,3363
-432335 Vila Lângaro,2193
+432335 Vila Langaro,2193
 432340 Vila Maria,4393
 432345 Vila Nova do Sul,4365
 432350 Vista Alegre,2887
 432360 Vista Alegre do Prata,1613
 432370 Vista Gaúcha,2873
-432375 Vitória das Missões,3463
+432375 Vitoria das Missoes,3463
 432377 Westfalia,2953
-432380 Xangri-lá,14197
+432380 Xangri-la,14197
