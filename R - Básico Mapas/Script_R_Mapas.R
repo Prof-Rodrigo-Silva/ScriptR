@@ -8,11 +8,11 @@
 
 #####################################################################################
 #1. Mapas Básicos
-#install.packages("maps")
+install.packages("maps")
 library(maps) #mapas simples, eixos, escala, cidades 
-#install.packages("mapproj")
+install.packages("mapproj")
 library(mapproj)
-#install.packages("rgdal", dependencies = T)
+install.packages("rgdal", dependencies = T, force = T)
 library(rgdal)
 
 map("world")
@@ -163,6 +163,7 @@ rs = readOGR("C:/Users/fermat/Documents/ScriptR/R - Básico Mapas","43MUE250GC_SI
 
 head(rs@data)
 
+
 rs$CD_GEOCMU = substr(rs$CD_GEOCMU,1,6)
 
 #importar dados tabnet!
@@ -241,124 +242,7 @@ head(rs.rsf)
 rs.rsf = merge(rs.rsf, rs@data, by.x="id", by.y = "CD_GEOCMU")
 
 head(rs.rsf)
-
-#
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-#
-#
-#
-#
-head(populacao)
-head(nascimentos)
-head(obitos)
-
-populacao = na.omit(populacao)
-nascimentos = na.omit(nascimentos)
-obitos = na.omit(obitos)
-
-names(populacao) = c("Municipio","Populacao")
-names(nascimentos) = c("Municipio","Nascimentos")
-names(obitos) = c("Municipio","Obitos")
-
-head(populacao)
-head(nascimentos)
-head(obitos)
-
-populacao$CD_GEOCMU=substr(populacao$Municipio, 1, 6)
-nascimentos$CD_GEOCMU=substr(nascimentos$Municipio, 1, 6)
-obitos$CD_GEOCMU=substr(obitos$Municipio, 1, 6)
-
-head(populacao)
-head(nascimentos)
-head(obitos)
-head(rs@data)
-rs@data
-
-dim(populacao)
-dim(nascimentos)
-dim(obitos)
-dim(rs@data)
-
-#Ordenando os bancos pelo id
-populacao = populacao[order(populacao$CD_GEOCMU), ]
-nascimentos = nascimentos[order(nascimentos$CD_GEOCMU), ]
-obitos = obitos[order(obitos$CD_GEOCMU), ]
-malhaRS = rs@data[order(rs@data$CD_GEOCMU), ]
-
-linhas = c(1,2)
-malhaRS = malhaRS[-linhas,]
-head(malhaRS)
-dim(malhaRS)
-
-dados = populacao
-head(dados)
-head(nascimentos)
-dados$Nascimentos = nascimentos$Nascimentos
-head(obitos)
-dados$Obitos = obitos$Obitos
-
-#Dica !
-#malhaRS = subset(malhaRS, CD_GEOCMU!="430000")
-
-head(malhaRS)
-rs2 = merge(malhaRS, dados)
-
 head(rs2)
-
-rs2$PercNascimentos= (rs2$Nascimentos * 100) / rs2$Populacao
-rs2$PercObitos = (rs2$Obitos * 100) / rs2$Populacao
-
-head(rs)
-rs.rsf = fortify(rs, region = "CD_GEOCMU")
-
-head(rs.rsf)
-
-rs.rsf = subset(rs.rsf,id!="430000")
-
-rs.rsf = merge(rs.rsf, rs@data, by.x = "id", by.y = "CD_GEOCMU")
 
 rs2$NascimentosCat = cut(rs2$Nascimentos, breaks = c(0,200,400,600,800,1000,20000),
                        labels = c('0-200',
@@ -379,7 +263,7 @@ rs2$ObitosCat = cut(rs2$Obitos, breaks = c(0,200,400,600,800,1000,12000),
                          include.lowest = T)
 
 rs2$PercNascCat = cut(rs2$PercNascimentos, breaks = c(0,0.3,0.6,0.9,1.2,1.5,1.8,
-                                                      2),
+                                                      2.2),
                          labels = c('0-0.3',
                                     '0.3-0.6',
                                     '0.6-0.9',
@@ -389,23 +273,22 @@ rs2$PercNascCat = cut(rs2$PercNascimentos, breaks = c(0,0.3,0.6,0.9,1.2,1.5,1.8,
                                     '+2'),
                          include.lowest = T)
 
-rs2$PercObitosCat = cut(rs2$PercObitos, breaks = c(0,0.3,0.6,0.9,1.2,1.5,1.8,
-                                                      2),
-                      labels = c('0-0.3',
-                                 '0.3-0.6',
-                                 '0.6-0.9',
-                                 '1.2-1.5',
-                                 '1.5-1.8',
-                                 '1.8-2',
-                                 '+2'),
+rs2$PercObitosCat = cut(rs2$PercObitos, breaks = c(0,0.2,0.4,0.6,0.8,1.0,1.2,
+                                                      1.6),
+                      labels = c('0-0.2',
+                                 '0.2-0.4',
+                                 '0.4-0.6',
+                                 '0.6-0.8',
+                                 '0.8-1.0',
+                                 '1.0-1.2',
+                                 '+1.2'),
                       include.lowest = T)
 
 
 head(rs2)
 
-
-rm(rs2)
-rm(rs.rsf)
+#rm(rs2)
+#rm(rs.rsf)
 
 rs.rsf = merge(rs.rsf, rs2, by.x = "id", by.y = "CD_GEOCMU")
 
@@ -415,6 +298,7 @@ head(rs.rsf)
 
 #install.packages("RColorBrewer",dependencies = T)
 library(RColorBrewer)
+library(ggplot2)
 
 ggplot(rs.rsf, aes(rs.rsf$long,rs.rsf$lat, group=rs.rsf$group,fill=rs.rsf$NascimentosCat)) +
   geom_polygon(colour='red') + coord_equal() + ggtitle("Nascimentos") +
@@ -437,9 +321,183 @@ ggplot(rs.rsf, aes(rs.rsf$long,rs.rsf$lat, group=rs.rsf$group,fill=rs.rsf$PercNa
   theme(plot.title = element_text(size = rel(1), lineheight = 0.9, face = "bold",
                                   colour = 'blue'))
 
-ggplot(rs.rsf, aes(rs.rsf$long,rs.rsf$lat, group=rs.rsf$group,fill=rs.rsf$PercNascCat)) +
-  geom_polygon(colour='green') + coord_equal() + ggtitle("Percentual Nascimentos") +
-  labs(x = "Longitude", y = "Latitude", fill="Perc. Nascimentos") +
-  scale_fill_manual(values = brewer.pal(9,'Oranges')[3:9]) +
+ggplot(rs.rsf, aes(rs.rsf$long,rs.rsf$lat, group=rs.rsf$group,fill=rs.rsf$PercObitosCat)) +
+  geom_polygon(colour='green') + coord_equal() + ggtitle("Percentual Obitos") +
+  labs(x = "Longitude", y = "Latitude", fill="Perc. Obitos") +
+  scale_fill_manual(values = brewer.pal(9,'OrRd')[3:9]) +
   theme(plot.title = element_text(size = rel(1), lineheight = 0.9, face = "bold",
                                   colour = 'blue'))
+
+
+###########################################################################################
+#3. Mapas com Leaflet
+
+#install.packages("dplyr")
+library(dplyr)
+#install.packages("ggplot2")
+library(ggplot2)
+#install.packages("rjson")
+library(rjson)
+#install.packages("jsonlite", dependencies = T)
+library(jsonlite)
+#install.packages("leaflet",dependencies = T)
+library(leaflet)
+#install.packages("RCurl")
+library(RCurl)
+
+# https://rstudio.github.io/leaflet/
+
+leaflet() %>% addTiles()
+
+leaflet() %>% addTiles() %>% addProviderTiles(providers$MtbMap) %>% 
+  addProviderTiles(providers$Stamen.TonerLines, 
+                   options = providerTileOptions(opacity = 0.50)) %>% 
+  addProviderTiles(providers$Stamen.TonerLabels, 
+                   options = providerTileOptions(opacity = 0.90))
+
+lat = -31.333019
+long = -54.100074
+
+leaflet() %>% addTiles() %>% addMarkers(long,lat)
+
+leaflet() %>% addTiles() %>% addCircleMarkers(long,lat)
+
+#Diversos Pontos No Mapa
+
+p = pontosMapa
+
+leaflet() %>% addTiles() %>% addMarkers(p$long,p$lat)
+
+class(p$lat)
+
+p$lat = as.numeric(p$lat)
+p$long = as.numeric(p$long)
+
+leaflet() %>% addTiles() %>% addMarkers(p$long,p$lat)
+
+leaflet() %>% addTiles() %>% addMarkers(p$long,p$lat, popup = p$ponto)
+
+leaflet() %>% addTiles() %>% addCircleMarkers(p$long,p$lat)
+
+
+###Mudando as cores dos marcadores
+
+#install.packages("dplyr")
+library(dplyr)
+#install.packages("ggplot2")
+library(ggplot2)
+#install.packages("rjson")
+library(rjson)
+#install.packages("jsonlite", dependencies = T)
+library(jsonlite)
+#install.packages("leaflet",dependencies = T)
+library(leaflet)
+#install.packages("RCurl")
+library(RCurl)
+
+p = pontosMapa
+class(p$long)
+
+p$lat = as.numeric(p$lat)
+p$long = as.numeric(p$long)
+
+cor = c()
+nrow(p)
+
+for(i in 1 : nrow(p)){
+  
+  if(p$tipo[i] == 1){
+    cor[i] = "green"
+  }else if(p$tipo[i] == 2){
+    cor[i] = "red"
+  }else if(p$tipo[i] == 3){
+    cor[i] = "pink"
+  }else{
+    cor[i] = "blue"
+  }
+}
+cor
+
+icone = awesomeIcons(icon = "pin",library = "ion", markerColor = cor)
+
+leaflet() %>% addTiles() %>% addAwesomeMarkers(p$long,p$lat, icon = icone,
+                                               popup = p$ponto, label = p$ponto)
+#Clusters
+
+icone = awesomeIcons(icon=" ",markerColor = cor)
+
+leaflet() %>% addTiles() %>% addAwesomeMarkers(p$long,p$lat, icon = icone,
+                                               popup = p$ponto, label = p$ponto,
+                                               clusterOptions = markerClusterOptions())
+
+#Alterando Marcadores Circulares
+
+leaflet()%>% addTiles() %>% addCircleMarkers(p$long,p$lat, color = cor,
+                                             label = p$ponto,
+                                             stroke = T,
+                                             fillOpacity = 0.5,
+                                             radius = ifelse(p$tipo == 1, 10, 6)
+                                              )
+
+
+#Adicionando formas - Círculos
+leaflet()%>% addTiles()
+
+lat = -31.333019
+long = -54.100074
+
+leaflet()%>% addTiles() %>% addCircles(long,lat)
+
+pf = populacaoFronteira
+
+class(pf$lat)
+class(pf$log)
+class(pf$Populacao_estimada)
+
+pf$pop = as.character(pf$Populacao_estimada)
+
+leaflet()%>% addTiles() %>% addCircles(lng = pf$log, lat = pf$lat,
+                                       radius = sqrt(pf$Populacao_estimada)*20,
+                                       stroke = F,fillOpacity = 0.5,
+                                       label = pf$pop)
+
+
+
+#Adicionando formas - Retângulos
+lat = -31.328593
+lng = -54.101329
+
+lat1 = -31.327218
+lng1 = -54.100138
+leaflet()%>% addTiles() %>% addRectangles(lng,lat,lng1,lat1,
+                                          fillOpacity = .5)
+
+###########################################################################################
+#4. Mapas com Google API (NÃO FOI GRAVADO AINDA)
+# Criar um novo projeto em: https://console.cloud.google.com
+# Gerar Chave de Ativação, chave: KEY
+# Instale o pacote ggmap R e defina a chave da API
+#no R executando os comandos conforme abaixo.
+
+
+install.packages("ggmap")
+remove.packages("ggmap")
+
+if(!requireNamespace("devtools")) install.packages("devtools")
+devtools::install_github("dkahle/ggmap", ref = "tidyup", force=TRUE)
+
+#Load the library
+library("ggmap")
+
+install.packages("devtools")
+
+
+library(ggmap)
+library(ggplot2)
+library(dplyr)
+#API Key
+ggmap::register_google(key = "Key")
+
+#Notes: If you get still have a failure then I suggest to restart R and run the library and register google commands again.
+center =  c(-54.106141,-31.331287)
+get_googlemap(-54.106141,-31.331287)
