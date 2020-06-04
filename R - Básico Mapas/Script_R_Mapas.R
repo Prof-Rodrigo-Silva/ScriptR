@@ -22,7 +22,7 @@ map("world","Brazil")
 map.axes()
 #map.scale(ratio = F, cex = 0.5)
 map(,,add = T)
-map.scale(x=-47,y=-30,ratio = F, cex = 0.5)
+map.scale(x=-47,y=-30, ratio = F, cex = .5)
 
 map("world","Brazil",fill = T, col = "lightgray")
 

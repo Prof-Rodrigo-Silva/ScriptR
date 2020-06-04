@@ -331,9 +331,9 @@ cor(trees[1:3])
 
 modelo1 = lm(Volume ~ Girth, data = trees)
 modelo1
+summary(modelo1)
 summary(modelo1)$r.squared # R²
 summary(modelo1)$adj.r.squared
-
 plot(Volume ~ Girth, data = trees)
 abline(modelo1)
 predict(modelo1,data.frame(Girth = 23))
@@ -342,7 +342,6 @@ modelo2 = lm(Volume ~ Girth + Height, data = trees)
 summary(modelo2)$r.squared
 summary(modelo2)$adj.r.squared
 predict(modelo2,data.frame(Girth = 23, Height = 60))
-
 ###################################################################################
 # Aula 21 - Regressão Logistica
 

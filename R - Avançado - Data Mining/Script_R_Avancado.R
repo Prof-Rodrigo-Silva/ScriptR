@@ -80,6 +80,8 @@ itemSet= eclat(base, parameter = list(support=0.15 ,minlen=2))
 inspect(itemSet)
 
 inspect(sort(itemSet))
+?sort
+
 
 
 #########################################################################################################
