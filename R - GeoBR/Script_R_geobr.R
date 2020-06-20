@@ -477,6 +477,16 @@ map %>% addPolygons(
   dashArray = "1",
   fillOpacity = 0.5)
 #
+##########################################
+# Funções complementares
+
+library(sf)
+library(geobr)
+library(magrittr)
+library(dplyr)
+library(ggplot2)
 
 
+municipio = lookup_muni(name_muni = 'Erechim')
 
+cIBGE = grid_state_correspondence_table
