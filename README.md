@@ -1,2 +1,3 @@
-# ScriptR
-Material desenvolvido e utilizado nas vídeo aulas do meu canal no YouTube, usem sem moderação =)
+# **ScriptR**
+
+Material desenvolvido e utilizado nas vídeo aulas do meu canal no YouTube, usem sem moderação :ok:
