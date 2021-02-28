@@ -15,7 +15,7 @@ library(ggplot2)
 
 conj_dados = list_geobr()
 #
-# Leia todas as áreas geográficas do país
+# Leia todas as ?reas geogr?ficas do pa?s
 
 brasil = read_state(code_state = "all",year = 2018)
 plot(brasil)
@@ -37,7 +37,7 @@ ggplot() + geom_sf(data = municipios, fill="#2D3E50", color="#FEBF57", size=.15,
 
 plot(municipios)
 
-# Leia todas as áreas geográficas de um estado com um determinado código
+# Leia todas as ?reas geogr?ficas de um estado com um determinado c?digo
 rs = read_state(code_state = 43)
 plot(rs)
 ggplot() + geom_sf(data = rs, fill="#2D3E50", color="#FEBF57", size=.15,
@@ -95,9 +95,14 @@ ggplot() + geom_sf(data = pampa, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F) + 
   geom_sf(data = mata_atlat, fill="#5F3E50", color="#FEBF57", size=.15,
                                               show.legend = F) +
-  ggtitle("Biomas Pampa e Mata Atlântica")
+  ggtitle("Biomas Pampa e Mata Atl?ntica")
 
-#Regiões, Áreas de Ponderação e Amazônia
+
+ggplot()+geom_sf(data = bioma, fill="#810d0a", color="#FEBF57", size=.15,
+                  show.legend = F)+geom_sf(data = mt, fill="#2D3E50", color="#FEBF57", size=.15,
+                show.legend = F) 
+##########################################################################################
+#Regi?es, ?reas de Pondera??o e Amaz?nia
 library(geobr)
 library(sf)
 library(magrittr)
@@ -120,7 +125,7 @@ r3 = read_weighting_area(code_weighting = 4300604)
 plot(r3)
 
 ggplot() + geom_sf(data = r3, fill="#2D3E50", color="#FEBF57", size=.15,
-                   show.legend = )F
+                   show.legend = F)
 
 r4 = r3[5:8,]
 
@@ -131,8 +136,13 @@ r5 = read_amazon()
 ggplot() + geom_sf(data = r5, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
 
+ap = read_weighting_area()
+ap = subset(ap,ap$abbrev_state=="RS")
+library(leaflet)
+map = leaflet(ap)%>%addTiles()
+map%>%addPolygons()
 
-#Semiárido
+#Semi?rido
 library(geobr)
 library(sf)
 library(magrittr)
@@ -148,7 +158,7 @@ plot(rs1)
 ggplot() + geom_sf(data = rs, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
 
-#Setores Censitários
+#Setores Censit?rios
 library(geobr)
 library(sf)
 library(magrittr)
@@ -161,7 +171,8 @@ r = read_census_tract(code_tract = 4301602)
 plot(r)
 ggplot() + geom_sf(data = r, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
-
+map = leaflet(r)%>%addTiles()
+map%>%addPolygons()
 rr = read_census_tract(code_tract = 4301602, year = 2000, zone = "rural")
 ggplot() + geom_sf(data = rr, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
@@ -172,7 +183,7 @@ ggplot() + geom_sf(data = ru1, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
 
 ru1 = ru[1:2,]
-#Sedes municipais e grade de informações
+#Sedes municipais e grade de informa??es
 library(geobr)
 library(sf)
 library(magrittr)
@@ -195,7 +206,8 @@ sm2 = subset(sm, name_region == "Sul")
 ggplot() + geom_sf(data = sm2, fill="#2D3E50", color="#FF0000", size=.15,
                    show.legend = F)
 
-bg = subset(sm, name_muni == "Bagé")
+bg = subset(sm, name_muni == "Bag?")
+bg = subset(sm,code_muni == 4301636)
 
 ggplot() + geom_sf(data = bg, fill="#2D3E50", color="#FF0000", size=.15,
                    show.legend = F)
@@ -217,9 +229,9 @@ en$geom = e$geom
 
 
 ############################
-# Áreas metropolitanas
-# A função retorna as formas dos municípios agrupados por suas
-# respectivas áreas metropolitanas.
+# ?reas metropolitanas
+# A fun??o retorna as formas dos munic?pios agrupados por suas
+# respectivas ?reas metropolitanas.
 library(sf)
 library(geobr)
 library(magrittr)
@@ -244,8 +256,8 @@ ggplot() + geom_sf(data = maPoA, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
 
 ############################
-# Áreas urbanas
-# Esta função lê os dados oficiais sobre a pegada urbana das cidades
+# ?reas urbanas
+# Esta fun??o l? os dados oficiais sobre a pegada urbana das cidades
 # brasileiras nos anos de 2005 e 2015.
 
 library(sf)
@@ -270,23 +282,30 @@ ggplot() + geom_sf(data = auBG1, fill="#2D3E50", color="#FEBF57", size=.15,
 
 
 ##############################################3
-# Áreas de conservação
-# Seu conjunto de dados abrange todo o Brasil e inclui os polígonos de todas
-# as unidades de conservação presentes no território brasileiro.
-# A última atualização dos dados foi 09-2019
+# ?reas de conserva??o
+# Seu conjunto de dados abrange todo o Brasil e inclui os pol?gonos de todas
+# as unidades de conserva??o presentes no territ?rio brasileiro.
+# A ?ltima atualiza??o dos dados foi 09-2019
 
 library(sf)
 library(geobr)
 library(magrittr)
 library(dplyr)
 library(ggplot2)
-
+library(leaflet)
 c = list_geobr()
 
-ac = read_conservation_units()
+ac <- read_conservation_units()
 
 plot(ac)
-
+ac = subset(ac, ac$government_level=="municipal")
+ac1 = subset(ac, ac$code_conservation_unit==3138)
+shape <- st_write(ac1,"parque.shp")
+kml <- st_write(ac1,"parque.kml")
+class(ac1)
+ac2 = ac[250:260,]
+map = leaflet(ac1)%>%addTiles()
+map%>%addPolygons()
 ggplot() + geom_sf(data = ac, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
 
@@ -301,16 +320,16 @@ ggplot() + geom_sf(data = ac2, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
 
 ###############################################
-# Áreas de risco
+# ?reas de risco
 
-# Esta função lê os dados oficiais das áreas de risco de desastre no Brasil.
-# Ele se concentra especificamente em desastres geodinâmicos e hidrometeorológicos
-# capazes de provocar deslizamentos de terra e inundações. O conjunto de dados
-# abrange todo o país. Cada polígono da área de risco (conhecido como 'BATER') possui
-# um ID de código exclusivo (coluna 'geo_bater'). 
-# O conjunto de dados traz informações sobre a extensão em que os polígonos da área
-# de risco se sobrepõem aos setores censitários e faces do bloco (coluna "acuracia") 
-# e número de áreas de risco dentro de cada área de risco (coluna 'num').
+# Esta fun??o l? os dados oficiais das ?reas de risco de desastre no Brasil.
+# Ele se concentra especificamente em desastres geodin?micos e hidrometeorol?gicos
+# capazes de provocar deslizamentos de terra e inunda??es. O conjunto de dados
+# abrange todo o pa?s. Cada pol?gono da ?rea de risco (conhecido como 'BATER') possui
+# um ID de c?digo exclusivo (coluna 'geo_bater'). 
+# O conjunto de dados traz informa??es sobre a extens?o em que os pol?gonos da ?rea
+# de risco se sobrep?em aos setores censit?rios e faces do bloco (coluna "acuracia") 
+# e n?mero de ?reas de risco dentro de cada ?rea de risco (coluna 'num').
 
 library(sf)
 library(geobr)
@@ -343,9 +362,9 @@ ggplot() + geom_sf(data = pelotas, fill="#2D3E50", color="#FEBF57", size=.15,
           show.legend = F)
 
 ##########################################
-# Áreas indígenas
-# O conjunto de dados abrange todo o Brasil e inclui terras indígenas
-# de todas as etnias e em diferentes estágios de demarcação.
+# ?reas ind?genas
+# O conjunto de dados abrange todo o Brasil e inclui terras ind?genas
+# de todas as etnias e em diferentes est?gios de demarca??o.
 
 library(sf)
 library(geobr)
@@ -357,7 +376,7 @@ c = list_geobr()
 
 ai = read_indigenous_land()
 
-ggplot() + geom_sf(dat a= ai, fill="#2D3E50", color="#FEBF57", size=.15,
+ggplot() + geom_sf(data= ai, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
 
 aiRS = subset(ai, ai$abbrev_state == 'RS')
@@ -365,18 +384,22 @@ aiRS = subset(ai, ai$abbrev_state == 'RS')
 ggplot() + geom_sf(data = aiRS, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
 
-aiC = subset(aiRS, aiRS$name_muni == 'Caçapava do Sul')
+library(leaflet)
+map <- leaflet(aiRS)%>%addTiles()
+map%>%addPolygons()
+
+aiC = subset(aiRS, aiRS$name_muni == 'Ca?apava do Sul')
 
 ggplot() + geom_sf(data = aiC, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
 
-aiE = subset(aiRS, aiRS$etnia_nome=='Guaraní')
+aiE = subset(aiRS, aiRS$etnia_nome=='Guaran?')
 
 ggplot() + geom_sf(data = aiE, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
 
 ##########################################
-# Unidade de saúde
+# Unidade de sa?de
 
 library(sf)
 library(geobr)
@@ -396,7 +419,7 @@ ggplot() + geom_sf(data = rs, fill="#2D3E50", color="#FEBF57", size=.15,
   geom_sf(data = usRS, fill="#2D3E50", color="#FF0000", size=.25,
                      show.legend = F)
 
-#Obs: Código município com 1 dígito a menos
+#Obs: C?digo munic?pio com 1 d?gito a menos
 usB = subset(usRS, usRS$code_muni == 430160)
 
 bg = subset(rs, rs$code_muni == 4301602)
@@ -408,9 +431,9 @@ ggplot() + geom_sf(data = bg, fill="#2D3E50", color="#FEBF57", size=.15,
 
 
 ##########################################
-# Limites de Vizinhança
-# conjunto de dados inclui os limites de vizinhança de 720 municípios brasileiros.
-# É baseado em agregações dos setores censitários do censo brasileiro.
+# Limites de Vizinhan?a
+# conjunto de dados inclui os limites de vizinhan?a de 720 munic?pios brasileiros.
+# ? baseado em agrega??es dos setores censit?rios do censo brasileiro.
 
 library(sf)
 library(geobr)
@@ -428,14 +451,14 @@ ggplot() + geom_sf(data = lvRS, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
 
 
-lvC = subset(lvRS, lvRS$name_muni=='Canguçu')
+lvC = subset(lvRS, lvRS$name_muni=='Cangu?u')
 
 ggplot() + geom_sf(data = lvC, fill="#2D3E50", color="#FEBF57", size=.15,
                    show.legend = F)
 
 
 ################################################################################
-# Prática com leaflet e geobr
+# Pr?tica com leaflet e geobr
 
 library(sf)
 library(geobr)
@@ -448,6 +471,11 @@ library(gifski)
 library(leaflet)
 
 rs = read_municipality(code_muni = 'RS', year=2018)
+bg = subset(rs, rs$name_muni=='Bagé')
+
+ggplot()+geom_sf(data = bg, fill="#810d0a", color="#810d0a", size=.15,
+                 show.legend = F)
+
 
 map = leaflet(rs) %>% addTiles()
 
@@ -487,6 +515,51 @@ library(dplyr)
 library(ggplot2)
 
 
-municipio = lookup_muni(name_muni = 'Erechim')
+municipio = lookup_muni(name_muni = 'Bagé')
 
 cIBGE = grid_state_correspondence_table
+
+ba <- read_municipality(code_muni = "BA", year = 2018)
+
+plot(ba)
+
+##########################################
+# Escolas
+# Data comes from the School Census collected by INEP, the National 
+# Institute for Educational Studies and Research "Anisio Teixeira".
+# The date of the last data update is registered in the database in the 
+# column 'date_update'. These data uses Geodetic reference system "SIRGAS2000"
+# and CRS(4674). The coordinates of each school if collected by INEP. 
+# Periodically the coordinates are revised with the objective of improving 
+# the quality of the data. More information available at 
+# http://portal.inep.gov.br/web/guest/dados/catalogo-de-escolas
+
+library(sf)
+library(geobr)
+library(magrittr)
+library(dplyr)
+library(ggplot2)
+
+c <- list_geobr()
+
+escolas <- read_schools()
+
+bg <- subset(escolas, escolas$name_muni=="Bagé")
+
+ggplot()+geom_sf(data = bg, fill="#810d0a", color="#810d0a", size=.15,
+                 show.legend = F)
+
+rs <- read_municipality(code_muni = 'RS', year = 2018)
+
+bage <- subset(rs, rs$name_muni=="Bagé")
+
+ggplot()+geom_sf(data = bage, fill="#2D3E50", color="#FEBF57", size=.15,
+                 show.legend = F)+geom_sf(data = bg, fill="#810d0a", color="#810d0a", size=.15,
+                 show.legend = F)
+
+library(leaflet)
+
+map <- leaflet(bg) %>% addTiles()
+
+map %>% addMarkers()
+

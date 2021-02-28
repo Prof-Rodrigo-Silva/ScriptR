@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="parqueKML" id="parqueKML">
+	<SimpleField name="code_conservation_unit" type="string"></SimpleField>
+	<SimpleField name="name_conservation_unit" type="string"></SimpleField>
+	<SimpleField name="id_wcm" type="string"></SimpleField>
+	<SimpleField name="category" type="string"></SimpleField>
+	<SimpleField name="group" type="string"></SimpleField>
+	<SimpleField name="government_level" type="string"></SimpleField>
+	<SimpleField name="creation_year" type="string"></SimpleField>
+	<SimpleField name="gid7" type="string"></SimpleField>
+	<SimpleField name="quality" type="string"></SimpleField>
+	<SimpleField name="legislation" type="string"></SimpleField>
+	<SimpleField name="dt_ultim10" type="string"></SimpleField>
+	<SimpleField name="code_u111" type="string"></SimpleField>
+	<SimpleField name="name_organization" type="string"></SimpleField>
+	<SimpleField name="date" type="float"></SimpleField>
+</Schema>
+<Folder><name>parqueKML</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#parqueKML">
+		<SimpleData name="name_conservation_unit">PARQUE NATURAL MUNICIPAL DO PAMPA</SimpleData>
+		<SimpleData name="category">Parque</SimpleData>
+		<SimpleData name="group">PI</SimpleData>
+		<SimpleData name="government_level">municipal</SimpleData>
+		<SimpleData name="creation_year">2014</SimpleData>
+		<SimpleData name="gid7">11244</SimpleData>
+		<SimpleData name="quality">Esquemático (O poligono é uma representação esquemática da dimensão da unidade).</SimpleData>
+		<SimpleData name="legislation">Decreto nº 174 de 15/09/2014</SimpleData>
+		<SimpleData name="dt_ultim10">09/07/2018</SimpleData>
+		<SimpleData name="code_u111">0160.43.3138</SimpleData>
+		<SimpleData name="name_organization">Prefeitura Municipal Bagé - RS</SimpleData>
+		<SimpleData name="date">201909</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>-54.102972,-31.361971 -54.096127,-31.360458 -54.092915,-31.362977 -54.09517,-31.364675 -54.097059,-31.37464 -54.104119,-31.369586 -54.1080169677733,-31.3685474395751 -54.106257,-31.364575 -54.1091651916504,-31.3581008911132 -54.1033715852236,-31.3580383507775 -54.102972,-31.361971</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+</Folder>
+</Document></kml>
