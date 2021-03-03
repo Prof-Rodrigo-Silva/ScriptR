@@ -1,6 +1,6 @@
 # GeoBR
 
-#Referência : https://www.rdocumentation.org/packages/geobr/versions/1.0
+#Refer?ncia : https://www.rdocumentation.org/packages/geobr/versions/1.0
 #Dados IBGE: https://concla.ibge.gov.br/classificacoes/por-tema/codigo-de-areas/codigo-de-areas
 
 #install.packages("geobr",dependencies = T)
@@ -471,7 +471,7 @@ library(gifski)
 library(leaflet)
 
 rs = read_municipality(code_muni = 'RS', year=2018)
-bg = subset(rs, rs$name_muni=='Bagé')
+bg = subset(rs, rs$name_muni=='Bag?')
 
 ggplot()+geom_sf(data = bg, fill="#810d0a", color="#810d0a", size=.15,
                  show.legend = F)
@@ -506,7 +506,7 @@ map %>% addPolygons(
   fillOpacity = 0.5)
 #
 ##########################################
-# Funções complementares
+# Fun??es complementares
 
 library(sf)
 library(geobr)
@@ -515,7 +515,7 @@ library(dplyr)
 library(ggplot2)
 
 
-municipio = lookup_muni(name_muni = 'Bagé')
+municipio = lookup_muni(name_muni = 'Bag?')
 
 cIBGE = grid_state_correspondence_table
 
@@ -544,14 +544,14 @@ c <- list_geobr()
 
 escolas <- read_schools()
 
-bg <- subset(escolas, escolas$name_muni=="Bagé")
+bg <- subset(escolas, escolas$name_muni=="Bag?")
 
 ggplot()+geom_sf(data = bg, fill="#810d0a", color="#810d0a", size=.15,
                  show.legend = F)
 
 rs <- read_municipality(code_muni = 'RS', year = 2018)
 
-bage <- subset(rs, rs$name_muni=="Bagé")
+bage <- subset(rs, rs$name_muni=="Bag?")
 
 ggplot()+geom_sf(data = bage, fill="#2D3E50", color="#FEBF57", size=.15,
                  show.legend = F)+geom_sf(data = bg, fill="#810d0a", color="#810d0a", size=.15,
@@ -562,4 +562,66 @@ library(leaflet)
 map <- leaflet(bg) %>% addTiles()
 
 map %>% addMarkers()
+
+##########################################
+# CEP
+# Zips codes in Brazil are known as CEP, the abbreviation for 
+# postal code address. CEPs in Brazil are 8 digits long, with the 
+# format 'xxxxx-xxx'.
+
+library(sf)
+library(geobr)
+library(magrittr)
+library(dplyr)
+library(ggplot2)
+
+c <- list_geobr()
+
+uf <- cep_to_state(cep = 69900000)
+
+###########################################################################
+# Inserindo Legendas nos Mapas
+
+library(sf)
+library(geobr)
+library(magrittr)
+library(dplyr)
+library(ggplot2)
+#install.packages("ggrepel")
+library(ggrepel)
+
+rs <- read_municipality(code_muni = 'RS')
+
+bage <- subset(rs, rs$name_muni=="Bagé")
+
+ggplot(bage)+
+  geom_sf(fill="#2D3E50", color="#FEBF57", size=.15,
+                 show.legend = F)+
+ geom_sf_label(aes(label=bage$name_muni), label.padding = unit(0.5,"mm"), size = 5)
+
+estados <- read_state()
+
+ggplot(estados)+
+  geom_sf(fill="#2D3E50", color="#FEBF57", size=.15,
+          show.legend = F)+
+  geom_sf_label(aes(label=estados$abbrev_state), label.padding = unit(0.5,"mm"), size = 3)
+
+
+head(estados)
+
+ggplot(estados,aes(geometry = geom))+
+  geom_sf(fill="#2D3E50", color="#FEBF57", size=.15,show.legend = F)+
+  geom_point(stat = "sf_coordinates", color = "#FEBF57" )+
+  geom_text_repel(aes(label = estados$abbrev_state),
+                  stat = "sf_coordinates",
+                  segment.curvature = 2e-10,
+                  force = 2e3)
+
+ggplot(estados,aes(geometry = geom))+
+  geom_sf()+
+  geom_point(stat = "sf_coordinates", color = "red" )+
+  geom_text_repel(aes(label = estados$abbrev_state),
+                  stat = "sf_coordinates",
+                  segment.curvature = 1e-20,
+                  force = 1e4)
 
